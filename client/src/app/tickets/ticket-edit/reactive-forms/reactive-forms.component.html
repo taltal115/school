@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="newTicketForm" (ngSubmit)="onSubmit()">
+        <div formGroupName="ticketData">
+          <div class="form-group">
+            <label for="teacherName">שם המורה</label>
+            <input
+              type="text"
+              id="teacherName"
+              formControlName="teacherName"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="damagedDevice">המכשיר התקול</label>
+            <input
+              type="text"
+              id="damagedDevice"
+              formControlName="damagedDevice"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="serialNumber">מספר סידורי (מחשב)</label>
+            <input
+              type="text"
+              id="serialNumber"
+              formControlName="serialNumber"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="structure">מבנה</label>
+            <input
+              type="text"
+              id="structure"
+              formControlName="structure"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="deviceLocation">כיתה/מיקום המכשיר</label>
+            <input
+              type="text"
+              id="deviceLocation"
+              formControlName="deviceLocation"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="problemsNature">מהות התקלה</label>
+            <input
+              type="text"
+              id="problemsNature"
+              formControlName="problemsNature"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="missingEquipments">ציוד שחסר</label>
+            <input
+              type="text"
+              id="missingEquipments"
+              formControlName="missingEquipments"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="teachersContactPhone">טלפון מורה מדווח/ת</label>
+            <input
+              type="text"
+              id="teachersContactPhone"
+              formControlName="teachersContactPhone"
+              class="form-control">
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+          <!--<div class="form-group">-->
+            <!--<label for="projectName">Project Name</label>-->
+            <!--<input-->
+              <!--type="text"-->
+              <!--id="projectName"-->
+              <!--formControlName="projectName"-->
+              <!--class="form-control">-->
+            <!--&lt;!&ndash;<span&ndash;&gt;-->
+              <!--&lt;!&ndash;*ngIf="!projectForm.get('userData.projectName').valid && projectForm.get('userData.projectName').touched"&ndash;&gt;-->
+              <!--&lt;!&ndash;class="help-block">&ndash;&gt;-->
+              <!--&lt;!&ndash;<span *ngIf="!projectForm.get('userData.projectName').errors['nameIsForbidden']">This projectName is invalid!</span>&ndash;&gt;-->
+              <!--&lt;!&ndash;<span *ngIf="!projectForm.get('userData.projectName').errors['required']">Please enter a valid projectName!</span>&ndash;&gt;-->
+              <!--&lt;!&ndash;</span>&ndash;&gt;-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label for="email">email</label>-->
+            <!--<input-->
+              <!--type="text"-->
+              <!--id="email"-->
+              <!--formControlName="email"-->
+              <!--class="form-control">-->
+            <!--&lt;!&ndash;<span&ndash;&gt;-->
+              <!--&lt;!&ndash;*ngIf="!projectForm.get('userData.email').valid && projectForm.get('userData.email').touched"&ndash;&gt;-->
+              <!--&lt;!&ndash;class="help-block">Please enter a valid email!</span>&ndash;&gt;-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<select formControlName="status">&ndash;&gt;-->
+        <!--<select class="form-control">-->
+          <!--<label>Status</label>-->
+          <!--<option [value]="status" *ngFor="let status of statuses">{{status}}</option>-->
+        <!--</select>-->
+        <br>
+        <span
+          *ngIf="!newTicketForm.valid && newTicketForm.touched"
+          class="help-block">Please enter a valid data!</span>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

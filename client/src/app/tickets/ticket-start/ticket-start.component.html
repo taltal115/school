@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col md-12">
+    <button class="btn-primary btn" (click)="onNewTicket()">New Ticket</button>
+  </div>
+</div>
+<br>
+<div class="row">
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th scope="col">תאריך</th>
+      <th scope="col">שם המורה</th>
+      <th scope="col">מכשיר תקול</th>
+      <th scope="col">מספר סידורי (מחשב)</th>
+      <th scope="col">מבנה</th>
+      <th scope="col">כיתה/מיקום המכשיר</th>
+      <th scope="col">מהות התקלה</th>
+      <th scope="col">ציוד שחסר</th>
+      <th scope="col">טלפון מורה מדווח/ת</th>
+      <th scope="col">סטטוס</th>
+      <th scope="col">עריכה</th>
+      <th scope="col">מחיקה</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of (tickets | async).tickets">
+        <td>{{ ticket.date | date:'shortTime' }}</td>
+        <td>{{ ticket.teacherName }}</td>
+        <td>{{ ticket.damagedDevice }}</td>
+        <td>{{ ticket.serialNumber }}</td>
+        <td>{{ ticket.structure }}</td>
+        <td>{{ ticket.deviceLocation }}</td>
+        <td>{{ ticket.problemsNature }}</td>
+        <td>{{ ticket.missingEquipments }}</td>
+        <td>{{ ticket.teachersContactPhone }}</td>
+        <td>{{ ticket.status }}</td>
+        <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(ticket)"></span></td>
+        <td><span class="glyphicon glyphicon-edit" (click)="onEditRow(ticket)"></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
