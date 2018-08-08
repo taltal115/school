@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/index';
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 
 import * as TicketActions from '../store/ticket.actions'
+import * as RecipeActions from "../../recipes/store/recipe.actions";
 
 @Component({
   selector: 'app-ticket-start',
@@ -21,6 +22,8 @@ export class TicketStartComponent implements OnInit {
     private store: Store<fromTicket.FeatureState>) { }
 
   ngOnInit() {
+    this.store.dispatch(new TicketActions.FetchTickets())
+
     this.tickets = this.store.select('tickets');
   }
 

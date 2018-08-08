@@ -48,6 +48,7 @@ class Server {
     db() {
         return __awaiter(this, void 0, void 0, function* () {
             let conf = config.db;
+            console.log("Mongo: ", conf.mongo.uri);
             mongoose.connect(conf.mongo.uri);
             // await sequelize.sync().then(() => {
             //   console.log('sequelize success');

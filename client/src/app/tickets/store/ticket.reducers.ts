@@ -1,6 +1,7 @@
 import {Ticket} from '../ticket.model';
 import * as TicketActions from './ticket.actions';
 import * as fromApp from '../../store/app.reducers';
+import * as RecipeActions from "../../recipes/store/recipe.actions";
 
 export interface FeatureState extends fromApp.AppState{
   tickets: State
@@ -12,18 +13,18 @@ export interface State {
 
 const initialState: State = {
   tickets: [
-    new Ticket(
-      new Date(),
-      'Tasty Schnitzel',
-      'A su just awesome!',
-      'JPG',
-      'JPG',
-      'JPG',
-      'JPG',
-      'JPG',
-      'JPG',
-      'עדיין לא טופל'
-      ),
+    // new Ticket(
+    //   new Date(),
+    //   'Tasty Schnitzel',
+    //   'A su just awesome!',
+    //   'JPG',
+    //   'JPG',
+    //   'JPG',
+    //   'JPG',
+    //   'JPG',
+    //   'JPG',
+    //   'עדיין לא טופל'
+    //   ),
   ]
 };
 
@@ -38,6 +39,11 @@ export function ticketReducer(state = initialState, action: TicketActions.Ticket
       console.log(action.payload);
       console.log(resObj);
       return resObj;
+    case (TicketActions.SET_TICKETS):
+      return {
+        ...state,
+        tickets: [...action.payload]
+      };
     // case (RecipeActions.ADD_RECIPE):
     //   return {
     //     ...state,

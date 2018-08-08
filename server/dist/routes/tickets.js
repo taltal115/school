@@ -8,11 +8,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 // import { Authorized } from "../utils/auth";
+const ticket_model_1 = require("../models/documents/ticket-model");
 class TicketsRoute {
     static init(router) {
         router.post("/tickets", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             console.log("tal", req.body);
-            res.json(Object.assign({ name: 'tal' }, req.body));
+            const ticket = new ticket_model_1.Ticket(req.body);
+            delete ticket.__v;
+            console.log("ticket: ", ticket);
+            ticket.save((err) => {
+                if (err)
+                    res.status(500).send({ error: err });
+                else {
+                    res.status(201).send({ status: "Created", ticket: ticket });
+                    console.log('file saved to db!');
+                }
+            });
+        }));
+        router.get("/tickets", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const tickets = yield ticket_model_1.Ticket.find({});
+                console.log("ticketstickets: ", tickets);
+                res.status(201).json(tickets);
+            }
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
         }));
     }
 }

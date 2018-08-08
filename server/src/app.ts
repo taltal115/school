@@ -46,7 +46,7 @@ class Server {
 
   private async db() {
     let conf = config.db;
-
+    console.log("Mongo: ",conf.mongo.uri)
     mongoose.connect(conf.mongo.uri);
 
     // await sequelize.sync().then(() => {
