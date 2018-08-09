@@ -2,8 +2,8 @@ import { NextFunction, Request, Response, Router } from "express";
 import { authRules } from './rules/auth.rules';
 import { validationResult } from 'express-validator/check';
 import { AuthService, UserService } from "../service";
-import { IUserInstance, IUserAttributes } from "../models";
-import { SignToken, VerifyToken } from "../utils/auth";
+import { IUserInstance } from "../models";
+import { VerifyToken, SignToken } from "../utils/auth";
 // import * as opn from "opn";
 
 class AuthRoute {
@@ -80,7 +80,16 @@ class AuthRoute {
             });
         });
 
-        router.post("/auth/login", (req: Request, res: Response, next: NextFunction) => {
+        router.post("/auth/register", async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const user = await service.register(req.body);
+                res.status(200).json({ success: true, data: user });
+            } catch (e) {
+                res.status(403).json({ success: false, error: e });
+            }
+        });
+
+        router.post("/auth/login", async (req: Request, res: Response, next: NextFunction) => {
             // authRules['login'],
             // const errors = validationResult(req.body);
             // if (!errors.isEmpty()) {
@@ -88,41 +97,55 @@ class AuthRoute {
             // }
 
             var body = req.body;
+            console.log("LOGIN: ",body);
+            try {
+                const user = await service.login(body.email, body.password);
+                console.log("LOGIN111: ",user);
+                // if(user) {
+                    var session = SignToken(user, body.orgnization, 0);
+                    res.status(200).json({ success: true, data: user, session: session });
+                // }
+                // else {
+                //     res.status(402).json({ success: false, error: user, session: null });
+                // }
+            } catch (e) {
+                res.status(403).json({ success: false, error: e, session: null});
+            }
 
-            service.login(body.email, body.password)
-                .then((user) => {
-                    if (body.orgnization) {
-                        service.role(user.id, body.orgnization).then((role) => {
-                            var _role: number = role.getDataValue('role')
-                            var session = SignToken((user as IUserAttributes), body.orgnization, _role);
-                            res.json({ "success": true, view: 'main', session: session });
-                        });
-                    }
-                    else {
-                        if (user.organizations && user.organizations.length > 1) {
-                            var session = SignToken((user as IUserAttributes), '', -1);
-                            res.json({ "success": true, view: 'auth', organizations: user.organizations, session: session });
-                        }
-                        else {
-                            var organization = user.organizations[0];
-                            // in a case user didn't attached to organization yet
-                            if (organization === undefined) {
-                                var session = SignToken((user as IUserAttributes), '', -1);
-                                res.json({ "success": true, view: 'auth', session: session });
-                            }
-                            else {
-                                service.role(user.id, organization.id).then((role) => {
-                                    var _role: number = role.getDataValue('role')
-                                    var session = SignToken((user as IUserAttributes), organization.id, _role);
-                                    res.json({ "success": true, view: 'main', session: session });
-                                });
-                            }
-                        }
-                    }
-                })
-                .catch((error) => {
-                    res.status(403).json({ success: false, view: 'auth', session: null, error: error });
-                });
+            // service.login(body.email, body.password)
+            //     .then((user) => {
+            //         if (body.orgnization) {
+            //             service.role(user.id, body.orgnization).then((role) => {
+            //                 var _role: number = role.getDataValue('role')
+            //                 var session = SignToken((user as IUserAttributes), body.orgnization, _role);
+            //                 res.json({ "success": true, view: 'main', session: session });
+            //             });
+            //         }
+            //         else {
+            //             if (user.organizations && user.organizations.length > 1) {
+            //                 var session = SignToken((user as IUserAttributes), '', -1);
+            //                 res.json({ "success": true, view: 'auth', organizations: user.organizations, session: session });
+            //             }
+            //             else {
+            //                 var organization = user.organizations[0];
+            //                 // in a case user didn't attached to organization yet
+            //                 if (organization === undefined) {
+            //                     var session = SignToken((user as IUserAttributes), '', -1);
+            //                     res.json({ "success": true, view: 'auth', session: session });
+            //                 }
+            //                 else {
+            //                     service.role(user.id, organization.id).then((role) => {
+            //                         var _role: number = role.getDataValue('role')
+            //                         var session = SignToken((user as IUserAttributes), organization.id, _role);
+            //                         res.json({ "success": true, view: 'main', session: session });
+            //                     });
+            //                 }
+            //             }
+            //         }
+            //     })
+            //     .catch((error) => {
+            //         res.status(403).json({ success: false, view: 'auth', session: null, error: error });
+            //     });
         });
     }
 }

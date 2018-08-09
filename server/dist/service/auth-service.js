@@ -8,84 +8,83 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt = require("bcrypt");
-const index_1 = require("../models/entities/index");
 const service_1 = require("../service");
+const documents_1 = require("../models/documents");
+const user_model_1 = require("../models/documents/user-model");
 const deferred = require('deferred');
 //const auth = require("../utils/auth").default;
 class AuthService {
+    register(userObject) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const userToSave = new documents_1.User(userObject);
+            // save user to database
+            userToSave.save(function (err) {
+                if (err)
+                    throw err;
+                // fetch user and test password verification
+                documents_1.User.findOne({ email: userObject.email }, function (err, user) {
+                    if (err)
+                        throw err;
+                    // test a matching password
+                    user.comparePassword(userObject.password, function (err, isMatch) {
+                        if (err)
+                            throw err;
+                        console.log('Password123:', isMatch); // -> Password123: true
+                    });
+                    // // test a failing password
+                    // user.comparePassword('123Password', function(err, isMatch) {
+                    //     if (err) throw err;
+                    //     console.log('123Password:', isMatch); // -> 123Password: false
+                    // });
+                });
+            });
+        });
+    }
     login(email, password) {
-        const defer = deferred();
-        index_1.models.User.findOne({
-            where: {
-                email: email
-            },
-            include: [
-                {
-                    model: index_1.models.Organization,
-                    as: 'organizations',
-                    required: false,
-                    attributes: ['id', 'name']
-                }
-            ]
-        }).then((user) => {
-            if (!user) {
-                defer.reject({
-                    path: 'email', message: "The email address you provided doesn't recognized"
-                });
-            }
-            else if (user.emailConfirmed == false) {
-                defer.reject({
-                    path: 'email confirmation', message: "You need to activate your account first"
-                });
-            }
-            else if (user.isLocked == true) {
-                defer.reject({
-                    path: 'loack', message: "Your accont is locked, Please contact to the administrator"
-                });
-            }
-            else if (user.password == "") {
-                defer.reject({
-                    path: 'password', message: "You didn't set your password"
-                });
-            }
-            else if (user.loginFailedCount >= 5) {
-                defer.reject({
-                    path: 'password', message: "You didn't set your password"
-                });
-            }
-            else {
-                bcrypt.compare(password, user.password).then(function (isEqual) {
-                    if (isEqual) {
-                        defer.resolve(user);
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                // attempt to authenticate user
+                return user_model_1.UserSchema.statics.getAuthenticated(email, password, function (err, user, reason) {
+                    if (err)
+                        throw err;
+                    // login was successful if we have a user
+                    if (user) {
+                        // handle login success
+                        console.log('login success');
+                        return;
                     }
-                    else {
-                        var instance = user;
-                        instance.loginFailedCount = user.loginFailedCount + 1;
-                        if (instance.loginFailedCount >= 5) {
-                            instance.isLocked = true;
-                        }
-                        instance.save().then(function () {
-                            defer.reject({
-                                path: 'login', message: "Login failed"
-                            });
-                        });
+                    // otherwise we can determine why we failed
+                    var reasons = user_model_1.UserSchema.statics.failedLogin;
+                    switch (reason) {
+                        case reasons.NOT_FOUND:
+                        case reasons.PASSWORD_INCORRECT:
+                            // note: these cases are usually treated the same - don't tell
+                            // the user *why* the login failed, only that it did
+                            return 'notLoggedIn';
+                        // break;
+                        case reasons.MAX_ATTEMPTS:
+                            // send email or otherwise notify user that account is
+                            // temporarily locked
+                            return 'blocked';
+                        // break;
                     }
                 });
+            }
+            catch (e) {
+                return e;
             }
         });
-        return defer.promise;
     }
     role(user_id, org_id) {
         const defer = deferred();
-        index_1.models.UserOrganization.findOne({
-            where: {
-                user_id: user_id, org_id: org_id
-            },
-            attributes: ['role']
-        }).then((role) => {
-            defer.resolve(role);
-        });
+        // models.UserOrganization.findOne({
+        //     where: {
+        //         user_id: user_id, org_id: org_id
+        //     },
+        //     attributes: ['role']
+        // }).then((role) => {
+        //     defer.resolve(role);
+        // });
         return defer.promise;
     }
     getUser(query) {

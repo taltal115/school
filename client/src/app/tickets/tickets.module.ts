@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {StoreModule} from '@ngrx/store';
-import {EffectsModule} from '@ngrx/effects';
+// import {EffectsModule} from '@ngrx/effects';
 
 import {ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {SharedModules} from '../shared/shared.modules';
 import {ticketReducer} from './store/ticket.reducers';
-import {TicketEffects} from './store/ticket.effects';
+// import {TicketEffects} from './store/ticket.effects';
 import {TicketsComponent} from './tickets.component';
 import {TicketEditComponent} from './ticket-edit/ticket-edit.component';
 import {TicketsRoutingModule} from './tickets-routing.module';
@@ -26,7 +26,7 @@ import {ReactiveFormsComponent} from './ticket-edit/reactive-forms/reactive-form
     SharedModules,
     TicketsRoutingModule,
     StoreModule.forFeature('tickets', ticketReducer),
-    EffectsModule.forRoot([TicketEffects])
+    // EffectsModule.forRoot([TicketEffects])
   ],
 })
 export class TicketsModule {}

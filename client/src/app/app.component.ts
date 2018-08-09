@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 import {Store} from '@ngrx/store';
 import * as fromApp from './store/app.reducers'
 import * as AuthActions from './auth/store/auth.actions'
@@ -15,10 +15,10 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
-    firebase.initializeApp({
-      apiKey: "AIzaSyAb-SE6fRgdoroTH4tuNwB6SigUA8pYFvo",
-      authDomain: "ng-recipe-book-f859e.firebaseio.com"
-    });
+    // firebase.initializeApp({
+    //   apiKey: "AIzaSyAb-SE6fRgdoroTH4tuNwB6SigUA8pYFvo",
+    //   authDomain: "ng-recipe-book-f859e.firebaseio.com"
+    // });
     const currentUser = localStorage.getItem('currentUser');
     if(currentUser) {
       const accessToken = JSON.parse(currentUser).stsTokenManager.accessToken;

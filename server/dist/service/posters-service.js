@@ -13,7 +13,7 @@ class PostersService extends models_1.Auth {
             // }
             if (!isNaN(query.id)) {
                 // TODO: replace with using $lookup
-                documents_1.UserPreference.findOne({ userId: this.auth.user_id }, {
+                documents_1.User.findOne({ userId: this.auth.user_id }, {
                     favorites: 1
                 }, (err, data) => {
                     if (err) {

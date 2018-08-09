@@ -96,16 +96,16 @@ class UserService extends _1.Auth {
                     let org_id = "" + _self.auth.org_id;
                     _self.addOrg(org_id, user.id, enums_1.Roles.User);
                 }
-                let userPreference = new documents_1.UserPreference({
+                let userp = new documents_1.User({
                     userId: user.id,
                     orgId: _self.auth.org_id
                 });
-                documents_1.UserPreference.create(userPreference, function (err, doc) {
+                documents_1.User.create(userp, function (err, doc) {
                     return __awaiter(this, void 0, void 0, function* () {
                         if (err) {
                             console.log('Error', err.message);
                         }
-                        console.log('User Preference was created');
+                        console.log('User was created');
                     });
                 });
                 defer.resolve(user);
@@ -165,7 +165,7 @@ class UserService extends _1.Auth {
             yield index_1.models.User.destroy({ where: { id: id } }).then((afffectedRows) => __awaiter(this, void 0, void 0, function* () {
                 // TODO: notify
                 if (afffectedRows > 0) {
-                    yield documents_1.UserPreference.deleteOne({ userId: id }, (err) => {
+                    yield documents_1.User.deleteOne({ userId: id }, (err) => {
                         // TODO: notify
                     });
                 }

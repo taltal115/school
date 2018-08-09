@@ -1,6 +1,6 @@
 import { models, sequelize } from "../models/entities/index";
 import { Transaction, Op } from "sequelize";
-import { UserPreference, IUserPreference } from "../models/documents";
+import { User, IUser } from "../models/documents";
 import { IUserRequest, IUserAttributes, IUserInstance, IMailOptions } from "../models";
 import { Auth } from "../models/general/";
 import { EmailService, QueryService } from ".";
@@ -100,16 +100,16 @@ export class UserService extends Auth {
                     _self.addOrg(org_id, user.id, Roles.User);
                 }
 
-                let userPreference: IUserPreference = new UserPreference({
+                let userp: IUser = new User({
                     userId: user.id,
                     orgId: _self.auth.org_id
                 });
 
-                UserPreference.create(userPreference, async function (err, doc) {
+                User.create(userp, async function (err, doc) {
                     if (err) {
                         console.log('Error', err.message)
                     }
-                    console.log('User Preference was created');
+                    console.log('User was created');
                 });
 
                 defer.resolve(user);
@@ -178,7 +178,7 @@ export class UserService extends Auth {
             await models.User.destroy({ where: { id: id } }).then(async (afffectedRows: number) => {
                 // TODO: notify
                 if (afffectedRows > 0) {
-                    await UserPreference.deleteOne({ userId: id }, (err) => {
+                    await User.deleteOne({ userId: id }, (err) => {
                         // TODO: notify
                     });
                 }

@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ticket of (tickets | async).tickets">
+      <tr *ngFor="let ticket of (tickets | async).tickets; let i = index">
         <td>{{ ticket.date | date:'shortTime' }}</td>
         <td>{{ ticket.teacherName }}</td>
         <td>{{ ticket.damagedDevice }}</td>
@@ -34,9 +34,12 @@
         <td>{{ ticket.missingEquipments }}</td>
         <td>{{ ticket.teachersContactPhone }}</td>
         <td>{{ ticket.status }}</td>
-        <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(ticket)"></span></td>
         <td><span class="glyphicon glyphicon-edit" (click)="onEditRow(ticket)"></span></td>
+        <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(i, ticket)"></span></td>
       </tr>
     </tbody>
   </table>
+</div>
+<div class="row">
+  <span> מספר קריאות שירות : {{ serviceCallCount }} </span>
 </div>

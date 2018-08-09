@@ -15,6 +15,7 @@ import * as RecipeActions from "../../recipes/store/recipe.actions";
 })
 export class TicketStartComponent implements OnInit {
   tickets: Observable<fromTicket.State>;
+  serviceCallCount: number;
 
   constructor(
     private router: Router,
@@ -25,15 +26,19 @@ export class TicketStartComponent implements OnInit {
     this.store.dispatch(new TicketActions.FetchTickets())
 
     this.tickets = this.store.select('tickets');
+    this.store.select('tickets').subscribe((result) => {
+      console.log("tickets : ",result.tickets.length)
+      this.serviceCallCount = result.tickets.length;
+    });
   }
 
   onNewTicket() {
     this.router.navigate(['/new'], {relativeTo: this.route});
   }
 
-  onDeleteRow(ticket) {
+  onDeleteRow(index, ticket) {
     console.log(ticket)
-    this.store.dispatch(new TicketActions.DeleteRow(ticket));
+    this.store.dispatch(new TicketActions.DeleteRow({index: index, ticket: ticket}));
   }
 
   onEditRow(ticket) {

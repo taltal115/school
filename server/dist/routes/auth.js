@@ -74,48 +74,72 @@ class AuthRoute {
                 res.status(403).json({ success: false, session: null, error: error });
             });
         });
-        router.post("/auth/login", (req, res, next) => {
+        router.post("/auth/register", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const user = yield service.register(req.body);
+                res.status(200).json({ success: true, data: user });
+            }
+            catch (e) {
+                res.status(403).json({ success: false, error: e });
+            }
+        }));
+        router.post("/auth/login", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             // authRules['login'],
             // const errors = validationResult(req.body);
             // if (!errors.isEmpty()) {
             //     return res.status(422).json(errors.array())
             // }
             var body = req.body;
-            service.login(body.email, body.password)
-                .then((user) => {
-                if (body.orgnization) {
-                    service.role(user.id, body.orgnization).then((role) => {
-                        var _role = role.getDataValue('role');
-                        var session = auth_1.SignToken(user, body.orgnization, _role);
-                        res.json({ "success": true, view: 'main', session: session });
-                    });
-                }
-                else {
-                    if (user.organizations && user.organizations.length > 1) {
-                        var session = auth_1.SignToken(user, '', -1);
-                        res.json({ "success": true, view: 'auth', organizations: user.organizations, session: session });
-                    }
-                    else {
-                        var organization = user.organizations[0];
-                        // in a case user didn't attached to organization yet
-                        if (organization === undefined) {
-                            var session = auth_1.SignToken(user, '', -1);
-                            res.json({ "success": true, view: 'auth', session: session });
-                        }
-                        else {
-                            service.role(user.id, organization.id).then((role) => {
-                                var _role = role.getDataValue('role');
-                                var session = auth_1.SignToken(user, organization.id, _role);
-                                res.json({ "success": true, view: 'main', session: session });
-                            });
-                        }
-                    }
-                }
-            })
-                .catch((error) => {
-                res.status(403).json({ success: false, view: 'auth', session: null, error: error });
-            });
-        });
+            console.log("LOGIN: ", body);
+            try {
+                const user = yield service.login(body.email, body.password);
+                console.log("LOGIN111: ", user);
+                // if(user) {
+                var session = auth_1.SignToken(user, body.orgnization, 0);
+                res.status(200).json({ success: true, data: user, session: session });
+                // }
+                // else {
+                //     res.status(402).json({ success: false, error: user, session: null });
+                // }
+            }
+            catch (e) {
+                res.status(403).json({ success: false, error: e, session: null });
+            }
+            // service.login(body.email, body.password)
+            //     .then((user) => {
+            //         if (body.orgnization) {
+            //             service.role(user.id, body.orgnization).then((role) => {
+            //                 var _role: number = role.getDataValue('role')
+            //                 var session = SignToken((user as IUserAttributes), body.orgnization, _role);
+            //                 res.json({ "success": true, view: 'main', session: session });
+            //             });
+            //         }
+            //         else {
+            //             if (user.organizations && user.organizations.length > 1) {
+            //                 var session = SignToken((user as IUserAttributes), '', -1);
+            //                 res.json({ "success": true, view: 'auth', organizations: user.organizations, session: session });
+            //             }
+            //             else {
+            //                 var organization = user.organizations[0];
+            //                 // in a case user didn't attached to organization yet
+            //                 if (organization === undefined) {
+            //                     var session = SignToken((user as IUserAttributes), '', -1);
+            //                     res.json({ "success": true, view: 'auth', session: session });
+            //                 }
+            //                 else {
+            //                     service.role(user.id, organization.id).then((role) => {
+            //                         var _role: number = role.getDataValue('role')
+            //                         var session = SignToken((user as IUserAttributes), organization.id, _role);
+            //                         res.json({ "success": true, view: 'main', session: session });
+            //                     });
+            //                 }
+            //             }
+            //         }
+            //     })
+            //     .catch((error) => {
+            //         res.status(403).json({ success: false, view: 'auth', session: null, error: error });
+            //     });
+        }));
     }
 }
 module.exports = AuthRoute;

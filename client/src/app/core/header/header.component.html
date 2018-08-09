@@ -11,7 +11,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-left">
         <ng-template [ngIf]="!(authState | async).authenticated">
-          <!--<li><a routerLink="/signup">Register</a></li>-->
+          <li><a routerLink="/signup">הירשם</a></li>
           <li><a routerLink="/signin">התחבר</a></li>
         </ng-template>
 
@@ -25,6 +25,7 @@
           <ul class="dropdown-menu">
             <li><a style="cursor: pointer;" (click)="onSaveData()">שמור</a></li>
             <li><a style="cursor: pointer;" (click)="onFetchData()">רענן</a></li>
+            <li><a style="cursor: pointer;" (click)="onFetchUsers()">משתמשים</a></li>
           </ul>
         </li>
       </ul>

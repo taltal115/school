@@ -1,4 +1,4 @@
-import { UserPreference as User } from "../models/documents";
+import { User as User } from "../models/documents";
 import { Auth } from "../models/general/";
 
 var deferred = require('deferred');

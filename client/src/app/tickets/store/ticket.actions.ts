@@ -21,7 +21,7 @@ export class SetTickets implements Action {
 export class DeleteRow implements Action {
   readonly type = DELETE_TICKET;
 
-  constructor(public payload: Ticket) {}
+  constructor(public payload: {index: number, ticket: Ticket}) {}
 }
 
 export class FetchTickets implements Action {

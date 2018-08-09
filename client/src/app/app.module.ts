@@ -17,6 +17,8 @@ import {AuthEffects} from './auth/store/auth.effects';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {TicketsModule} from './tickets/tickets.module';
+import {RecipeEffects} from "./recipes/store/recipe.effects";
+import {TicketEffects} from "./tickets/store/ticket.effects";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import {TicketsModule} from './tickets/tickets.module';
     AppRoutingModule,
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, RecipeEffects, TicketEffects]),
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],

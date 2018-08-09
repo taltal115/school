@@ -1,4 +1,4 @@
-import { Asset, UserPreference } from "../models/documents";
+import { Asset, User } from "../models/documents";
 import { Auth } from "../models";
 
 const deferred = require('deferred');
@@ -15,7 +15,7 @@ export class PostersService extends Auth {
 
             if (!isNaN(query.id)) {
                 // TODO: replace with using $lookup
-                UserPreference.findOne({ userId: this.auth.user_id }, {
+                User.findOne({ userId: this.auth.user_id }, {
                     favorites: 1
                 }, (err: any, data: any) => {
                     if (err) {

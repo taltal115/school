@@ -1,6 +1,6 @@
 import {Actions, Effect} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
-import {switchMap, map, take} from 'rxjs/operators';
+import {switchMap, map} from 'rxjs/operators';
 import {HttpClient, HttpRequest} from '@angular/common/http';
 
 // import * as RecipeActions from '../store/recipe.actions';
@@ -21,7 +21,9 @@ export class TicketEffects {
         observe: 'body',
         responseType: 'json'
       })
-    }), map(
+    })
+    // );
+      , map(
         (tickets) => {
           console.log(tickets)
           // for (let recipe of recipes) {
@@ -37,15 +39,33 @@ export class TicketEffects {
       ));
 
 
-  @Effect({dispatch: false})
+  @Effect()
   ticketStore = this.actions$
     .ofType(TicketActions.SET_TICKET)
-    .pipe(take(1),
-      switchMap((action: TicketActions.SetTicket) => {
+    .pipe(switchMap((action: TicketActions.SetTicket) => {
       const req = new HttpRequest(
         'POST',
         'http://localhost:3000/tickets',
         action.payload,
+        {reportProgress: true}
+      );
+      return this.httpClient.request(req);
+    }) , map(
+      () => {
+        return {
+          type: TicketActions.FETCH_TICKETS
+        };
+      }
+    ));
+
+  @Effect({dispatch: false})
+  ticketDelete = this.actions$
+    .ofType(TicketActions.DELETE_TICKET)
+    .pipe(switchMap((action: TicketActions.DeleteRow) => {
+      const req = new HttpRequest(
+        'DELETE',
+        'http://localhost:3000/tickets',
+        action.payload.ticket,
         {reportProgress: true}
       );
       return this.httpClient.request(req);

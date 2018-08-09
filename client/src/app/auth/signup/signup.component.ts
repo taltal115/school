@@ -11,6 +11,12 @@ import * as AuthActions from './../../auth/store/auth.actions'
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  roles = [
+    'super',
+    'admin',
+    'teacher',
+    'student'
+  ];
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -18,9 +24,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
-    this.store.dispatch(new AuthActions.TrySignup({username: email, password: password}));
+    console.log(form.value);
+    this.store.dispatch(new AuthActions.TrySignup({userObject: form.value}));
   }
 
 }

@@ -63,7 +63,7 @@ export function ticketReducer(state = initialState, action: TicketActions.Ticket
     //   };
     case (TicketActions.DELETE_TICKET):
       const oldTickets = [...state.tickets];
-      // oldTickets.splice(action.payload,1);
+      oldTickets.splice(action.payload.index,1);
       console.log('deleted with redux!');
       return {
         ...state,

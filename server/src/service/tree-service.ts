@@ -1,5 +1,5 @@
 
-import { ITreeItem, IActionResult, UserPreference as User, TreeItem, ITreeItemViewModel, TreeItemViewModel } from "../models/documents";
+import { ITreeItem, IActionResult, User, TreeItem, ITreeItemViewModel, TreeItemViewModel } from "../models/documents";
 import { Auth } from "../models/"
 import { Roles } from "../models/enums";
 const deferred = require('deferred');

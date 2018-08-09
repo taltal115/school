@@ -6,6 +6,7 @@ export const SIGNIN = 'SIGNIN';
 export const SIGNUP = 'SIGNUP';
 export const LOGOUT = 'LOGOUT';
 export const SET_TOKEN = 'SET_TOKEN';
+export const FETCH_USERS = 'FETCH_USERS';
 
 export class Signin implements Action {
   readonly type = SIGNIN;
@@ -26,12 +27,16 @@ export class SetToken implements Action {
 
 export class TrySignup implements Action {
   readonly type = TRY_SIGNUP;
-  constructor(public payload: {username: string, password: string}) {}
+  constructor(public payload: {userObject: any}) {}
 }
 
 export class TrySignin implements Action {
   readonly type = TRY_SIGNIN;
-  constructor(public payload: {username: string, password: string}) {}
+  constructor(public payload: {email: string, password: string}) {}
+}
+
+export class FetchUsers implements Action {
+  readonly type = FETCH_USERS;
 }
 
 
@@ -41,4 +46,5 @@ export type AuthActions =
     Logout |
     SetToken |
     TrySignup |
-    TrySignin;
+    TrySignin |
+    FetchUsers;

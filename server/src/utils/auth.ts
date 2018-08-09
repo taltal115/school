@@ -45,7 +45,6 @@ export function SignToken(user: any, orgId: string, role: number): ISession {
     var expires = new Date(Date.now() + duration * 1000);
     var token = jwt.sign({ 
         u_id: user.id,
-        o_id: orgId,
         role: role
     }, config.jwtSecret, { expiresIn: duration });
 

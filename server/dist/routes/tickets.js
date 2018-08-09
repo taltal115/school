@@ -15,7 +15,7 @@ class TicketsRoute {
             console.log("tal", req.body);
             const ticket = new ticket_model_1.Ticket(req.body);
             delete ticket.__v;
-            console.log("ticket: ", ticket);
+            // console.log("ticket: ", ticket);
             ticket.save((err) => {
                 if (err)
                     res.status(500).send({ error: err });
@@ -28,8 +28,20 @@ class TicketsRoute {
         router.get("/tickets", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const tickets = yield ticket_model_1.Ticket.find({});
-                console.log("ticketstickets: ", tickets);
+                // console.log("ticketstickets: ",tickets);
                 res.status(201).json(tickets);
+            }
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
+        }));
+        router.delete("/tickets", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                // const tickets = await Ticket.find({});
+                const deleteAction = yield ticket_model_1.Ticket.findByIdAndRemove(req.body._id);
+                console.log("deleteAction: ", req.body);
+                console.log("deleteActiondeleteAction: ", deleteAction);
+                res.status(201).json('tickets');
             }
             catch (e) {
                 res.status(500).send({ error: e });

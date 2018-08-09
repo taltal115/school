@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+// import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import {HomeComponent} from './core/home/home.component';
+import {AuthGuard} from "./auth/auth-guard.service";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'tickets', loadChildren: './tickets/tickets.module#TicketsModule'},
-  { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'},
-  { path: 'shopping-list', component: ShoppingListComponent }
+  { path: 'tickets', loadChildren: './tickets/tickets.module#TicketsModule', canActivate: [AuthGuard]},
+  { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule', canActivate: [AuthGuard]},
+  // { path: 'shopping-list', component: ShoppingListComponent }
 ];
 
 @NgModule({

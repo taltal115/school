@@ -6,7 +6,7 @@ var deferred = require('deferred');
 class HomeService extends _1.Auth {
     userInit(model) {
         const defer = deferred();
-        documents_1.UserPreference.findOneAndUpdate(
+        documents_1.User.findOneAndUpdate(
         // { userId: "5aa7-f1f3-4e17-4e36-89bc-7435" },//@TODO: remove hardcoded id!
         { userId: this.auth.user_id }, model, { upsert: true }, function (err, doc) {
             if (err) {

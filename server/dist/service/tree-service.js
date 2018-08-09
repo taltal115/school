@@ -11,7 +11,7 @@ class TreeService extends _1.Auth {
     }
     getTree() {
         const defer = deferred();
-        documents_1.UserPreference.findOne({ userId: this.auth.user_id }).select({
+        documents_1.User.findOne({ userId: this.auth.user_id }).select({
             favorites: 1,
             privates: 1,
             searches: 1
@@ -98,7 +98,7 @@ class TreeService extends _1.Auth {
         //     item.href = parent.href + '/' + item.id;
         // }
         const defer = deferred();
-        documents_1.UserPreference.findOneAndUpdate({ userId: this.auth.user_id }, { $push: push }, { upsert: true }, function (err, doc) {
+        documents_1.User.findOneAndUpdate({ userId: this.auth.user_id }, { $push: push }, { upsert: true }, function (err, doc) {
             if (err) {
                 defer.reject(err);
             }
@@ -131,7 +131,7 @@ class TreeService extends _1.Auth {
                 break;
         }
         const defer = deferred();
-        documents_1.UserPreference.findOneAndUpdate(query, field, { upsert: true }, function (err, doc) {
+        documents_1.User.findOneAndUpdate(query, field, { upsert: true }, function (err, doc) {
             if (err) {
                 defer.reject(err);
             }
@@ -157,7 +157,7 @@ class TreeService extends _1.Auth {
                 break;
         }
         const defer = deferred();
-        documents_1.UserPreference.findOneAndUpdate({ userId: this.auth.user_id }, action, function (err, doc) {
+        documents_1.User.findOneAndUpdate({ userId: this.auth.user_id }, action, function (err, doc) {
             if (err) {
                 defer.reject(err);
             }
@@ -171,7 +171,7 @@ class TreeService extends _1.Auth {
     }
     attachAsset(model) {
         const defer = deferred();
-        documents_1.UserPreference.findOneAndUpdate({ userId: this.auth.user_id, "favorites.id": model.id }, { $addToSet: { "favorites.$.assets": model.assetId } }, { upsert: true }, function (err, doc) {
+        documents_1.User.findOneAndUpdate({ userId: this.auth.user_id, "favorites.id": model.id }, { $addToSet: { "favorites.$.assets": model.assetId } }, { upsert: true }, function (err, doc) {
             if (err) {
                 defer.reject(err);
             }

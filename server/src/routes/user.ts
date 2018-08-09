@@ -4,18 +4,26 @@ import { UserService } from "../service";
 import { IUserInstance } from "../models";
 //import { userRules } from './rules/user.rules';
 import { Authorized } from "../utils/auth";
+import { User } from "../models/documents";
 
 class UserRoute {
     public static init(router: Router) {
         const service = new UserService();
 
-        router.get("/users", Authorized, (req: Request, res: Response) => {
-            service.session = req.session;
-            service.retrieve().then((users: Array<IUserInstance>) => {
+        router.get("/users", async (req: Request, res: Response) => {
+            // service.session = req.session;
+            // service.retrieve().then((users: Array<IUserInstance>) => {
+            //     return res.status(200).json(users);
+            // }).catch((error: Error) => {
+            //     return res.status(500).send(error);
+            // });
+            try {
+                const users = await User.find({});
+                console.log("users: ",users);
                 return res.status(200).json(users);
-            }).catch((error: Error) => {
-                return res.status(500).send(error);
-            });
+            } catch (e) {
+                return res.status(500).json(e);
+            }
         });
 
         router.get("/users/:id", Authorized, (req: Request, res: Response) => {

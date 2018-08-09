@@ -29,7 +29,11 @@ export class HeaderComponent implements OnInit{
   onFetchData() {
     // this.store.dispatch(new RecipeActions.FetchRecipes());
     this.store.dispatch(new TicketActions.FetchTickets())
+  }
 
+  onFetchUsers() {
+    // this.store.dispatch(new RecipeActions.FetchRecipes());
+    this.store.dispatch(new AuthActions.FetchUsers())
   }
 
   onLogout() {

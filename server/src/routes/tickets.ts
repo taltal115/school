@@ -10,7 +10,7 @@ class TicketsRoute {
 
             const ticket = new Ticket(req.body);
             delete ticket.__v;
-            console.log("ticket: ", ticket);
+            // console.log("ticket: ", ticket);
             ticket.save((err: any) => {
                 if (err) res.status(500).send({error: err});
                 else {
@@ -23,8 +23,21 @@ class TicketsRoute {
         router.get("/tickets", async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const tickets = await Ticket.find({});
-                console.log("ticketstickets: ",tickets);
+                // console.log("ticketstickets: ",tickets);
                 res.status(201).json(tickets);
+            } catch (e) {
+                res.status(500).send({error: e});
+            }
+        });
+
+        router.delete("/tickets", async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                // const tickets = await Ticket.find({});
+                const deleteAction = await Ticket.findByIdAndRemove(req.body._id);
+
+                console.log("deleteAction: ",req.body);
+                console.log("deleteActiondeleteAction: ",deleteAction);
+                res.status(201).json('tickets');
             } catch (e) {
                 res.status(500).send({error: e});
             }
