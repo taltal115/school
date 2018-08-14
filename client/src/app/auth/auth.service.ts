@@ -20,13 +20,36 @@ export class AuthService {
     return this.http.post<any>(url, {email, password});
   }
 
-  signUp(email: string, password: string): Observable<any> {
+  signUp(userData: any): Observable<any> {
     const url = `${this.BASE_URL}/auth/register`;
-    return this.http.post<any>(url, {email, password});
+    return this.http.post<any>(url, userData);
   }
 
   getUsers(): Observable<any> {
     const url = `${this.BASE_URL}/users`;
+    return this.http.get<any>(url);
+  }
+
+  // getToken(): string {
+  //   let user = localStorage.getItem('user');
+  //   console.log("user: ",user);
+  //   if (user) {
+  //     return JSON.parse(user).token;
+  //   }
+  // }
+  //
+  // logIn(email: string, password: string): Observable<any> {
+  //   const url = `${this.BASE_URL}/login`;
+  //   return this.http.post<User>(url, {email, password});
+  // }
+  //
+  // signUp(email: string, password: string): Observable<User> {
+  //   const url = `${this.BASE_URL}/register`;
+  //   return this.http.post<User>(url, {email, password});
+  // }
+
+  getStatus(): Observable<any> {
+    const url = `${this.BASE_URL}/status`;
     return this.http.get<any>(url);
   }
 }

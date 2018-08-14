@@ -3,9 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as fromApp from '../../store/app.reducers'
-import * as fromAuth from '../../auth/store/auth.reducers'
+// import * as fromAuth from '../../auth/store/auth.reducers'
 import * as AuthActions from '../../auth/store/auth.actions'
-import * as RecipeActions from '../../recipes/store/recipe.actions'
 import * as TicketActions from "../../tickets/store/ticket.actions";
 
 @Component({
@@ -13,31 +12,38 @@ import * as TicketActions from "../../tickets/store/ticket.actions";
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit{
-  authState: Observable<fromAuth.State>;
+  isAuthenticated = false;
+  getState: Observable<any>;
+  // authState: Observable<fromAuth.State>;
 
-  constructor(private store: Store<fromApp.AppState>) {
+  constructor(
+    private store: Store<fromApp.AppState>
+  ) {
+    this.getState = this.store.select('auth'); //this.store.select(selectAuthState);
   }
 
   ngOnInit() {
-    this.authState = this.store.select('auth');
+    this.getState.subscribe((state) => {
+      console.log("state: ", state)
+      this.isAuthenticated = state.isAuthenticated;
+    });
   }
 
   onSaveData() {
-    this.store.dispatch(new RecipeActions.StoreRecipes())
+    // this.store.dispatch(new RecipeActions.StoreRecipes())
   }
 
   onFetchData() {
     // this.store.dispatch(new RecipeActions.FetchRecipes());
-    this.store.dispatch(new TicketActions.FetchTickets())
+    this.store.dispatch(new TicketActions.FetchTickets)
   }
 
   onFetchUsers() {
     // this.store.dispatch(new RecipeActions.FetchRecipes());
-    this.store.dispatch(new AuthActions.FetchUsers())
+    this.store.dispatch(new AuthActions.FetchUsers)
   }
 
   onLogout() {
-    this.store.dispatch(new AuthActions.Logout());
-    localStorage.removeItem('currentUser');
+    this.store.dispatch(new AuthActions.LogOut);
   }
 }

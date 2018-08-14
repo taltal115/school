@@ -8,7 +8,6 @@ import {environment} from '../environments/environment'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {SharedModules} from './shared/shared.modules';
-import {ShoppingListModule} from './shopping-list/shopping-list.module';
 import {AuthModule} from './auth/auth.module';
 import {CoreModule} from "./core/core.module";
 import {reducers} from './store/app.reducers'
@@ -17,7 +16,6 @@ import {AuthEffects} from './auth/store/auth.effects';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {TicketsModule} from './tickets/tickets.module';
-import {RecipeEffects} from "./recipes/store/recipe.effects";
 import {TicketEffects} from "./tickets/store/ticket.effects";
 
 @NgModule({
@@ -30,11 +28,10 @@ import {TicketEffects} from "./tickets/store/ticket.effects";
     AuthModule,
     TicketsModule,
     SharedModules,
-    ShoppingListModule,
     AppRoutingModule,
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects, RecipeEffects, TicketEffects]),
+    EffectsModule.forRoot([AuthEffects, TicketEffects]),
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],

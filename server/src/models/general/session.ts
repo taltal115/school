@@ -1,6 +1,5 @@
-import { IUserAttributes } from "../";
 export interface ISession {
-	user?: IUserAttributes,
+	user?: any,
 	token?: String,
 	expires?: Date
 }

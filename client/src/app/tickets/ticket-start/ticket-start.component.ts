@@ -3,10 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import * as fromTicket from '../store/ticket.reducers'
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/index';
-import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 
 import * as TicketActions from '../store/ticket.actions'
-import * as RecipeActions from "../../recipes/store/recipe.actions";
 
 @Component({
   selector: 'app-ticket-start',
@@ -33,7 +31,8 @@ export class TicketStartComponent implements OnInit {
   }
 
   onNewTicket() {
-    this.router.navigate(['/new'], {relativeTo: this.route});
+    // this.router.navigate(['/tickets/new'], {relativeTo: this.route});
+    this.router.navigate(['tickets/new']);
   }
 
   onDeleteRow(index, ticket) {

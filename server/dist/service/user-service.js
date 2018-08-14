@@ -1,256 +1,273 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("../models/entities/index");
-const sequelize_1 = require("sequelize");
-const documents_1 = require("../models/documents");
-const _1 = require("../models/general/");
-const _2 = require(".");
-const enums_1 = require("../models/enums");
-const deferred = require('deferred');
-const uuidv4 = require('uuid/v4');
-const config = require('../utils/config');
-class UserService extends _1.Auth {
-    retrieve() {
-        let promise = new Promise((resolve, reject) => {
-            if (this.is(enums_1.Roles.Super)) {
-                index_1.models.User.findAll({}).then((users) => {
-                    resolve(users);
-                }).catch((error) => {
-                    reject(error);
-                });
-            }
-            else if (this.is(enums_1.Roles.Admin)) {
-                index_1.models.UserOrganization.findAll({
-                    where: {
-                        org_id: this.auth.org_id,
-                        role: {
-                            [sequelize_1.Op.gt]: this.auth.role
-                        }
-                    },
-                    attributes: ['user_id', 'role']
-                }).then((org_users) => {
-                    let u_ids = org_users.map(user => user.user_id);
-                    index_1.models.User.findAll({
-                        where: { id: { [sequelize_1.Op.in]: u_ids } }
-                    }).then((users) => {
-                        resolve(users);
-                    }).catch((error) => {
-                        reject(error);
-                    });
-                });
-            }
-            else {
-                reject('ERROR: You are not autenticate to view this');
-            }
-        });
-        return promise;
-    }
-    get(id) {
-        let promise = new Promise((resolve, reject) => {
-            index_1.sequelize.transaction((t) => {
-                return index_1.models.User.findById(id).then((user) => {
-                    resolve(user);
-                }).catch((error) => {
-                    reject(error);
-                });
-            });
-        });
-        return promise;
-    }
-    sendMailActivation(user, token) {
-        let options = {};
-        options.to = user.email;
-        options.from = config.adminMail;
-        options.subject = 'DiTVe MAM System - Mail Activation';
-        options.template = 'mail-activate';
-        options.context = {
-            name: {
-                first: user.firstName,
-                last: user.lastName,
-            },
-            token: token
-        };
-        return _2.EmailService.send(options);
-    }
-    add(userRequest) {
-        const defer = deferred();
-        let _self = this;
-        index_1.sequelize.transaction((t) => __awaiter(this, void 0, void 0, function* () {
-            let userAttributes = userRequest;
-            if (userRequest.mailActivation) {
-                userAttributes.securityStamp = uuidv4();
-            }
-            index_1.models.User.create(userAttributes).then((user) => {
-                if (userRequest.mailActivation == true) {
-                    _self.sendMailActivation(user, userAttributes.securityStamp);
-                }
-                if (_self.is(enums_1.Roles.Admin)) {
-                    let org_id = "" + _self.auth.org_id;
-                    _self.addOrg(org_id, user.id, enums_1.Roles.User);
-                }
-                let userp = new documents_1.User({
-                    userId: user.id,
-                    orgId: _self.auth.org_id
-                });
-                documents_1.User.create(userp, function (err, doc) {
-                    return __awaiter(this, void 0, void 0, function* () {
-                        if (err) {
-                            console.log('Error', err.message);
-                        }
-                        console.log('User was created');
-                    });
-                });
-                defer.resolve(user);
-            }).catch((error) => {
-                defer.reject(error);
-            });
-        }));
-        return defer.promise;
-    }
-    update(id, requestData) {
-        var _self = this;
-        let p1 = new Promise((resolve, reject) => {
-            index_1.models.User.findById(id).then((user) => __awaiter(this, void 0, void 0, function* () {
-                if (user == null) {
-                    reject({
-                        path: 'id', message: `User with id '${id}' not found`
-                    });
-                }
-                if (requestData.mailActivation) {
-                    var token = uuidv4();
-                    yield _self.sendMailActivation(user, token).then(() => {
-                        requestData.emailConfirmed = true;
-                        requestData.securityStamp = token;
-                    })
-                        .catch(e => {
-                        return e;
-                    });
-                }
-                yield user.update(requestData).then(() => true)
-                    .catch(e => {
-                    return e;
-                });
-                resolve(user);
-            })).catch(e => {
-                reject(e);
-            });
-        });
-        let p2 = new Promise((resolve, reject) => {
-            var permissions = requestData.permissions;
-            if (permissions instanceof Array) {
-                _self.clearOrgs(id);
-                permissions.forEach((item) => __awaiter(this, void 0, void 0, function* () {
-                    yield _self.addOrg(item.organization, id, item.role);
-                }));
-            }
-            resolve(true);
-        });
-        const defer = deferred();
-        Promise.all([p1, p2]).then((data) => {
-            defer.resolve(data);
-        });
-        return defer.promise;
-    }
-    delete(id) {
-        const defer = deferred();
-        index_1.sequelize.transaction((t) => __awaiter(this, void 0, void 0, function* () {
-            yield index_1.models.User.destroy({ where: { id: id } }).then((afffectedRows) => __awaiter(this, void 0, void 0, function* () {
-                // TODO: notify
-                if (afffectedRows > 0) {
-                    yield documents_1.User.deleteOne({ userId: id }, (err) => {
-                        // TODO: notify
-                    });
-                }
-                defer.resolve(null);
-            })).catch((error) => {
-                defer.reject(error);
-            });
-        }));
-        return defer.promise;
-    }
-    clearOrgs(user_id) {
-        return _2.QueryService.query(`DELETE FROM user_organizations WHERE user_id = '${user_id}'`);
-    }
-    addOrg(org_id, user_id, role) {
-        _2.QueryService.query(`INSERT INTO user_organizations (org_id, user_id, role) VALUES ('${org_id}', '${user_id}', ${role})`);
-    }
-    static find(query) {
-        if (typeof query === "string") {
-            query = { email: query };
-        }
-        return new Promise((resolve, reject) => {
-            index_1.models.User.findOne({ where: query }).then((user) => {
-                return resolve(user);
-            }).catch((error) => {
-                return reject(error);
-            });
-        });
-    }
-    static restorePassword(email) {
-        const defer = deferred();
-        index_1.models.User.findOne({ where: { email: email } }).then((user) => __awaiter(this, void 0, void 0, function* () {
-            if (user == null) {
-                defer.reject({
-                    path: 'email', message: "The email address you provided doesn't recognized"
-                });
-            }
-            else {
-                user.securityStamp = uuidv4();
-                user.emailConfirmed = false;
-                user.password = '';
-                yield user.save().then(() => {
-                    var options = {};
-                    options.to = user.email;
-                    options.from = 'DiTve MAM <admin@ditve.tv>';
-                    options.template = 'restore-password';
-                    options.subject = 'DiTVe - Restore Password';
-                    options.context = {
-                        name: {
-                            first: user.firstName,
-                            last: user.lastName,
-                        },
-                        token: user.securityStamp
-                    };
-                    _2.EmailService.send(options).then(() => {
-                        defer.resolve(user);
-                    });
-                }).catch((error) => {
-                    defer.reject(error.message);
-                });
-            }
-        })).catch((error) => {
-            defer.reject(error.message);
-        });
-        return defer.promise;
-    }
-    static resetPassword(token, password) {
-        const defer = deferred();
-        index_1.models.User.findOne({ where: { securityStamp: token } }).then((user) => {
-            if (user == null) {
-                defer.reject({
-                    path: 'token', message: "The token you provided doesn't recognized"
-                });
-            }
-            else {
-                user.password = password;
-                user.isLocked = false;
-                user.securityStamp = '';
-                user.save().then(() => {
-                    defer.resolve(user);
-                });
-            }
-        }).catch((error) => {
-            defer.reject(error);
-        });
-        return defer.promise;
-    }
-}
-exports.UserService = UserService;
+// import { Transaction, Op } from "sequelize";
+// import { User, IUser } from "../models/documents";
+// import { Auth } from "../models/general/";
+// import { EmailService } from ".";
+// import { Roles } from "../models/enums";
+//
+// const deferred = require('deferred');
+// const uuidv4 = require('uuid/v4');
+// const config = require('../utils/config');
+//
+// export class UserService extends Auth {
+//     public retrieve(): Promise<Array<IUserInstance>> {
+//         let promise = new Promise<Array<IUserInstance>>((resolve: Function, reject: Function) => {
+//
+//             if (this.is(Roles.Super)) {
+//                 models.User.findAll({}).then((users: Array<IUserInstance>) => {
+//                     resolve(users);
+//                 }).catch((error: Error) => {
+//                     reject(error);
+//                 });
+//             }
+//
+//             else if (this.is(Roles.Admin)) {
+//                 models.UserOrganization.findAll({
+//                     where: {
+//                         org_id: this.auth.org_id,
+//                         role: {
+//                             [Op.gt]: this.auth.role
+//                         }
+//                     },
+//                     attributes: ['user_id', 'role']
+//                 }).then((org_users) => {
+//                     let u_ids = org_users.map(user => user.user_id);
+//                     models.User.findAll({
+//                         where: { id: { [Op.in]: u_ids } }
+//                     }).then((users: any) => {
+//                         resolve(users);
+//                     }).catch((error: Error) => {
+//                         reject(error);
+//                     });
+//                 });
+//             }
+//             else {
+//                 reject('ERROR: You are not autenticate to view this');
+//             }
+//         });
+//         return promise;
+//     }
+//
+//     public get(id: string): Promise<IUserInstance> {
+//         let promise = new Promise<IUserInstance>((resolve: Function, reject: Function) => {
+//             sequelize.transaction((t: Transaction) => {
+//                 return models.User.findById(id).then((user: IUserInstance) => {
+//                     resolve(user);
+//                 }).catch((error: Error) => {
+//                     reject(error);
+//                 });
+//             });
+//         });
+//         return promise;
+//     }
+//
+//     private sendMailActivation(user: any, token: string) {
+//         let options: IMailOptions = {};
+//         options.to = user.email;
+//         options.from = config.adminMail
+//         options.subject = 'DiTVe MAM System - Mail Activation'
+//         options.template = 'mail-activate';
+//         options.context = {
+//             name: {
+//                 first: user.firstName,
+//                 last: user.lastName,
+//             },
+//             token: token
+//         }
+//         return EmailService.send(options);
+//     }
+//
+//     public add(userRequest: IUserRequest): Promise<IUserInstance> {
+//         const defer = deferred();
+//         let _self = this;
+//
+//         sequelize.transaction(async (t: Transaction) => {
+//             let userAttributes: IUserAttributes = userRequest;
+//
+//             if (userRequest.mailActivation) {
+//                 userAttributes.securityStamp = uuidv4();
+//             }
+//
+//             models.User.create(userAttributes as IUserInstance).then((user: any) => {
+//
+//                 if (userRequest.mailActivation == true) {
+//                     _self.sendMailActivation(user, userAttributes.securityStamp);
+//                 }
+//
+//                 if (_self.is(Roles.Admin)) {
+//                     let org_id = "" + _self.auth.org_id;
+//                     _self.addOrg(org_id, user.id, Roles.User);
+//                 }
+//
+//                 let userp: IUser = new User({
+//                     userId: user.id,
+//                     orgId: _self.auth.org_id
+//                 });
+//
+//                 User.create(userp, async function (err, doc) {
+//                     if (err) {
+//                         console.log('Error', err.message)
+//                     }
+//                     console.log('User was created');
+//                 });
+//
+//                 defer.resolve(user);
+//             }).catch((error: Error) => {
+//                 defer.reject(error);
+//             });
+//         });
+//         return defer.promise;
+//     }
+//
+//     public update(id: string, requestData: any): Promise<void> {
+//         var _self = this;
+//         let p1 = new Promise<void>((resolve: Function, reject: Function) => {
+//             models.User.findById(id).then(async (user: IUserInstance) => {
+//                 if (user == null) {
+//                     reject({
+//                         path: 'id', message: `User with id '${id}' not found`
+//                     });
+//                 }
+//
+//                 if (requestData.mailActivation) {
+//                     var token = uuidv4();
+//                     await _self.sendMailActivation(user, token).then(() => {
+//                         requestData.emailConfirmed = true;
+//                         requestData.securityStamp = token;
+//                     })
+//                     .catch(e => {
+//                         return e;
+//                     });
+//                 }
+//
+//                 await user.update(requestData).then(() => true)
+//                     .catch(e => {
+//                         return e;
+//                     });
+//
+//                 resolve(user);
+//             }).catch(e => {
+//                 reject(e);
+//             });
+//         });
+//
+//         let p2 = new Promise<void>((resolve: Function, reject: Function) => {
+//             var permissions = requestData.permissions;
+//             if (permissions instanceof Array) {
+//                 _self.clearOrgs(id);
+//                 permissions.forEach(async (item) => {
+//                     await _self.addOrg(item.organization, id, item.role);
+//                 });
+//             }
+//             resolve(true);
+//         });
+//
+//         const defer = deferred();
+//
+//         Promise.all([p1, p2]).then((data) => {
+//             defer.resolve(data);
+//         });
+//
+//         return defer.promise;
+//     }
+//
+//     public delete(id: string): Promise<void> {
+//         const defer = deferred();
+//         sequelize.transaction(async (t: Transaction) => {
+//             await models.User.destroy({ where: { id: id } }).then(async (afffectedRows: number) => {
+//                 // TODO: notify
+//                 if (afffectedRows > 0) {
+//                     await User.deleteOne({ userId: id }, (err) => {
+//                         // TODO: notify
+//                     });
+//                 }
+//
+//                 defer.resolve(null);
+//             }).catch((error: Error) => {
+//                 defer.reject(error);
+//             });
+//         });
+//         return defer.promise;
+//     }
+//
+//     private clearOrgs(user_id: string) {
+//         // return QueryService.query(`DELETE FROM user_organizations WHERE user_id = '${user_id}'`);
+//     }
+//
+//     private addOrg(org_id: string, user_id: string, role: Roles) {
+//         // QueryService.query(`INSERT INTO user_organizations (org_id, user_id, role) VALUES ('${org_id}', '${user_id}', ${role})`);
+//     }
+//
+//     public static find(query: any): Promise<IUserInstance> {
+//         if (typeof query === "string") {
+//             query = { email: query };
+//         }
+//         return new Promise<IUserInstance>((resolve: Function, reject: Function) => {
+//             models.User.findOne({ where: query }).then((user: IUserInstance) => {
+//                 return resolve(user);
+//             }).catch((error: Error) => {
+//                 return reject(error);
+//             })
+//         });
+//     }
+//
+//     public static restorePassword(email: any): Promise<IUserInstance> {
+//         const defer = deferred();
+//         models.User.findOne({ where: { email: email } }).then(async (user: IUserInstance) => {
+//             if (user == null) {
+//                 defer.reject({
+//                     path: 'email', message: "The email address you provided doesn't recognized"
+//                 })
+//             }
+//             else {
+//                 user.securityStamp = uuidv4();
+//                 user.emailConfirmed = false;
+//                 user.password = '';
+//                 await user.save().then(() => {
+//                     var options: IMailOptions = {};
+//                     options.to = user.email;
+//                     options.from = 'DiTve MAM <admin@ditve.tv>'
+//                     options.template = 'restore-password';
+//                     options.subject = 'DiTVe - Restore Password'
+//                     options.context = {
+//                         name: {
+//                             first: user.firstName,
+//                             last: user.lastName,
+//                         },
+//                         token: user.securityStamp
+//                     }
+//                     EmailService.send(options).then(() => {
+//                         defer.resolve(user)
+//                     });
+//                 }).catch((error: Error) => {
+//                     defer.reject(error.message);
+//                 });
+//             }
+//         }).catch((error: Error) => {
+//             defer.reject(error.message);
+//         });
+//         return defer.promise;
+//     }
+//
+//     public static resetPassword(token: string, password: string): Promise<IUserInstance> {
+//         const defer = deferred();
+//         models.User.findOne({ where: { securityStamp: token } }).then((user: IUserInstance) => {
+//             if (user == null) {
+//                 defer.reject({
+//                     path: 'token', message: "The token you provided doesn't recognized"
+//                 })
+//             }
+//             else {
+//                 user.password = password;
+//                 user.isLocked = false;
+//                 user.securityStamp = '';
+//
+//                 user.save().then(() => {
+//                     defer.resolve(user);
+//                 });
+//             }
+//         }).catch((error: Error) => {
+//             defer.reject(error);
+//         });
+//         return defer.promise;
+//     }
+// }

@@ -1,7 +1,6 @@
 import {Ticket} from '../ticket.model';
 import * as TicketActions from './ticket.actions';
 import * as fromApp from '../../store/app.reducers';
-import * as RecipeActions from "../../recipes/store/recipe.actions";
 
 export interface FeatureState extends fromApp.AppState{
   tickets: State

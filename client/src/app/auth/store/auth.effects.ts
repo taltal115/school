@@ -1,184 +1,115 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
-import {Router} from '@angular/router';
-import {tap, map, switchMap, mergeMap, catchError} from 'rxjs/operators'
-import * as AuthActions from './auth.actions'
-import {from} from 'rxjs';
-import * as firebase from 'firebase';
-import {HttpClient, HttpRequest} from '@angular/common/http';
-import * as RecipeActions from "../../recipes/store/recipe.actions";
-import {AuthService} from "../auth.service";
-import {of} from "rxjs";
-import {FetchUsers} from "./auth.actions";
+import { Action } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import {Observable, of} from 'rxjs';
+import { tap, catchError, switchMap, map } from 'rxjs/operators';
+
+import { AuthService } from '../auth.service';
+import {
+  AuthActionTypes,
+  LogIn, LogInSuccess, LogInFailure,
+  SignUp, SignUpSuccess, SignUpFailure,
+  LogOut, GetStatus
+} from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
-  // @Effect() authSignup = this.actions$
-  //   .ofType(AuthActions.TRY_SIGNUP)
-  //   .pipe(map((action: AuthActions.TrySignup) => {
-  //     return action.payload
-  //   }),
-  //   switchMap((authData: {username: string, password: string}) =>{
-  //     return from(firebase.auth().signInWithEmailAndPassword(authData.username, authData.password))
-  //   }),
-  //   switchMap(() =>{
-  //     return from(firebase.auth().currentUser.getIdToken())
-  //   }),
-  //   /** to dispatch multiple actions */
-  //   mergeMap((token: string) => {
-  //     this.router.navigate(['/']);
-  //     return [
-  //       {
-  //         type: AuthActions.SIGNIN
-  //       },
-  //       {
-  //         type: AuthActions.SET_TOKEN,
-  //         payload: token
-  //       }
-  //     ]
-  //   }));
 
-  @Effect() authSignup = this.actions$
-    .ofType(AuthActions.TRY_SIGNUP)
-    .pipe(map((action: AuthActions.TrySignup) => {
-      return action.payload
-    }),
-    switchMap((authData: any) => {
-      console.log("authData: ",authData);
-      const req = new HttpRequest(
-        'POST',
-        'http://localhost:3000/auth/register',
-        authData.userObject,
-        {reportProgress: true}
-      );
-      return this.httpClient.request(req);
-    }),
-      map((res) =>{
-        console.log(res);
-        this.router.navigate(['/']);
-        return {
-          type: AuthActions.SIGNUP
-        }
-      }));
+  constructor(
+    private actions: Actions,
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
-  // @Effect() authSignin = this.actions$
-  //   .ofType(AuthActions.TRY_SIGNIN)
-  //   .pipe(map((action: AuthActions.TrySignin) => {
-  //     return action.payload
-  //   }),
-  //   switchMap((authData: {username: string, password: string}) =>{
-  //     return from(firebase.auth().signInWithEmailAndPassword(authData.username, authData.password))
-  //   }),
-  //   switchMap(() =>{
-  //     return from(firebase.auth().currentUser.getIdToken())
-  //   }),
-  //   /** to dispatch multiple actions */
-  //   mergeMap((token: string) => {
-  //     this.router.navigate(['/']);
-  //     return [
-  //       {
-  //         type: AuthActions.SIGNIN
-  //       },
-  //       {
-  //         type: AuthActions.SET_TOKEN,
-  //         payload: token
-  //       }
-  //     ]
-  //   }));
-
-  // @Effect()
-  // LogIn: Observable<any> = this.actions$
-  //   .ofType(AuthActionTypes.LOGIN)
-  //   .pipe(map((action: LogIn) => action.payload),
-  //   switchMap(payload => {
-  //     return this.authService.logIn(payload.email, payload.password)
-  //       .map((user) => {
-  //         console.log(user);
-  //         return new LogInSuccess({token: user.token, email: payload.email});
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //         return Observable.of(new LogInFailure({ error: error }));
-  //       });
-  //   }));
-
-  @Effect() authSignin = this.actions$
-    .ofType(AuthActions.TRY_SIGNIN)
-    .pipe(
-      map((action: AuthActions.TrySignin) => action.payload),
-      switchMap((authData: any)=> {
-
-        return this.authService.logIn(authData.email, authData.password)
-          .pipe(
-            map((user) => {
-            console.log(user);
-            // return new LogInSuccess({token: user.token, email: authData.email});
-            return {
-              type: AuthActions.SIGNIN
-            }
-          })
-            ,
-          catchError( (error) => {
+  @Effect()
+  LogIn: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.LOGIN),
+    map((action: LogIn) => action.payload),
+    switchMap(payload => {
+      return this.authService.logIn(payload.email, payload.password)
+        .pipe(
+          map((data) => {
+            console.log(data);
+            return new LogInSuccess({token: data.session.token, email: data.session.user.email});
+          }),
+          catchError((error) => {
             console.log(error);
-            return of({ error: error });
+            return of(new LogInFailure({ error: error }));
           })
-          );
+        );
+    }));
 
-
-
-        // console.log("authData: ",authData);
-        // const req = new HttpRequest(
-        //   'POST',
-        //   'http://localhost:3000/auth/login',
-        //   authData,
-        //   {reportProgress: true}
-        // );
-        // return this.httpClient.request(req)
-      }),
-      map((res) =>{
-        console.log(res);
-        localStorage.setItem('currentUser', 'tal');
-        this.router.navigate(['/']);
-        return {
-          type: AuthActions.SIGNIN
-        }
-      }));
-
-
-  @Effect({dispatch: false}) authSignout = this.actions$
-    .ofType(AuthActions.LOGOUT)
-    .pipe(tap(() => {
-      console.log('here');
-      this.router.navigate(['/signin']);
+  @Effect({ dispatch: false })
+  LogInSuccess: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.LOGIN_SUCCESS),
+    tap((user) => {
+      localStorage.setItem('user', JSON.stringify(user.payload));
+      this.router.navigateByUrl('/');
     })
-    );
+  );
 
-
-  @Effect({dispatch: false}) fetchUsers = this.actions$
-    .ofType(AuthActions.FETCH_USERS)
-    .pipe(switchMap((authData: any)=> {
-
-      return this.authService.getUsers()
+  @Effect()
+  SignUp: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.SIGNUP),
+    map((action: SignUp) => action.payload),
+    switchMap(payload => {
+      console.log("payloadpayload: ", payload);
+      return this.authService.signUp(payload.userObject)
         .pipe(
           map((user) => {
-            console.log("user: ",user);
-            // return new LogInSuccess({token: user.token, email: authData.email});
-            return {
-              type: AuthActions.SIGNIN
-            }
-          })
-          ,
-          catchError( (error) => {
+            console.log("useruser: ", user);
+            return new SignUpSuccess({token: user.token, email: payload.email});
+          }),
+          catchError((error) => {
             console.log(error);
-            return of({ error: error });
+            return of(new SignUpFailure({ error: error }));
           })
-        )}
-    ));
+        );
+    }));
 
+  @Effect({ dispatch: false })
+  SignUpSuccess: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.SIGNUP_SUCCESS),
+    tap((user) => {
+      localStorage.setItem('user', JSON.stringify(user.payload));
+      this.router.navigateByUrl('/');
+    })
+  );
 
-      constructor(
-    private actions$: Actions,
-    private router:Router,
-    private authService: AuthService,
-    private httpClient: HttpClient) {}
+  @Effect({ dispatch: false })
+  SigninFailure: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.LOGIN_FAILURE),
+    tap(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['/signin']);
+    })
+  );
+
+  @Effect({ dispatch: false })
+  SignupFailure: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.SIGNUP_FAILURE),
+    tap(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['/signup']);
+    })
+  );
+
+  @Effect({ dispatch: false })
+  public LogOut: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.LOGOUT),
+    tap((user) => {
+      localStorage.removeItem('user');
+      console.log('logout');
+      this.router.navigate(['/signin']);
+    })
+  );
+
+  @Effect({ dispatch: false })
+  GetStatus: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.GET_STATUS),
+    map((action: GetStatus) => action),
+    switchMap(payload => {
+      return this.authService.getStatus();
+    }));
 }

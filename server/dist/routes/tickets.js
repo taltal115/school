@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 // import { Authorized } from "../utils/auth";
 const ticket_model_1 = require("../models/documents/ticket-model");
+const auth_1 = require("../utils/auth");
 class TicketsRoute {
     static init(router) {
-        router.post("/tickets", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        router.post("/tickets", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             console.log("tal", req.body);
             const ticket = new ticket_model_1.Ticket(req.body);
             delete ticket.__v;

@@ -1,5 +1,4 @@
 // import * as bcrypt from 'bcrypt';
-// import { models } from "../models/entities/index";
 // import { IUserInstance } from "../models";
 // import { UserService } from "../service";
 //

@@ -6,7 +6,6 @@ import * as errorHandler from "errorhandler";
 import * as mongoose from 'mongoose';
 // import * as session from 'express-session';
 import { Routes } from './routes/index';
-// import { sequelize } from "./models/entities/index";
 // import passport from "passport";
 
 require('dotenv').config();

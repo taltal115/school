@@ -21,8 +21,6 @@ export const UserSchema = new Schema({
     },
     fullName: {
         type: String,
-        unique: true,
-        index: true
     },
     phoneNumber: {
         type: String
@@ -73,12 +71,12 @@ UserSchema.pre('save', function(next){
     });
 });
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
+// UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+//     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+//         if (err) return cb(err);
+//         cb(null, isMatch);
+//     });
+// };
 
 UserSchema.methods.incLoginAttempts = function(cb) {
     // if we have a previous lock that has expired, restart at 1
@@ -104,6 +102,13 @@ var reasons = UserSchema.statics.failedLogin = {
     MAX_ATTEMPTS: 2
 };
 
+UserSchema.methods.comparePassword = function(candidatePassword, hashedPassword, cb) {
+    bcrypt.compare(candidatePassword, hashedPassword, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    });
+};
+
 UserSchema.statics.getAuthenticated = function(email, password, cb) {
     return User.findOne({ email: email }, function(err: any, user: any) {
         if (err) return cb(err);
@@ -124,9 +129,14 @@ UserSchema.statics.getAuthenticated = function(email, password, cb) {
             });
         }
 
+
+
         // test for a matching password
         return user.comparePassword(password, function(err, isMatch) {
             if (err) return cb(err);
+
+
+            console.log('1111111111111111111111111111111111111111111111111111111122222')
 
             // check if the password was a match
             if (isMatch) {

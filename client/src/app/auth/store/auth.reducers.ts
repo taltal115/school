@@ -1,35 +1,71 @@
-import * as AuthActions from './auth.actions';
+import { User } from '../../models/user';
+import { AuthActionTypes, All } from './auth.actions';
+
 
 export interface State {
-  token: string;
-  authenticated: boolean;
+  // is a user authenticated?
+  isAuthenticated: boolean;
+  // if authenticated, there should be a user object
+  user: User | null;
+  // error message
+  errorMessage: string | null;
 }
 
-const initialState: State = {
-  token: null,
-  authenticated: false
+export const initialState: State = {
+  isAuthenticated: false,
+  user: null,
+  errorMessage: null
 };
 
-export function authReducer(state = initialState , action: AuthActions.AuthActions) {
-  switch(action.type) {
-    case AuthActions.SIGNUP:
-    case AuthActions.SIGNIN:
+export function reducer(state = initialState, action: All): State {
+  switch (action.type) {
+    case AuthActionTypes.LOGIN_SUCCESS: {
       return {
         ...state,
-        authenticated: true
+        isAuthenticated: true,
+        user: {
+          token: action.payload.token,
+          email: action.payload.email
+        },
+        errorMessage: null
       };
-    case AuthActions.LOGOUT:
+    }
+    case AuthActionTypes.LOGIN_FAILURE: {
       return {
         ...state,
-        token: null,
-        authenticated: false
+        errorMessage: 'Incorrect email and/or password.'
       };
-    case AuthActions.SET_TOKEN:
+    }
+    case AuthActionTypes.SIGNUP_SUCCESS: {
       return {
         ...state,
-        token: action.payload
+        isAuthenticated: true,
+        user: {
+          token: action.payload.token,
+          email: action.payload.email
+        },
+        errorMessage: null
       };
-    default:
+    }
+    case AuthActionTypes.SIGNUP_FAILURE: {
+      return {
+        ...state,
+        errorMessage: 'Incorrect email and/or password.'
+      };
+    }
+    case AuthActionTypes.LOGOUT: {
+      return initialState;
+    }
+    case AuthActionTypes.SET_TOKEN: {
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload,
+        errorMessage: null
+      };
+    }
+    default: {
       return state;
+    }
   }
 }

@@ -6,10 +6,10 @@ import {TicketsComponent} from './tickets.component';
 import {TicketStartComponent} from './ticket-start/ticket-start.component';
 
 const ticketsRoutes: Routes = [
-  { path: '', component: TicketsComponent, children: [
-    { path: '', component: TicketStartComponent},
-    { path: 'new', component: TicketEditComponent },
-  ] }
+  // { path: '', component: TicketsComponent, children: [
+    { path: 'tickets', component: TicketStartComponent},
+    { path: 'tickets/new', component: TicketEditComponent },
+  // ] }
 ];
 
 @NgModule({

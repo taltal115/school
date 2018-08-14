@@ -15,7 +15,6 @@ const errorHandler = require("errorhandler");
 const mongoose = require("mongoose");
 // import * as session from 'express-session';
 const index_1 = require("./routes/index");
-// import { sequelize } from "./models/entities/index";
 // import passport from "passport";
 require('dotenv').config();
 const cors = require('cors');

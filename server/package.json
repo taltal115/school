@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "npm run build-ts && node --inspect ./bin/www",
+    "start": "npm run build-ts && node ./bin/www",
     "debug": "npm run build-ts && node --inspect ./bin/www",
     "build-ts": "tsc"
   },

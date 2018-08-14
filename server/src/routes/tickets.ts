@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response, Router } from "express";
 // import { Authorized } from "../utils/auth";
 import {Ticket} from '../models/documents/ticket-model'
+import {Authorized} from "../utils/auth";
 
 class TicketsRoute {
     public static init(router: Router) {
 
-        router.post("/tickets", async (req: Request, res: Response, next: NextFunction) => {
+        router.post("/tickets", Authorized, async (req: Request, res: Response, next: NextFunction) => {
             console.log("tal" ,req.body);
 
             const ticket = new Ticket(req.body);

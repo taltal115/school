@@ -16,7 +16,8 @@ export class AuthGuard implements CanActivate {
       /** take one action from this type */
       .pipe(take(1),
         map((authState: fromAuth.State) => {
-          return authState.authenticated
+          debugger
+          return authState.isAuthenticated
       }));
   }
 }

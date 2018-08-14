@@ -17,8 +17,6 @@ exports.UserSchema = new mongoose_1.Schema({
     },
     fullName: {
         type: String,
-        unique: true,
-        index: true
     },
     phoneNumber: {
         type: String
@@ -63,13 +61,12 @@ exports.UserSchema.pre('save', function (next) {
         });
     });
 });
-exports.UserSchema.methods.comparePassword = function (candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-        if (err)
-            return cb(err);
-        cb(null, isMatch);
-    });
-};
+// UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+//     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+//         if (err) return cb(err);
+//         cb(null, isMatch);
+//     });
+// };
 exports.UserSchema.methods.incLoginAttempts = function (cb) {
     // if we have a previous lock that has expired, restart at 1
     if (this.lockUntil && this.lockUntil < Date.now()) {
@@ -91,6 +88,13 @@ var reasons = exports.UserSchema.statics.failedLogin = {
     NOT_FOUND: 0,
     PASSWORD_INCORRECT: 1,
     MAX_ATTEMPTS: 2
+};
+exports.UserSchema.methods.comparePassword = function (candidatePassword, hashedPassword, cb) {
+    bcrypt.compare(candidatePassword, hashedPassword, function (err, isMatch) {
+        if (err)
+            return cb(err);
+        cb(null, isMatch);
+    });
 };
 exports.UserSchema.statics.getAuthenticated = function (email, password, cb) {
     return exports.User.findOne({ email: email }, function (err, user) {
@@ -114,6 +118,7 @@ exports.UserSchema.statics.getAuthenticated = function (email, password, cb) {
         return user.comparePassword(password, function (err, isMatch) {
             if (err)
                 return cb(err);
+            console.log('1111111111111111111111111111111111111111111111111111111122222');
             // check if the password was a match
             if (isMatch) {
                 // if there's no lock or failed attempts, just return the user

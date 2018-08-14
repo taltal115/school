@@ -19,9 +19,10 @@ export class AppComponent implements OnInit {
     //   apiKey: "AIzaSyAb-SE6fRgdoroTH4tuNwB6SigUA8pYFvo",
     //   authDomain: "ng-recipe-book-f859e.firebaseio.com"
     // });
-    const currentUser = localStorage.getItem('currentUser');
+    const currentUser = localStorage.getItem('user');
+    console.log("user: ",currentUser);
     if(currentUser) {
-      const accessToken = JSON.parse(currentUser).stsTokenManager.accessToken;
+      const accessToken = JSON.parse(currentUser);
       this.store.dispatch(new AuthActions.SetToken(accessToken));
       console.log(accessToken);
     }
