@@ -77,6 +77,22 @@ export class ReactiveFormsComponent implements OnInit {
     }
   }
 
+  fillForm() {
+    console.log("newTicketForm ", this.newTicketForm)
+    this.newTicketForm.patchValue({
+      ticketData: {
+        teacherName: 'nulfdsl',
+        damagedDevice: 'nullfdsa',
+        serialNumber: 'fdsanull',
+        structure: 'fdsanull',
+        deviceLocation: 'fdsnull',
+        problemsNature: 'fdsa',
+        teachersContactPhone: 'fdsds',
+        missingEquipments: 'fdsafds'
+      }
+    })
+  }
+
   // allowedEmailsAsync(control: FormControl): Promise<any> | Observable<any> {
   //   return new Promise<any>((resolve, reject) => {
   //     setTimeout(() => {

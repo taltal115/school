@@ -12,7 +12,9 @@ import * as TicketActions from '../store/ticket.actions'
   styleUrls: ['./ticket-start.component.css']
 })
 export class TicketStartComponent implements OnInit {
-  tickets: Observable<fromTicket.State>;
+  // tickets: Observable<fromTicket.State>;
+  tickets: any[];
+  editMode = false;
   serviceCallCount: number;
 
   constructor(
@@ -23,10 +25,11 @@ export class TicketStartComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new TicketActions.FetchTickets())
 
-    this.tickets = this.store.select('tickets');
+    // this.tickets = this.store.select('tickets');
     this.store.select('tickets').subscribe((result) => {
       console.log("tickets : ",result.tickets.length)
       this.serviceCallCount = result.tickets.length;
+      this.tickets = result.tickets;
     });
   }
 
@@ -36,11 +39,23 @@ export class TicketStartComponent implements OnInit {
   }
 
   onDeleteRow(index, ticket) {
-    console.log(ticket)
+    console.log(ticket);
     this.store.dispatch(new TicketActions.DeleteRow({index: index, ticket: ticket}));
   }
 
-  onEditRow(ticket) {
+  onEditRow(ticket, i) {
+    this.editMode = true;
+    console.log(ticket)
+    console.log(this.tickets[i])
+    console.log("index: ",i)
+  }
+
+  onEditSaveRow(ticket) {
+    console.log(ticket);
+    this.editMode = false;
+  }
+
+  fillForm(ticket) {
     console.log(ticket)
   }
 }

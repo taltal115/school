@@ -13,6 +13,7 @@ import { TicketStartComponent } from './ticket-start/ticket-start.component';
 import {ReactiveFormsComponent} from './ticket-edit/reactive-forms/reactive-forms.component';
 import {EffectsModule} from "@ngrx/effects";
 import {TicketEffects} from "./store/ticket.effects";
+import {AuthGuard} from "../auth/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -29,5 +30,6 @@ import {TicketEffects} from "./store/ticket.effects";
     StoreModule.forFeature('tickets', ticketReducer),
     EffectsModule.forRoot([TicketEffects])
   ],
+  providers: [AuthGuard]
 })
 export class TicketsModule {}

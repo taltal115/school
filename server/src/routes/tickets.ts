@@ -21,10 +21,10 @@ class TicketsRoute {
             });
         });
 
-        router.get("/tickets", async (req: Request, res: Response, next: NextFunction) => {
+        router.get("/tickets", Authorized, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const tickets = await Ticket.find({});
-                // console.log("ticketstickets: ",tickets);
+                console.log("ticketstickets: ",tickets);
                 res.status(201).json(tickets);
             } catch (e) {
                 res.status(500).send({error: e});

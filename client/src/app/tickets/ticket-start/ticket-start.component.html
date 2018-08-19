@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ticket of (tickets | async).tickets; let i = index">
+      <tr *ngFor="let ticket of tickets; let i = index">
         <td>{{ ticket.date | date:'shortTime' }}</td>
         <td>{{ ticket.teacherName }}</td>
         <td>{{ ticket.damagedDevice }}</td>
@@ -33,8 +33,16 @@
         <td>{{ ticket.problemsNature }}</td>
         <td>{{ ticket.missingEquipments }}</td>
         <td>{{ ticket.teachersContactPhone }}</td>
-        <td>{{ ticket.status }}</td>
-        <td><span class="glyphicon glyphicon-edit" (click)="onEditRow(ticket)"></span></td>
+        <td *ngIf="!editMode">{{ ticket.status }}</td>
+        <td *ngIf="editMode">
+          <input
+            type="text"
+            id="status"
+            class="form-control"
+            #fv>
+        </td>
+        <td *ngIf="!editMode"><span class="glyphicon glyphicon-edit" (click)="onEditRow(ticket, i)"></span></td>
+        <td *ngIf="editMode"><button class="btn btn-success" (click)="onEditSaveRow(fv)">שמור</button></td>
         <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(i, ticket)"></span></td>
       </tr>
     </tbody>

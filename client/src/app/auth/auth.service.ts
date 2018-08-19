@@ -25,7 +25,8 @@ export class AuthService {
     return this.http.post<any>(url, userData);
   }
 
-  getUsers(): Observable<any> {
+  // getUsers(): Observable<any> {
+  getUsers() {
     const url = `${this.BASE_URL}/users`;
     return this.http.get<any>(url);
   }

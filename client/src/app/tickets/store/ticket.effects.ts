@@ -1,13 +1,16 @@
 import {Actions, Effect} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
-import {switchMap, map} from 'rxjs/operators';
-import {HttpClient, HttpRequest} from '@angular/common/http';
+import {switchMap, map, catchError} from 'rxjs/operators';
 
-// import * as RecipeActions from '../store/recipe.actions';
 import * as fromTicket from './ticket.reducers';
+import * as AuthActions from './../../auth/store/auth.actions'
 import {Store} from '@ngrx/store';
 import * as TicketActions from './ticket.actions';
-import {Ticket} from "../ticket.model";
+import {TicketsService} from "../tickets.service";
+import {take} from "rxjs/internal/operators";
+import {Router} from "@angular/router";
+import {onerror} from "q";
+import {of} from "rxjs/index";
 
 @Injectable()
 export class TicketEffects {
@@ -15,65 +18,76 @@ export class TicketEffects {
   @Effect()
   ticketFetch = this.actions$
     .ofType(TicketActions.FETCH_TICKETS)
-    .pipe(switchMap((action: TicketActions.FetchTickets) => {
-      console.log('FETCH_TICKETS: ',action)
-      return this.httpClient.get<Ticket[]>('http://localhost:3000/tickets', {
-        observe: 'body',
-        responseType: 'json'
-      })
+    .pipe(
+      take(1),
+      switchMap((action: TicketActions.FetchTickets) => {
+      console.log('FETCH_TICKETS: ',action);
+      return this.ticketsService.getTickets()
+        .pipe(
+          map((tickets) => {
+            console.log("ticketstickets: ", tickets);
+            return {
+              type: TicketActions.SET_TICKETS,
+              payload: tickets
+            };
+            // return new SignUpSuccess({token: user.token, email: payload.email});
+          }),
+          catchError((error: any) => {
+            console.log(error);
+            this.router.navigate(['/login']);
+            localStorage.removeItem('user');
+            return of({
+              type: AuthActions.LogOut
+            })
+          })
+        );
     })
-    // );
-      , map(
-        (tickets) => {
-          console.log(tickets)
-          // for (let recipe of recipes) {
-          //   if (!recipe['ingredients']) {
-          //     recipe['ingredients'] = [];
-          //   }
-          // }
-          return {
-            type: TicketActions.SET_TICKETS,
-            payload: tickets
-          };
-        }
-      ));
+    );
 
 
   @Effect()
   ticketStore = this.actions$
     .ofType(TicketActions.SET_TICKET)
     .pipe(switchMap((action: TicketActions.SetTicket) => {
-      const req = new HttpRequest(
-        'POST',
-        'http://localhost:3000/tickets',
-        action.payload,
-        {reportProgress: true}
-      );
-      return this.httpClient.request(req);
-    }) , map(
-      () => {
-        return {
-          type: TicketActions.FETCH_TICKETS
-        };
-      }
-    ));
+      return this.ticketsService.createTicket(action.payload)
+        .pipe(
+          map((tickets) => {
+            console.log("ticketstickets: ", tickets);
+            return {
+              type: TicketActions.FETCH_TICKETS
+            };
+          }),
+          catchError((error) => {
+            console.log(error);
+            this.router.navigate(['/login'])
+            localStorage.removeItem('user')
+            return error;
+          })
+        );
+    }));
 
   @Effect({dispatch: false})
   ticketDelete = this.actions$
     .ofType(TicketActions.DELETE_TICKET)
     .pipe(switchMap((action: TicketActions.DeleteRow) => {
-      const req = new HttpRequest(
-        'DELETE',
-        'http://localhost:3000/tickets',
-        action.payload.ticket,
-        {reportProgress: true}
-      );
-      return this.httpClient.request(req);
+      return this.ticketsService.deleteTicket(action.payload.ticket)
+        .pipe(
+          map((tickets) => {
+            console.log("ticketstickets: ", tickets);
+          }),
+          catchError((error) => {
+            console.log(error);
+            this.router.navigate(['/login']);
+            localStorage.removeItem('user');
+            return (error);
+          })
+        );
     }));
 
   constructor(
     private actions$: Actions,
-    private httpClient: HttpClient,
-    private store: Store<fromTicket.FeatureState>
+    private store: Store<fromTicket.FeatureState>,
+    private ticketsService: TicketsService,
+    private router: Router
   ) {}
 }

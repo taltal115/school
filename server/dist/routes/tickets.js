@@ -26,10 +26,10 @@ class TicketsRoute {
                 }
             });
         }));
-        router.get("/tickets", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        router.get("/tickets", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const tickets = yield ticket_model_1.Ticket.find({});
-                // console.log("ticketstickets: ",tickets);
+                console.log("ticketstickets: ", tickets);
                 res.status(201).json(tickets);
             }
             catch (e) {

@@ -25,6 +25,7 @@ function verify(request) {
 }
 function Authorized(request, res, next) {
     verify(request).then((token => {
+        console.log('Authorized: ', token);
         request.session = token;
         //console.log('Authorized: ', token, request)
         next();

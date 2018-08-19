@@ -29,6 +29,7 @@ function verify(request: Request): Promise<any> {
 
 export function Authorized(request: Request, res: Response, next: NextFunction) {
     verify(request).then((token => {
+        console.log('Authorized: ',token);
         request.session = token
         //console.log('Authorized: ', token, request)
         next();

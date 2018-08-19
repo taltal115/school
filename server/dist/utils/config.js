@@ -14,7 +14,7 @@ module.exports = {
     // The salt is a random value, and should differ for each calculation, so the result should hardly ever be the same, even for equal passwords.
     // The salt is usually included in the resulting hash-string in readable form. So with storing the hash-string you also store the salt. Have a look at this answer for more details.
     saltRounds: 8,
-    jwtSecret: process.env.JWT_SECRET || '27ABA98CBB33E',
+    jwtSecret: process.env.JWT_SECRET || '11ABA98CBB33E',
     db: {
         mongo: {
             uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/school-desk',
