@@ -1,11 +1,20 @@
 import {  Schema, model } from "mongoose";
 
 export const TicketsSchema: Schema = new Schema({
+  id: {
+    type: Number,
+    default: 0
+  },
   date: {
     type: Date,
   },
   teacherName: {
     type: String,
+    required: true
+  },
+  teacherId: {
+    type: String,
+    required: true
   },
   damagedDevice: {
     type: String,
@@ -21,12 +30,14 @@ export const TicketsSchema: Schema = new Schema({
   },
   problemsNature: {
     type: String,
+    required: true
   },
   missingEquipments: {
     type: [String],
   },
   teachersContactPhone: {
-    type: String
+    type: String,
+    required: true
   },
   status: {
     type: String,

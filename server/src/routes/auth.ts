@@ -94,8 +94,8 @@ class AuthRoute {
             // if (req.body.email === 'test@test.com') {
             try {
                 const user = await service.register(req.body);
-                console.log('reg: ',user);
-                const session = SignToken(user, 0);
+                console.log('user._id: ',user._id);
+                const session = SignToken(user);
                 res.status(200).json({ success: true, data: user, session: session });
             } catch (e) {
                 res.status(403).json({ success: false, error: e });
@@ -104,14 +104,12 @@ class AuthRoute {
 
         router.post('/auth/login', async (req: Request, res: Response) => {
             const body = req.body;
-            console.log("LOGIN: ",body);
             try {
                 const user = await service.login(body.email, body.password);
-                console.log("USER: ",user);
                 if(user && user.email) {
-                    console.log("LOGIN111: ",user);
-                    const session = SignToken(user, 0);
-                    console.log("sessionsession: ",session);
+                    console.log('user: ',user);
+
+                    const session = SignToken(user);
                     res.status(200).json({ success: true, data: user, session: session });
                 } else {
                     res.status(401).json({ success: false, error: 'invalid username or password', session: null});

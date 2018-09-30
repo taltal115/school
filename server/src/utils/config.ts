@@ -19,17 +19,6 @@ module.exports = {
     db: {
         mongo: {
             uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/school-desk',
-        },
-        mysql: {
-            username: process.env.SQL_USERNAME || 'root',
-            password: process.env.SQL_PASSWORD || 'root',
-            database: process.env.SQL_DATABASE || 'school-desk',
-            host: process.env.SQL_HOST || 'localhost',
-            port: process.env.SQL_PORT || 3306,
-            dialect: process.env.SQL_DIALECT || 'mysql',
-            logging: false, //process.env.SQL_LOGGING,
-            force: true, //process.env.SQL_FORCE,
-            timezone: process.env.SQL_TIMEZONE || '+00:00',
         }
     },
 

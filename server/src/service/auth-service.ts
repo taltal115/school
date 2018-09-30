@@ -32,6 +32,8 @@ export class AuthService {
                             return rej('bad login');
                         }
                     });
+                } else {
+                    rej('Error Login!')
                 }
             });
         } catch (e) {

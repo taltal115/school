@@ -6,6 +6,14 @@ const bcrypt = require('bcrypt'), SALT_WORK_FACTOR = 10,
 // max of 5 attempts, resulting in a 2 hour lock
 MAX_LOGIN_ATTEMPTS = 5, LOCK_TIME = 2 * 60 * 60 * 1000;
 exports.UserSchema = new mongoose_1.Schema({
+    id: {
+        type: Number,
+        default: 0
+    },
+    date: {
+        type: Date,
+        default: new Date()
+    },
     email: {
         type: String,
         required: true,
@@ -17,9 +25,11 @@ exports.UserSchema = new mongoose_1.Schema({
     },
     fullName: {
         type: String,
+        required: true
     },
     phoneNumber: {
-        type: String
+        type: String,
+        required: true
     },
     userRole: {
         type: String,
@@ -30,10 +40,14 @@ exports.UserSchema = new mongoose_1.Schema({
             'student'
         ]
     },
+    status: {
+        type: Boolean,
+        default: true
+    },
     loginAttempts: { type: Number, required: true, default: 0 },
     lockUntil: { type: Number }
 }, {
-    //_id: false,
+    _id: true,
     strict: false,
     collection: 'users'
 });

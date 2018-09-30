@@ -3,4 +3,8 @@ export class User {
   email?: string;
   password?: string;
   token?: string;
+  fullName?: string;
+  phoneNumber?: string;
+  userRole?: string;
+
 }

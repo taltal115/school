@@ -7,13 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-// import { Authorized } from "../utils/auth";
 const ticket_model_1 = require("../models/documents/ticket-model");
 const auth_1 = require("../utils/auth");
+const service_1 = require("../service");
 class TicketsRoute {
     static init(router) {
         router.post("/tickets", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log("tal", req.body);
             const ticket = new ticket_model_1.Ticket(req.body);
             delete ticket.__v;
             // console.log("ticket: ", ticket);
@@ -21,15 +20,45 @@ class TicketsRoute {
                 if (err)
                     res.status(500).send({ error: err });
                 else {
-                    res.status(201).send({ status: "Created", ticket: ticket });
-                    console.log('file saved to db!');
+                    const options = {};
+                    options.to = 'taltal115@gmail.com';
+                    options.from = 'DiTve MAM <admin@school.com>';
+                    options.template = 'new-ticket';
+                    options.subject = 'School - Restore Password';
+                    options.context = {
+                        createdAt: "2018-09-22T07:47:59.870Z",
+                        damagedDevice: "nullfdsa",
+                        deviceLocation: "fdsnull",
+                        id: 0,
+                        missingEquipments: ["fdsafds"],
+                        problemsNature: "fdsa",
+                        serialNumber: "fdsanull",
+                        status: "pending",
+                        structure: "fdsanull",
+                        teacherId: "5b9ad95a8a43f1cff3ba4909",
+                        teacherName: "nulfdsl",
+                        teachersContactPhone: "fdsds",
+                        _id: "5ba5f3af9da6db53b56acf83"
+                    };
+                    service_1.EmailService.send(options)
+                        .then((info) => {
+                        console.log(`Message Sent ${info.response}`);
+                        res.status(201).send({ status: "Created", ticket: ticket });
+                        console.log('file saved to db!');
+                    })
+                        .catch((error) => {
+                        return res.status(500).send({ error: error });
+                    });
                 }
             });
         }));
         router.get("/tickets", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const tickets = yield ticket_model_1.Ticket.find({});
-                console.log("ticketstickets: ", tickets);
+                const u_id_query = req.session ? { teacherId: req.session.u_id } : null;
+                console.log("u_id_query: ", u_id_query);
+                const tickets = yield ticket_model_1.Ticket.find(u_id_query);
+                // const tickets = await Ticket.find({});
+                console.log("ticketstickets: ", tickets.length);
                 res.status(201).json(tickets);
             }
             catch (e) {

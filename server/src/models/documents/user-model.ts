@@ -10,6 +10,14 @@ const bcrypt = require('bcrypt'),
 export interface IUserModel extends IUser, Document { }
 
 export const UserSchema = new Schema({
+    id: {
+        type: Number,
+        default: 0
+    },
+    date: {
+        type: Date,
+        default: new Date()
+    },
     email: {
         type: String,
         required: true,
@@ -21,9 +29,11 @@ export const UserSchema = new Schema({
     },
     fullName: {
         type: String,
+        required: true
     },
     phoneNumber: {
-        type: String
+        type: String,
+        required: true
     },
     userRole: {
         type: String,
@@ -34,10 +44,14 @@ export const UserSchema = new Schema({
             'student'
         ]
     },
+    status: {
+        type: Boolean,
+        default: true
+    },
     loginAttempts: { type: Number, required: true, default: 0 },
     lockUntil: { type: Number }
 }, {
-    //_id: false,
+    _id: true,
     strict: false,
     collection: 'users'
 });

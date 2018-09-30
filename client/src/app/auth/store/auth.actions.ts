@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 
-export enum AuthActionTypes {
+export const
   LOGIN = '[Auth] Login',
   LOGIN_SUCCESS = '[Auth] Login Success',
   LOGIN_FAILURE = '[Auth] Login Failure',
@@ -11,54 +11,54 @@ export enum AuthActionTypes {
   LOGOUT = '[Auth] Logout',
   GET_STATUS = '[Auth] GetStatus',
   SET_TOKEN = 'SET_TOKEN',
-  FETCH_USERS = 'FETCH_USERS'
-}
+  FETCH_USERS = 'FETCH_USERS';
+
 
 export class LogIn implements Action {
-  readonly type = AuthActionTypes.LOGIN;
+  readonly type = LOGIN;
   constructor(public payload: any) {}
 }
 
 export class LogInSuccess implements Action {
-  readonly type = AuthActionTypes.LOGIN_SUCCESS;
+  readonly type = LOGIN_SUCCESS;
   constructor(public payload: any) {}
 }
 
 export class LogInFailure implements Action {
-  readonly type = AuthActionTypes.LOGIN_FAILURE;
+  readonly type = LOGIN_FAILURE;
   constructor(public payload: any) {}
 }
 
 export class SignUp implements Action {
-  readonly type = AuthActionTypes.SIGNUP;
+  readonly type = SIGNUP;
   constructor(public payload: any) {}
 }
 
 export class SignUpSuccess implements Action {
-  readonly type = AuthActionTypes.SIGNUP_SUCCESS;
+  readonly type = SIGNUP_SUCCESS;
   constructor(public payload: any) {}
 }
 
 export class SignUpFailure implements Action {
-  readonly type = AuthActionTypes.SIGNUP_FAILURE;
+  readonly type = SIGNUP_FAILURE;
   constructor(public payload: any) {}
 }
 
 export class LogOut implements Action {
-  readonly type = AuthActionTypes.LOGOUT;
+  readonly type = LOGOUT;
 }
 
 export class GetStatus implements Action {
-  readonly type = AuthActionTypes.GET_STATUS;
+  readonly type = GET_STATUS;
 }
 
 export class SetToken implements Action {
-  readonly type = AuthActionTypes.SET_TOKEN;
+  readonly type = SET_TOKEN;
   constructor(public payload: any) {}
 }
 
 export class FetchUsers implements Action {
-  readonly type = AuthActionTypes.FETCH_USERS;
+  readonly type = FETCH_USERS;
 }
 
 export type All =

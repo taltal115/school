@@ -15,17 +15,21 @@
 
 import * as fromAuth from './../auth/store/auth.reducers';
 import * as fromUser from './../users/store/users.reducers';
+import * as fromOrganisation from './../organisations/store/organisation.reducers';
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 
 export interface AppState {
   authState: fromAuth.State;
   users: fromUser.State;
+  Organisations: fromOrganisation.State;
 }
 
 export const reducers = {
   auth: fromAuth.reducer,
-  users: fromUser.userReducer
+  users: fromUser.userReducer,
+  organisations: fromOrganisation.organisationReducer
 };
 
 export const selectAuthState = createFeatureSelector<AppState>('auth');
 export const selectUserState = createFeatureSelector<AppState>('users');
+export const selectOrganisationState = createFeatureSelector<AppState>('organisations');

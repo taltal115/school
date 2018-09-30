@@ -7,6 +7,7 @@ import {Store} from '@ngrx/store';
 import * as fromTicket from '../../store/ticket.reducers';
 import * as TicketActions from '../../store/ticket.actions';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-reactive-forms',
@@ -17,12 +18,16 @@ export class ReactiveFormsComponent implements OnInit {
   statuses = ['Stable', 'Critical', 'Finished'];
   newTicketForm: FormGroup;
   excludeProjectName = ['test'];
+  user: any;
 
   constructor(
     private store: Store<fromTicket.FeatureState>,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private toastr: ToastrService
+  ) {
+    this.user = JSON.parse(localStorage.getItem('user'))
+  }
 
   ngOnInit() {
     // this.projectForm = new FormGroup({
@@ -43,9 +48,9 @@ export class ReactiveFormsComponent implements OnInit {
         'serialNumber' : new FormControl(null, []),
         'structure' : new FormControl(null, []),
         'deviceLocation' : new FormControl(null, []),
-        'problemsNature' : new FormControl(null, []),
+        'problemsNature' : new FormControl(null, [Validators.required]),
         'missingEquipments' : new FormControl(null, []),
-        'teachersContactPhone' : new FormControl(null, [])
+        'teachersContactPhone' : new FormControl(null, [Validators.required])
       }),
       // 'status': new FormControl('Stable')
     })
@@ -63,10 +68,12 @@ export class ReactiveFormsComponent implements OnInit {
       ticketData.problemsNature,
       ticketData.missingEquipments,
       ticketData.teachersContactPhone,
-      'pending'
+      'pending',
+      this.user.id
     )));
     this.router.navigate(['../'], {relativeTo: this.route});
     console.log(this.newTicketForm)
+    this.toastr.success('הכרטיס נרשם בהצלחה','כרטיס חדש')
   }
 
   allowedEmails(control: FormControl): {[s: string]: boolean} {

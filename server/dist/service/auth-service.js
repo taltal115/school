@@ -44,6 +44,9 @@ class AuthService {
                             }
                         });
                     }
+                    else {
+                        rej('Error Login!');
+                    }
                 }));
             }
             catch (e) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -12,10 +12,13 @@ import {ActivatedRoute, Router} from "@angular/router";
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit, OnDestroy{
   isAuthenticated = false;
   getState: Observable<any>;
+  getUser: Observable<any>;
   user: string;
+  private getStateSubscription: any;
+
   // authState: Observable<fromAuth.State>;
 
   constructor(
@@ -27,11 +30,11 @@ export class HeaderComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getState.subscribe((state) => {
-      console.log("state: ", state)
+    this.getStateSubscription = this.getState.subscribe((state) => {
+      console.log("state: ", state);
       this.isAuthenticated = state.isAuthenticated;
       if(this.isAuthenticated) {
-        this.user = state.user.email;
+        this.user = state.user;
       }
     });
   }
@@ -52,6 +55,11 @@ export class HeaderComponent implements OnInit{
   }
 
   onLogout() {
+    location.reload();
     this.store.dispatch(new AuthActions.LogOut);
+  }
+
+  ngOnDestroy() {
+    this.getStateSubscription.unsubscribe()
   }
 }

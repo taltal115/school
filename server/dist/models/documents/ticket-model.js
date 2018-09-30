@@ -2,11 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 exports.TicketsSchema = new mongoose_1.Schema({
+    id: {
+        type: Number,
+        default: 0
+    },
     date: {
         type: Date,
     },
     teacherName: {
         type: String,
+        required: true
+    },
+    teacherId: {
+        type: String,
+        required: true
     },
     damagedDevice: {
         type: String,
@@ -22,12 +31,14 @@ exports.TicketsSchema = new mongoose_1.Schema({
     },
     problemsNature: {
         type: String,
+        required: true
     },
     missingEquipments: {
         type: [String],
     },
     teachersContactPhone: {
-        type: String
+        type: String,
+        required: true
     },
     status: {
         type: String,

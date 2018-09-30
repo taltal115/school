@@ -3,6 +3,7 @@
 export class Ticket {
   public date?: Date;
   public teacherName: string;
+  public teacherId: string;
   public damagedDevice: string;
   public serialNumber: string;
   public structure: string;
@@ -23,9 +24,11 @@ export class Ticket {
     missingEquipments: string,
     teachersContactPhone: string,
     status: string,
+    teacherId?: string,
   ) {
     this.date = new Date();
     this.teacherName = teacherName;
+    this.teacherId = teacherId;
     this.damagedDevice = damagedDevice;
     this.serialNumber = serialNumber;
     this.structure = structure;

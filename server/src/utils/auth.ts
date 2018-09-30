@@ -10,7 +10,7 @@ function verify(request: Request): Promise<any> {
     return new Promise((resolve, reject) => {
         var header = request.headers && request.headers['authorization'];
         var token = header && header.replace(/^Bearer (\S+)$/, "$1");
-
+        console.log("header: ",request.headers)
         if (!token) {
             reject('No authorization token was found');
         }
@@ -20,6 +20,7 @@ function verify(request: Request): Promise<any> {
                     reject(err);
                 }
                 else {
+                    console.log("decoded: ",decoded)
                     resolve(decoded);
                 }
             });
@@ -30,7 +31,7 @@ function verify(request: Request): Promise<any> {
 export function Authorized(request: Request, res: Response, next: NextFunction) {
     verify(request).then((token => {
         console.log('Authorized: ',token);
-        request.session = token
+        request.session = token;
         //console.log('Authorized: ', token, request)
         next();
     })).catch((err) => {
@@ -39,12 +40,12 @@ export function Authorized(request: Request, res: Response, next: NextFunction) 
 }
 
 // export function SignToken(user: any, orgId: string, role: number): ISession {
-export function SignToken(user: any, role: number): ISession {
+export function SignToken(user: any): ISession {
     const duration = config.session.duration;
     const expires = new Date(Date.now() + duration * 1000);
     const token = jwt.sign({
         u_id: user._id,
-        role: role
+        role: user.userRole
     }, config.jwtSecret, { expiresIn: duration });
 
     // user.setDataValue('role', role);

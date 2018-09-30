@@ -1,17 +1,22 @@
 import {HttpClient, HttpRequest} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
 import {Ticket} from "./ticket.model";
+import {Store} from "@ngrx/store";
+import {All} from "../auth/store/auth.actions";
 // import {User} from "../models/user";
 
 // import { User } from '../models/user';
 
 
 @Injectable()
-export class TicketsService {
+export class TicketsService{
   private BASE_URL = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient
+  ) {
+  }
 
   getTickets(): Observable<any> {
     const url = `${this.BASE_URL}/tickets`;

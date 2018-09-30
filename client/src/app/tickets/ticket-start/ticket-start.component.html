@@ -33,16 +33,25 @@
         <td>{{ ticket.problemsNature }}</td>
         <td>{{ ticket.missingEquipments }}</td>
         <td>{{ ticket.teachersContactPhone }}</td>
-        <td *ngIf="!editMode">{{ ticket.status }}</td>
-        <td *ngIf="editMode">
-          <input
-            type="text"
-            id="status"
-            class="form-control"
-            #fv>
+        <td *ngIf="!ticket.editMode">{{ ticket.status }}</td>
+        <td *ngIf="ticket.editMode">
+          <!--<input-->
+            <!--type="text"-->
+            <!--id="status"-->
+            <!--class="form-control"-->
+            <!--#fv>-->
+          <!--<input-->
+             <!--type="text"-->
+             <!--class="form-control"-->
+             <!--name="edit-row"-->
+             <!--[(ngModel)]="textValue">-->
+            <select [(ngModel)]="textValue" class="form-control">
+              <label>Status</label>
+              <option  [value]="status" *ngFor="let status of statuses">{{status}}</option>
+            </select>
         </td>
-        <td *ngIf="!editMode"><span class="glyphicon glyphicon-edit" (click)="onEditRow(ticket, i)"></span></td>
-        <td *ngIf="editMode"><button class="btn btn-success" (click)="onEditSaveRow(fv)">שמור</button></td>
+        <td *ngIf="!ticket.editMode"><span class="glyphicon glyphicon-edit" (click)="onEditRow(ticket, i)"></span></td>
+        <td *ngIf="ticket.editMode"><button class="btn btn-success" (click)="onEditSaveRow(textValue, ticket)">שמור</button></td>
         <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(i, ticket)"></span></td>
       </tr>
     </tbody>
@@ -51,3 +60,7 @@
 <div class="row">
   <span> מספר קריאות שירות : {{ serviceCallCount }} </span>
 </div>
+
+<ng-template #pixklw>
+
+</ng-template>

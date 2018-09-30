@@ -7,5 +7,5 @@ exports.TreeItem = treeitem_model_1.TreeItem;
 exports.TreeItemViewModel = treeitem_model_1.TreeItemViewModel;
 var user_model_1 = require("./user-model");
 exports.User = user_model_1.User;
-var organizationpreferences_model_1 = require("./organizationpreferences-model");
-exports.OrganizationPreference = organizationpreferences_model_1.OrganizationPreference;
+var organization_model_1 = require("./organization-model");
+exports.Organization = organization_model_1.Organization;

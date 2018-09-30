@@ -18,35 +18,47 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {TicketsModule} from './tickets/tickets.module';
 import {TicketEffects} from "./tickets/store/ticket.effects";
 import {AuthGuard} from "./auth/auth-guard.service";
-import { UsersComponent } from './users/users.component';
 import {UsersService} from "./users/users.service";
 import {UsersEffects} from "./users/store/users.effects";
 import {TicketsService} from "./tickets/tickets.service";
-// import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {FormsModule} from "@angular/forms";
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {UsersModule} from "./users/users.module";
+import {OrganisationsModule} from "./organisations/organisations.module";
+import {OrganisationsService} from "./organisations/organisations.service";
+import {OrganisationEffects} from "./organisations/store/organisation.effects";
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UsersComponent
+    AppComponent
   ],
   imports: [
     BrowserModule, //Contain common module and other bootstrap things
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     HttpClientModule,
     AuthModule,
     TicketsModule,
     SharedModules,
+    UsersModule,
+    OrganisationsModule,
     AppRoutingModule,
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects, TicketEffects, UsersEffects]),
+    EffectsModule.forRoot([AuthEffects, TicketEffects, OrganisationEffects, UsersEffects]),
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    Ng4LoadingSpinnerModule.forRoot()
     // MDBBootstrapModule.forRoot()
   ],
   providers: [
     AuthGuard,
     UsersService,
-    TicketsService
+    FormsModule,
+    TicketsService,
+    OrganisationsService
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]

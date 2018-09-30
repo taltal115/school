@@ -1,6 +1,6 @@
 import { User } from '../../models/user';
-import { AuthActionTypes, All } from './auth.actions';
-
+import { All } from './auth.actions';
+import * as AuthActionTypes from './auth.actions';
 
 export interface State {
   // is a user authenticated?
@@ -24,8 +24,12 @@ export function reducer(state = initialState, action: All): State {
         ...state,
         isAuthenticated: true,
         user: {
+          id: action.payload._id,
           token: action.payload.token,
-          email: action.payload.email
+          email: action.payload.email,
+          fullName: action.payload.fullName,
+          phoneNumber: action.payload.phoneNumber,
+          userRole: action.payload.userRole,
         },
         errorMessage: null
       };
@@ -41,11 +45,24 @@ export function reducer(state = initialState, action: All): State {
         ...state,
         isAuthenticated: true,
         user: {
+          id: action.payload._id,
           token: action.payload.token,
-          email: action.payload.email
+          email: action.payload.email,
+          fullName: action.payload.fullName,
+          phoneNumber: action.payload.phoneNumber,
+          userRole: action.payload.userRole,
         },
         errorMessage: null
       };
+      // return {
+      //   ...state,
+      //   isAuthenticated: true,
+      //   user: {
+      //     token: action.payload.token,
+      //     email: action.payload.email
+      //   },
+      //   errorMessage: null
+      // };
     }
     case AuthActionTypes.SIGNUP_FAILURE: {
       return {
@@ -57,12 +74,13 @@ export function reducer(state = initialState, action: All): State {
       return initialState;
     }
     case AuthActionTypes.SET_TOKEN: {
-      return {
+      const userObj = {
         ...state,
         isAuthenticated: true,
         user: action.payload,
         errorMessage: null
       };
+      return userObj;
     }
     default: {
       return state;

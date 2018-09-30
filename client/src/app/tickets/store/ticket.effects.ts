@@ -14,6 +14,9 @@ import {of} from "rxjs/index";
 
 @Injectable()
 export class TicketEffects {
+
+  user: any;
+
   // @Effect({dispatch: false})
   @Effect()
   ticketFetch = this.actions$
@@ -89,5 +92,7 @@ export class TicketEffects {
     private store: Store<fromTicket.FeatureState>,
     private ticketsService: TicketsService,
     private router: Router
-  ) {}
+  ) {
+    this.user = JSON.parse(localStorage.getItem('user'))
+  }
 }

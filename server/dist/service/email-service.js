@@ -13,8 +13,8 @@ const nodemailer = require('nodemailer'), hbs = require('nodemailer-express-hand
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'admin@ditve.tv',
-        pass: 'Oalon59$'
+        user: 'taltal115@gmail.com',
+        pass: 'NP5764w6'
     }
 });
 var view_path = path.resolve(__dirname, '../..', 'views');

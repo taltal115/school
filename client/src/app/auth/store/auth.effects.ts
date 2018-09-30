@@ -4,14 +4,23 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import {Observable, of} from 'rxjs';
 import { tap, catchError, switchMap, map } from 'rxjs/operators';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 import { AuthService } from '../auth.service';
 import {
-  AuthActionTypes,
-  LogIn, LogInSuccess, LogInFailure,
-  SignUp, SignUpSuccess, SignUpFailure,
-  LogOut, GetStatus
+  LogIn,
+  LogInSuccess,
+  LogInFailure,
+  SignUp,
+  SignUpSuccess,
+  SignUpFailure,
+  LogOut,
+  GetStatus
 } from './auth.actions';
+import {ToastrService} from "ngx-toastr";
+import * as AuthActions from "./auth.actions";
+import * as TicketActions from "../../tickets/store/ticket.actions";
+import * as AuthActionTypes from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -20,24 +29,36 @@ export class AuthEffects {
     private actions: Actions,
     private authService: AuthService,
     private router: Router,
-  ) {}
+    private toastr: ToastrService,
+    private spinnerService: Ng4LoadingSpinnerService
+) {}
 
   @Effect()
   LogIn: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.LOGIN),
     map((action: LogIn) => action.payload),
     switchMap(payload => {
+      this.spinnerService.show();
       return this.authService.logIn(payload.email, payload.password)
         .pipe(
           map((data) => {
+            this.spinnerService.hide();
             console.log(data);
-            return new LogInSuccess({token: data.session.token, email: data.session.user.email});
+            return new LogInSuccess({
+              id: data.data._id,
+              token: data.session.token,
+              email: data.session.user.email,
+              fullName: data.session.user.fullName,
+              phoneNumber: data.session.user.phoneNumber,
+              userRole: data.session.user.userRole,
+            });
           }),
-          catchError((error) => {
-            console.log(error);
-            return of(new LogInFailure({ error: error }));
+          catchError(() => {
+            this.spinnerService.hide();
+            console.log("error");
+            return of(new LogInFailure({ error: "error" }));
           })
-        );
+        )
     }));
 
   @Effect({ dispatch: false })
@@ -59,7 +80,16 @@ export class AuthEffects {
         .pipe(
           map((user) => {
             console.log("useruser: ", user);
-            return new SignUpSuccess({token: user.token, email: payload.email});
+            // return new SignUpSuccess({token: user.token, email: payload.email});
+            // console.log(data);
+            return new SignUpSuccess({
+              id: user.data._id,
+              token: user.data.token,
+              email: user.data.email,
+              fullName: user.data.fullName,
+              phoneNumber: user.data.phoneNumber,
+              userRole: user.data.userRole,
+            });
           }),
           catchError((error) => {
             console.log(error);
@@ -81,6 +111,7 @@ export class AuthEffects {
   SigninFailure: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.LOGIN_FAILURE),
     tap(() => {
+      this.toastr.error('שגיאה בהיתחברות!', 'נסו שוב');
       localStorage.removeItem('user');
       this.router.navigate(['/signin']);
     })

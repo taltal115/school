@@ -6,7 +6,7 @@ import {switchMap, map, catchError, take} from 'rxjs/operators';
 import * as fromUser from './users.reducers';
 import {Store} from '@ngrx/store';
 import {Observable, of} from "rxjs";
-import {AuthActionTypes} from "../../auth/store/auth.actions";
+import * as AuthActionTypes from "../../auth/store/auth.actions";
 import {UsersService} from "../users.service";
 import * as UsersActions from "../../users/store/users.actions";
 // import {Ticket} from "../ticket.model";

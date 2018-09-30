@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col md-12">
+    <button class="btn-primary btn" (click)="onNewOrganisation()">כרטיס חדש</button>
+  </div>
+</div>
+<br>
+<div class="row">
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th scope="col">מזהה</th>
+      <th scope="col">שם הארגון</th>
+      <th scope="col">כתובת</th>
+      <th scope="col">עיר</th>
+      <th scope="col">טלפון</th>
+      <th scope="col">סוג הארגון</th>
+      <th scope="col">סטטוס</th>
+      <th scope="col">עריכה</th>
+      <th scope="col">מחיקה</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let org of organisations; let i = index">
+      <td>{{ org.name }}</td>
+      <td>{{ org.address }}</td>
+      <td>{{ org.city }}</td>
+      <td>{{ org.type }}</td>
+      <td *ngIf="!org.editMode">{{ org.status }}</td>
+      <td *ngIf="org.editMode">
+        <!--<input-->
+        <!--type="text"-->
+        <!--id="status"-->
+        <!--class="form-control"-->
+        <!--#fv>-->
+        <!--<input-->
+        <!--type="text"-->
+        <!--class="form-control"-->
+        <!--name="edit-row"-->
+        <!--[(ngModel)]="textValue">-->
+        <select [(ngModel)]="textValue" class="form-control">
+          <label>Status</label>
+          <option  [value]="status" *ngFor="let status of statuses">{{status}}</option>
+        </select>
+      </td>
+      <td *ngIf="!org.editMode"><span class="glyphicon glyphicon-edit" (click)="onEditRow(org, i)"></span></td>
+      <td *ngIf="org.editMode"><button class="btn btn-success" (click)="onEditSaveRow(textValue, org)">שמור</button></td>
+      <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(i, org)"></span></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <span> מספר קריאות שירות : {{ serviceCallCount }} </span>
+</div>
+
+<ng-template #pixklw>
+
+</ng-template>

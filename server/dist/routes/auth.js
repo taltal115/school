@@ -84,8 +84,8 @@ class AuthRoute {
             // if (req.body.email === 'test@test.com') {
             try {
                 const user = yield service.register(req.body);
-                console.log('reg: ', user);
-                const session = auth_1.SignToken(user, 0);
+                console.log('user._id: ', user._id);
+                const session = auth_1.SignToken(user);
                 res.status(200).json({ success: true, data: user, session: session });
             }
             catch (e) {
@@ -94,14 +94,11 @@ class AuthRoute {
         }));
         router.post('/auth/login', (req, res) => __awaiter(this, void 0, void 0, function* () {
             const body = req.body;
-            console.log("LOGIN: ", body);
             try {
                 const user = yield service.login(body.email, body.password);
-                console.log("USER: ", user);
                 if (user && user.email) {
-                    console.log("LOGIN111: ", user);
-                    const session = auth_1.SignToken(user, 0);
-                    console.log("sessionsession: ", session);
+                    console.log('user: ', user);
+                    const session = auth_1.SignToken(user);
                     res.status(200).json({ success: true, data: user, session: session });
                 }
                 else {

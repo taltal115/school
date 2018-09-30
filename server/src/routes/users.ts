@@ -1,37 +1,37 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
+import { Request, Response, Router } from "express";
 //import { validationResult } from 'express-validator/check';
 // import { UserService } from "../service";
 // import { IUserInstance } from "../models";
 //import { userRules } from './rules/user.rules';
 // import { Authorized } from "../utils/auth";
-const documents_1 = require("../models/documents");
-class UserRoute {
-    static init(router) {
+import { User } from "../models/documents";
+import {Authorized} from "../utils/auth";
+
+class UsersRoute {
+    public static init(router: Router) {
         // const service = new UserService();
-        router.get("/users", (req, res) => __awaiter(this, void 0, void 0, function* () {
+
+        router.get("/users", Authorized, async (req: Request, res: Response) => {
             // service.session = req.session;
             // service.retrieve().then((users: Array<IUserInstance>) => {
             //     return res.status(200).json(users);
             // }).catch((error: Error) => {
             //     return res.status(500).send(error);
+            if(
+                (req.session && req.session.role === 'teacher') || (req.session && req.session.role === 'student')) {
+                return res.status(401).json('Unauthorized request!');
+            }
             // });
             try {
-                const users = yield documents_1.User.find({});
-                console.log("users: ", users);
+                const users = await User.find({});
+                console.log("users: ",users);
+                console.log("Authorized: ",req.session);
                 return res.status(200).json(users);
-            }
-            catch (e) {
+            } catch (e) {
                 return res.status(500).json(e);
             }
-        }));
+        });
+
         // router.get("/users/:id", Authorized, (req: Request, res: Response) => {
         //     service.session = req.session;
         //     service.get(req.params.id).then((user: IUserInstance) => {
@@ -75,4 +75,4 @@ class UserRoute {
         // });
     }
 }
-module.exports = UserRoute;
+export = UsersRoute;
