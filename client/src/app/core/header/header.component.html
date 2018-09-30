@@ -12,7 +12,6 @@
       </ul>
       <ul class="nav navbar-nav navbar-left">
         <ng-template [ngIf]="!(isAuthenticated)">
-          <li><a routerLink="/signup">הירשם</a></li>
           <li><a routerLink="/signin">התחבר</a></li>
         </ng-template>
 
@@ -25,8 +24,9 @@
         <li class="dropdown" appDropdown *ngIf="(isAuthenticated)">
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">ניהול <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a style="cursor: pointer;" (click)="onSaveData()">שמור</a></li>
-            <li><a style="cursor: pointer;" (click)="onFetchData()">רענן</a></li>
+            <li><a style="cursor: pointer;" routerLink="/signup">הירשם</a></li>
+            <!--<li><a style="cursor: pointer;" (click)="onSaveData()">שמור</a></li>-->
+            <!--<li><a style="cursor: pointer;" (click)="onFetchData()">רענן</a></li>-->
             <li><a style="cursor: pointer;" (click)="onFetchUsers()">משתמשים</a></li>
           </ul>
         </li>

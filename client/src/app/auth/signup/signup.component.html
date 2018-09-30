@@ -57,6 +57,17 @@
       </div>
       <div class="form-group">
         <!--<select formControlName="status">-->
+        <label for="organisation">ארגון</label>
+        <select
+          id="organisation"
+          name="organisation"
+          ngModel
+          class="form-control">
+          <option [value]="organisation.name" *ngFor="let organisation of organisations">{{organisation.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <!--<select formControlName="status">-->
         <label for="userRole">תפקיד</label>
         <select
           id="userRole"

@@ -1,25 +1,32 @@
-import {NextFunction, Request, Response, Router} from "express";
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 //import { validationResult } from 'express-validator/check';
 // import { UserService } from "../service";
 // import { IUserInstance } from "../models";
 //import { userRules } from './rules/user.rules';
 // import { Authorized } from "../utils/auth";
-import { Organization } from "../models/documents";
-import {Authorized} from "../utils/auth";
+const documents_1 = require("../models/documents");
+const auth_1 = require("../utils/auth");
 // import {IMailOptions} from "../models/general";
 // import {EmailService} from "../service";
-
 class OrganisationsRoute {
-    public static init(router: Router) {
+    static init(router) {
         // const service = new UserService();
-
-        router.post("/organisations", Authorized, async (req: Request, res: Response, next: NextFunction) => {
-            const organisation = new Organization(req.body);
-            console.log("req.organisation: ",req.body)
+        router.post("/organisations", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            const organisation = new documents_1.Organization(req.body);
+            console.log("req.organisation: ", req.body);
             delete organisation.__v;
             // console.log("ticket: ", ticket);
-            organisation.save((err: any) => {
-                if (err) res.status(500).send({error: err});
+            organisation.save((err) => {
+                if (err)
+                    res.status(500).send({ error: err });
                 else {
                     // const options: IMailOptions = {};
                     // options.to = 'taltal115@gmail.com';
@@ -44,8 +51,8 @@ class OrganisationsRoute {
                     // EmailService.send(options)
                     //     .then((info) => {
                     //         console.log(`Message Sent ${info.response}`);
-                            res.status(201).send({status: "Created", organisation: organisation});
-                            console.log('file saved to db!');
+                    res.status(201).send({ status: "Created", organisation: organisation });
+                    console.log('file saved to db!');
                     //     })
                     //     .catch((error) => {
                     //         return res.status(500).send({error: error});
@@ -53,29 +60,27 @@ class OrganisationsRoute {
                     //     });
                 }
             });
-        });
-
-        router.get("/organisations", Authorized, async (req: Request, res: Response) => {
+        }));
+        router.get("/organisations", auth_1.Authorized, (req, res) => __awaiter(this, void 0, void 0, function* () {
             // service.session = req.session;
             // service.retrieve().then((users: Array<IUserInstance>) => {
             //     return res.status(200).json(users);
             // }).catch((error: Error) => {
             //     return res.status(500).send(error);
-            if(
-                (req.session && req.session.role === 'teacher') || (req.session && req.session.role === 'student')) {
+            if ((req.session && req.session.role === 'teacher') || (req.session && req.session.role === 'student')) {
                 return res.status(401).json('Unauthorized request!');
             }
             // });
             try {
-                const org = await Organization.find({});
-                console.log("org: ",org);
-                console.log("Authorized: ",req.session);
+                const org = yield documents_1.Organization.find({});
+                console.log("org: ", org);
+                console.log("Authorized: ", req.session);
                 return res.status(200).json(org);
-            } catch (e) {
+            }
+            catch (e) {
                 return res.status(500).json(e);
             }
-        });
-
+        }));
         // router.get("/users/:id", Authorized, (req: Request, res: Response) => {
         //     service.session = req.session;
         //     service.get(req.params.id).then((user: IUserInstance) => {
@@ -109,18 +114,18 @@ class OrganisationsRoute {
         //     });
         // });
         //
-        router.delete("/organisations", Authorized, async(req: Request, res: Response) => {
+        router.delete("/organisations", auth_1.Authorized, (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 // const tickets = await Ticket.find({});
-                const deleteAction = await Organization.findByIdAndRemove(req.body._id);
-
-                console.log("deleteAction: ",req.body);
-                console.log("deleteActiondeleteAction: ",deleteAction);
+                const deleteAction = yield documents_1.Organization.findByIdAndRemove(req.body._id);
+                console.log("deleteAction: ", req.body);
+                console.log("deleteActiondeleteAction: ", deleteAction);
                 res.status(201).json('organisations');
-            } catch (e) {
-                res.status(500).send({error: e});
             }
-        });
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
+        }));
     }
 }
-export = OrganisationsRoute;
+module.exports = OrganisationsRoute;

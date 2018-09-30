@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 
 import * as OrganisationsActions from '../store/organisation.actions'
+import {Organisation} from "../organisation.model";
+import * as TicketActions from "../../tickets/store/ticket.actions";
 
 @Component({
   selector: 'app-organisation-list',
@@ -10,11 +12,11 @@ import * as OrganisationsActions from '../store/organisation.actions'
   styleUrls: ['./organisation-list.component.css']
 })
 export class OrganisationListComponent implements OnInit, OnDestroy {
-  organisations: any[];
+  organisations: Organisation[];
   editMode = false;
   serviceCallCount: number;
   textValue: string;
-  statuses = ['pending', 'done'];
+  statuses: boolean[] = [true, false];
   subscription;
 
   constructor(
@@ -49,6 +51,7 @@ email: ${(accessToken).email}`,'background: green;font-size: 16px;'
 
   onDeleteRow(index, organisation) {
     console.log(organisation);
+    this.store.dispatch(new OrganisationsActions.DeleteRow({index: index, organisation: organisation}));
   }
 
   onEditRow(organisation, i) {

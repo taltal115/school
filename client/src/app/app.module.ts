@@ -29,6 +29,7 @@ import {OrganisationsModule} from "./organisations/organisations.module";
 import {OrganisationsService} from "./organisations/organisations.service";
 import {OrganisationEffects} from "./organisations/store/organisation.effects";
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import {PagerService} from "./shared/pager.service";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     UsersService,
     FormsModule,
     TicketsService,
-    OrganisationsService
+    OrganisationsService,
+    PagerService
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]

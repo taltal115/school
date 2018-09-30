@@ -1,3 +1,7 @@
 div {
   direction: rtl;
 }
+
+.pagination>li {
+  float: right;
+}

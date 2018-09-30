@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col md-12">
+    <button class="btn-primary btn" (click)="onNewUser()">משתמש חדש</button>
+  </div>
+</div>
+<br>
+<div class="row">
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th scope="col">תאריך</th>
+      <th scope="col">שם המורה</th>
+      <th scope="col">טלפון</th>
+      <th scope="col">תפקיד</th>
+      <th scope="col">דוא"ל</th>
+      <th scope="col">סטטוס</th>
+      <th scope="col">עריכה</th>
+      <th scope="col">מחיקה</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of pagedItems; let i = index">
+      <td>{{ user.date | date:'shortTime' }}</td>
+      <td>{{ user.fullName }}</td>
+      <td>{{ user.phoneNumber }}</td>
+      <td>{{ user.userRole }}</td>
+      <td>{{ user.email }}</td>
+      <td *ngIf="!user.editMode">{{ user.status }}</td>
+      <td *ngIf="user.editMode">
+        <input
+          type="text"
+          class="form-control"
+          name="edit-row"
+          [(ngModel)]="editStatus">
+      </td>
+      <td *ngIf="!user.editMode"><span class="glyphicon glyphicon-edit" (click)="onEditRow(user, i)"></span></td>
+      <td *ngIf="user.editMode"><button class="btn btn-success" (click)="onEditSaveRow(editStatus, user)">שמור</button></td>
+      <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(i, user)"></span></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!--<div class="row">-->
+<!--<span> מספר קריאות שירות : {{ serviceCallCount }} </span>-->
+<!--</div>-->
+
+<div class="row">
+  <!-- pager -->
+  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(1)">ראשון</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(pager.currentPage - 1)">הקודם</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+      <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.currentPage + 1)">הבא</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.totalPages)">אחרון</a>
+    </li>
+  </ul>
+</div>
+
+<ng-template #pixklw>
+
+</ng-template>

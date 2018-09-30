@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/index';
 
 import * as TicketActions from '../store/ticket.actions'
 import {NgForm} from "@angular/forms";
+import {PagerService} from "../../shared/pager.service";
 
 @Component({
   selector: 'app-ticket-start',
@@ -21,10 +22,17 @@ export class TicketStartComponent implements OnInit, OnDestroy {
   statuses = ['pending', 'done'];
   subscription;
 
+  // pager object
+  pager: any = {};
+
+  // paged items
+  pagedItems: any[];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store<fromTicket.FeatureState>) { }
+    private store: Store<fromTicket.FeatureState>,
+    private pagerService: PagerService) { }
 
   ngOnInit() {
     const accessToken = JSON.parse(localStorage.getItem('user'));
@@ -41,8 +49,20 @@ email: ${(accessToken).email}`,'background: green;font-size: 16px;'
       result.tickets.map((value: any) => {
         value.editMode = false;
       });
+      // set items to json response
       this.tickets = result.tickets;
+
+      // initialize to page 1
+      this.setPage(1);
     });
+  }
+
+  setPage(page: number) {
+    // get pager object from service
+    this.pager = this.pagerService.getPager(this.tickets.length, page);
+
+    // get current page of items
+    this.pagedItems = this.tickets.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
   onNewTicket() {

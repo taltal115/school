@@ -1,0 +1,23 @@
+table tr,
+table th {
+  text-align: right;
+}
+
+td {
+  position: relative;
+}
+
+td>span {
+  position: absolute;
+  text-align: center;
+  top: 35%;
+  right: 0;
+  left: 0;
+  cursor: pointer;
+}
+.pagination {
+  margin: 20px -40px;
+}
+.pagination>li {
+  float: right;
+}
