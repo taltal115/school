@@ -5,6 +5,7 @@ export const SET_TICKET = 'SET_TICKET';
 export const SET_TICKETS = 'SET_TICKETS';
 export const DELETE_TICKET = 'DELETE_TICKET';
 export const FETCH_TICKETS = 'FETCH_TICKETS';
+export const FETCH_TICKET = 'FETCH_TICKET';
 
 export class SetTicket implements Action {
   readonly type = SET_TICKET;
@@ -28,4 +29,10 @@ export class FetchTickets implements Action {
   readonly type = FETCH_TICKETS;
 }
 
-export type TicketActions = SetTicket | SetTickets | DeleteRow | FetchTickets;
+export class FetchTicket implements Action {
+  readonly type = FETCH_TICKET;
+
+  constructor(public payload: string) {}
+}
+
+export type TicketActions = SetTicket | SetTickets | DeleteRow | FetchTickets | FetchTicket;

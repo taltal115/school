@@ -62,6 +62,20 @@ class TicketsRoute {
             }
         });
 
+        router.get("/tickets/:id", Authorized, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                console.log("req.params.idreq.params.id: ",req.params);
+
+                // const u_id_query = req.session ? {teacherId: req.session.u_id} : null;
+                const ticket = await Ticket.findById(req.params.id);
+                // const tickets = await Ticket.find({});
+                console.log("ticketsticket1111111: ",ticket);
+                res.status(201).json(ticket);
+            } catch (e) {
+                res.status(500).send({error: e});
+            }
+        });
+
         router.delete("/tickets", async (req: Request, res: Response, next: NextFunction) => {
             try {
                 // const tickets = await Ticket.find({});

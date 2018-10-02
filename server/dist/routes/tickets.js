@@ -65,6 +65,19 @@ class TicketsRoute {
                 res.status(500).send({ error: e });
             }
         }));
+        router.get("/tickets/:id", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                console.log("req.params.idreq.params.id: ", req.params);
+                // const u_id_query = req.session ? {teacherId: req.session.u_id} : null;
+                const ticket = yield ticket_model_1.Ticket.findById(req.params.id);
+                // const tickets = await Ticket.find({});
+                console.log("ticketsticket1111111: ", ticket);
+                res.status(201).json(ticket);
+            }
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
+        }));
         router.delete("/tickets", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 // const tickets = await Ticket.find({});

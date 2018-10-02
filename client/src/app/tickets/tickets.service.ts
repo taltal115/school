@@ -18,9 +18,18 @@ export class TicketsService{
   ) {
   }
 
-  getTickets(): Observable<any> {
+  getTickets(): Observable<Ticket[]> {
     const url = `${this.BASE_URL}/tickets`;
-    return this.http.get<any[]>(url, {
+    return this.http.get<Ticket[]>(url, {
+      observe: 'body',
+      responseType: 'json'
+    });
+  }
+
+  getTicket(id: string): Observable<Ticket> {
+    console.log("id: ",id)
+    const url = `${this.BASE_URL}/tickets/${id}`;
+    return this.http.get<Ticket>(url, {
       observe: 'body',
       responseType: 'json'
     });

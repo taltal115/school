@@ -50,8 +50,9 @@
               <option  [value]="status" *ngFor="let status of statuses">{{status}}</option>
             </select>
         </td>
-        <td *ngIf="!ticket.editMode"><span class="glyphicon glyphicon-edit" (click)="onEditRow(ticket, i)"></span></td>
-        <td *ngIf="ticket.editMode"><button class="btn btn-success" (click)="onEditSaveRow(textValue, ticket)">שמור</button></td>
+        <td><span class="glyphicon glyphicon-edit" (click)="onEditItem(ticket, i)"></span></td>
+        <!--<td *ngIf="!ticket.editMode"><span class="glyphicon glyphicon-edit" (click)="onEditRow(ticket, i)"></span></td>-->
+        <!--<td *ngIf="ticket.editMode"><button class="btn btn-success" (click)="onEditSaveRow(textValue, ticket)">שמור</button></td>-->
         <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(i, ticket)"></span></td>
       </tr>
     </tbody>

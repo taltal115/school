@@ -83,6 +83,15 @@ email: ${(accessToken).email}`,'background: green;font-size: 16px;'
     console.log("index: ",i)
   }
 
+  onEditItem(ticket, i) {
+    console.log(ticket)
+    this.store.dispatch(new TicketActions.FetchTicket(ticket._id))
+    // this.editMode = true;
+    // ticket.editMode = true;
+    // console.log(this.tickets[i])
+    // console.log("index: ",i)
+  }
+
   onEditSaveRow(value, ticket) {
     console.log(value);
     console.log(ticket);

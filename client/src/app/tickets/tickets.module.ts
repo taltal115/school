@@ -7,20 +7,22 @@ import {CommonModule} from '@angular/common';
 import {SharedModules} from '../shared/shared.modules';
 import {ticketReducer} from './store/ticket.reducers';
 import {TicketsComponent} from './tickets.component';
-import {TicketEditComponent} from './ticket-edit/ticket-edit.component';
+import {TicketNewComponent} from './ticket-new/ticket-new.component';
 import {TicketsRoutingModule} from './tickets-routing.module';
 import { TicketStartComponent } from './ticket-start/ticket-start.component';
-import {ReactiveFormsComponent} from './ticket-edit/reactive-forms/reactive-forms.component';
+import {ReactiveFormsComponent} from './ticket-new/reactive-forms/reactive-forms.component';
 import {EffectsModule} from "@ngrx/effects";
 import {TicketEffects} from "./store/ticket.effects";
 import {AuthGuard} from "../auth/auth-guard.service";
+import { TicketEditComponent } from './ticket-edit/ticket-edit.component';
 
 @NgModule({
   declarations: [
     TicketsComponent,
-    TicketEditComponent,
+    TicketNewComponent,
     TicketStartComponent,
-    ReactiveFormsComponent
+    ReactiveFormsComponent,
+    TicketEditComponent
   ],
   imports: [
     CommonModule, //Must be here
