@@ -36,7 +36,7 @@ export const OrganizationSchema = new Schema({
     }
 }, {
         _id: true,
-        strict: false,
+        strict: true,
         collection: 'organizations'
     });
 

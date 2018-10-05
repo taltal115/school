@@ -7,9 +7,13 @@ const deferred = require('deferred');
 //const auth = require("../utils/auth").default;
 
 export class AuthService {
-    async register(userObject: IUser) {
+    async register(userObject: IUser, session: any) {
+        if(!userObject.orgId) {
+            userObject.orgId = session.org_id;
+            console.log('userObject123_org_id: ',userObject);
+        }
         const userToSave = new User(userObject);
-        console.log('userObject: ',userObject);
+        console.log('userObject123: ',userObject);
         // save user to database
         return userToSave.save()
     }

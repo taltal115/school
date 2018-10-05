@@ -42,11 +42,19 @@ export const TicketsSchema: Schema = new Schema({
   status: {
     type: String,
     enum: ['done', 'pending', 'waiting_for_approval'],
+    default: 'waiting_for_approval'
+  },
+  ticketCharge: {
+    type: Number,
+    default: 0
+  },
+  technicianResolution: {
+    type: String
   }
 },
   {
     timestamps: true,
-    strict: false
+    strict: true
   });
 
 export const Ticket = model<any>("Ticket", TicketsSchema);

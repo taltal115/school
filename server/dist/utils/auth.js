@@ -6,8 +6,8 @@ const config = require("./config.js");
 const errors = require("./errors.js");
 function verify(request) {
     return new Promise((resolve, reject) => {
-        var header = request.headers && request.headers['authorization'];
-        var token = header && header.replace(/^Bearer (\S+)$/, "$1");
+        let header = request.headers && request.headers['authorization'];
+        let token = header && header.replace(/^Bearer (\S+)$/, "$1");
         console.log("header: ", request.headers);
         if (!token) {
             reject('No authorization token was found');
@@ -38,10 +38,12 @@ function Authorized(request, res, next) {
 exports.Authorized = Authorized;
 // export function SignToken(user: any, orgId: string, role: number): ISession {
 function SignToken(user) {
+    console.log("signToken: ", user);
     const duration = config.session.duration;
     const expires = new Date(Date.now() + duration * 1000);
     const token = jwt.sign({
         u_id: user._id,
+        org_id: user.orgId,
         role: user.userRole
     }, config.jwtSecret, { expiresIn: duration });
     // user.setDataValue('role', role);

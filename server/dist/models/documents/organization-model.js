@@ -32,7 +32,7 @@ exports.OrganizationSchema = new mongoose_1.Schema({
     }
 }, {
     _id: true,
-    strict: false,
+    strict: true,
     collection: 'organizations'
 });
 exports.Organization = mongoose_1.model("Organization", exports.OrganizationSchema);

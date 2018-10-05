@@ -43,9 +43,17 @@ exports.TicketsSchema = new mongoose_1.Schema({
     status: {
         type: String,
         enum: ['done', 'pending', 'waiting_for_approval'],
+        default: 'waiting_for_approval'
+    },
+    ticketCharge: {
+        type: Number,
+        default: 0
+    },
+    technicianResolution: {
+        type: String
     }
 }, {
     timestamps: true,
-    strict: false
+    strict: true
 });
 exports.Ticket = mongoose_1.model("Ticket", exports.TicketsSchema);

@@ -1,12 +1,11 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as fromTicket from '../store/ticket.reducers'
 import {Store} from '@ngrx/store';
-import {Observable} from 'rxjs/index';
 
 import * as TicketActions from '../store/ticket.actions'
-import {NgForm} from "@angular/forms";
 import {PagerService} from "../../shared/pager.service";
+import {CurrentUserService} from "../../shared/current-user.service";
 
 @Component({
   selector: 'app-ticket-start',
@@ -19,7 +18,7 @@ export class TicketStartComponent implements OnInit, OnDestroy {
   editMode = false;
   serviceCallCount: number;
   textValue: string;
-  statuses = ['pending', 'done'];
+  statuses = ['ממתין לעבודה', 'ממתין לאישור מנהל','הסתים'];
   subscription;
 
   // pager object
@@ -27,15 +26,17 @@ export class TicketStartComponent implements OnInit, OnDestroy {
 
   // paged items
   pagedItems: any[];
+  public searchString: string;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private store: Store<fromTicket.FeatureState>,
-    private pagerService: PagerService) { }
+    private pagerService: PagerService,
+    private currentUserService: CurrentUserService) { }
 
   ngOnInit() {
-    const accessToken = JSON.parse(localStorage.getItem('user'));
+    const accessToken = this.currentUserService.currentUser;
     console.log(`%c 
 user: ${(accessToken).id}
 email: ${(accessToken).email}`,'background: green;font-size: 16px;'
@@ -48,6 +49,9 @@ email: ${(accessToken).email}`,'background: green;font-size: 16px;'
       this.serviceCallCount = result.tickets.length;
       result.tickets.map((value: any) => {
         value.editMode = false;
+        if(value.status === 'done') value.status = 'הסתים'
+        if(value.status === 'waiting_for_approval') value.status = 'ממתין לאישור מנהל'
+        if(value.status === 'pending') value.status = 'ממתין לעבודה'
       });
       // set items to json response
       this.tickets = result.tickets;

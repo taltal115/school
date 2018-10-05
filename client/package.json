@@ -28,6 +28,7 @@
     "@ngrx/store-devtools": "^6.1.0",
     "angular-smart-table": "^2.1.11",
     "bootstrap": "3.3.7",
+    "bootstrap-rtl": "^3.3.4",
     "core-js": "^2.5.4",
     "firebase": "4.12.1",
     "hammerjs": "^2.0.8",

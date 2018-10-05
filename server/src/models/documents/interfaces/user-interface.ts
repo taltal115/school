@@ -5,5 +5,6 @@ export interface IUser{
     phoneNumber: String,
     userRole: String,
     loginAttempts: Number,
-    lockUntil: Number
+    lockUntil: Number,
+    orgId: String
 }

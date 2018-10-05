@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpRequest} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {User} from "../models/user";
+import {Ticket} from "../tickets/ticket.model";
 
 // import { User } from '../models/user';
 
@@ -13,7 +14,6 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<any> {
-  // getUsers() {
     const url = `${this.BASE_URL}/users`;
     return this.http.get<User[]>(url, {
       observe: 'body',
@@ -21,4 +21,13 @@ export class UsersService {
     });
   }
 
+  deleteUser(user: User) {
+    const req = new HttpRequest(
+      'DELETE',
+      'http://localhost:3000/users',
+      user,
+      {reportProgress: true}
+    );
+    return this.http.request(req);
+  }
 }

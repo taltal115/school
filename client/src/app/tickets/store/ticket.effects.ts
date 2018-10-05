@@ -51,13 +51,13 @@ export class TicketEffects {
   ticketByIdFetch = this.actions$
     .ofType(TicketActions.FETCH_TICKET)
     .pipe(
-      take(1),
       switchMap((action: TicketActions.FetchTicket) => {
       console.log('FETCH_TICKET: ',action);
       return this.ticketsService.getTicket(action.payload)
         .pipe(
           map((ticket) => {
-            console.log("ticketstickets: ", ticket);
+            console.log("ticketstickets132: ", ticket);
+            // @ts-ignore
             this.router.navigate(['tickets/edit/'+ticket._id]);
             return ticket;
             // return new SignUpSuccess({token: user.token, email: payload.email});

@@ -11,20 +11,7 @@ export interface State {
 }
 
 const initialState: State = {
-  tickets: [
-    // new Ticket(
-    //   new Date(),
-    //   'Tasty Schnitzel',
-    //   'A su just awesome!',
-    //   'JPG',
-    //   'JPG',
-    //   'JPG',
-    //   'JPG',
-    //   'JPG',
-    //   'JPG',
-    //   'עדיין לא טופל'
-    //   ),
-  ]
+  tickets: []
 };
 
 export function ticketReducer(state = initialState, action: TicketActions.TicketActions) {

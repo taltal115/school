@@ -80,10 +80,11 @@ class AuthRoute {
         router.get('/auth/ping', (req, res) => __awaiter(this, void 0, void 0, function* () {
             res.status(200).json('pong!');
         }));
-        router.post('/auth/register', (req, res) => __awaiter(this, void 0, void 0, function* () {
+        router.post('/auth/register', auth_1.Authorized, (req, res) => __awaiter(this, void 0, void 0, function* () {
             // if (req.body.email === 'test@test.com') {
             try {
-                const user = yield service.register(req.body);
+                console.log("Authorized111: ", req);
+                const user = yield service.register(req.body, req.session);
                 console.log('user._id: ', user._id);
                 const session = auth_1.SignToken(user);
                 res.status(200).json({ success: true, data: user, session: session });
@@ -129,39 +130,6 @@ class AuthRoute {
                 });
             }
         }));
-        // router.post("/auth/register", async (req: Request, res: Response, next: NextFunction) => {
-        //     try {
-        //         const user = await service.register(req.body);
-        //         res.status(200).json({ success: true, data: user });
-        //     } catch (e) {
-        //         res.status(403).json({ success: false, error: e });
-        //     }
-        // });
-        //
-        // router.post("/auth/login", async (req: Request, res: Response, next: NextFunction) => {
-        //     // authRules['login'],
-        //     // const errors = validationResult(req.body);
-        //     // if (!errors.isEmpty()) {
-        //     //     return res.status(422).json(errors.array())
-        //     // }
-        //
-        //     var body = req.body;
-        //     console.log("LOGIN: ",body);
-        //     try {
-        //         const user = await service.login(body.email, body.password);
-        //         console.log("LOGIN111: ",user);
-        //         // if(user) {
-        //             var session = SignToken(user, body.orgnization, 0);
-        //             res.status(200).json({ success: true, data: user, session: session });
-        //         // }
-        //         // else {
-        //         //     res.status(402).json({ success: false, error: user, session: null });
-        //         // }
-        //     } catch (e) {
-        //         res.status(403).json({ success: false, error: e, session: null});
-        //     }
-        //
-        //
         // service.login(body.email, body.password)
         //     .then((user) => {
         //         if (body.orgnization) {

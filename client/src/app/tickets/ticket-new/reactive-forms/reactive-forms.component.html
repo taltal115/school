@@ -12,13 +12,38 @@
         <div formGroupName="ticketData">
           <fieldset>
             <div class="form-group">
-              <div class="col-md-6">
-                <label for="teacherName">שם המורה</label>
+              <div class="col-md-12">
+                <label for="problemsNature">מהות התקלה</label>
+                <textarea
+                  type="text"
+                  id="problemsNature"
+                  formControlName="problemsNature"
+                  class="form-control">
+                </textarea>
+              </div>
+              <div class="col-md-12">
+                <label for="missingEquipments">ציוד שחסר</label>
                 <input
                   type="text"
-                  id="teacherName"
-                  required
-                  formControlName="teacherName"
+                  id="missingEquipments"
+                  formControlName="missingEquipments"
+                  class="form-control">
+              </div>
+              <!--<div class="col-md-6">-->
+                <!--<label for="teacherName">שם המורה</label>-->
+                <!--<input-->
+                  <!--type="text"-->
+                  <!--id="teacherName"-->
+                  <!--required-->
+                  <!--formControlName="teacherName"-->
+                  <!--class="form-control">-->
+              <!--</div>-->
+              <div class="col-md-6">
+                <label for="serialNumber">מספר סידורי (מחשב)</label>
+                <input
+                  type="text"
+                  id="serialNumber"
+                  formControlName="serialNumber"
                   class="form-control">
               </div>
               <div class="col-md-6">
@@ -27,14 +52,6 @@
                   type="text"
                   id="damagedDevice"
                   formControlName="damagedDevice"
-                  class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label for="serialNumber">מספר סידורי (מחשב)</label>
-                <input
-                  type="text"
-                  id="serialNumber"
-                  formControlName="serialNumber"
                   class="form-control">
               </div>
               <div class="col-md-6">
@@ -53,30 +70,14 @@
                   formControlName="deviceLocation"
                   class="form-control">
               </div>
-              <div class="col-md-6">
-                <label for="problemsNature">מהות התקלה</label>
-                <input
-                  type="text"
-                  id="problemsNature"
-                  formControlName="problemsNature"
-                  class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label for="missingEquipments">ציוד שחסר</label>
-                <input
-                  type="text"
-                  id="missingEquipments"
-                  formControlName="missingEquipments"
-                  class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label for="teachersContactPhone">טלפון מורה מדווח/ת</label>
-                <input
-                  type="text"
-                  id="teachersContactPhone"
-                  formControlName="teachersContactPhone"
-                  class="form-control">
-              </div>
+              <!--<div class="col-md-6">-->
+                <!--<label for="teachersContactPhone">טלפון מורה מדווח/ת</label>-->
+                <!--<input-->
+                  <!--type="text"-->
+                  <!--id="teachersContactPhone"-->
+                  <!--formControlName="teachersContactPhone"-->
+                  <!--class="form-control">-->
+              <!--</div>-->
             </div>
           </fieldset>
           </div>

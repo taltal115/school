@@ -33,8 +33,10 @@ exports.UserSchema = new mongoose_1.Schema({
     },
     userRole: {
         type: String,
+        // enum: Roles
         enum: [
             'super',
+            'technician',
             'admin',
             'teacher',
             'student'
@@ -44,11 +46,15 @@ exports.UserSchema = new mongoose_1.Schema({
         type: Boolean,
         default: true
     },
+    orgId: {
+        type: String,
+        required: true
+    },
     loginAttempts: { type: Number, required: true, default: 0 },
     lockUntil: { type: Number }
 }, {
     _id: true,
-    strict: false,
+    strict: true,
     collection: 'users'
 });
 exports.UserSchema.virtual('isLocked').get(function () {

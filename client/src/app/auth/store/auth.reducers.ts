@@ -30,6 +30,7 @@ export function reducer(state = initialState, action: All): State {
           fullName: action.payload.fullName,
           phoneNumber: action.payload.phoneNumber,
           userRole: action.payload.userRole,
+          orgId: action.payload.orgId
         },
         errorMessage: null
       };
@@ -44,25 +45,17 @@ export function reducer(state = initialState, action: All): State {
       return {
         ...state,
         isAuthenticated: true,
-        user: {
-          id: action.payload._id,
-          token: action.payload.token,
-          email: action.payload.email,
-          fullName: action.payload.fullName,
-          phoneNumber: action.payload.phoneNumber,
-          userRole: action.payload.userRole,
-        },
+        // user: {
+        //   id: action.payload._id,
+        //   token: action.payload.token,
+        //   email: action.payload.email,
+        //   fullName: action.payload.fullName,
+        //   phoneNumber: action.payload.phoneNumber,
+        //   userRole: action.payload.userRole,
+        //   orgId: action.payload.orgId
+        // },
         errorMessage: null
       };
-      // return {
-      //   ...state,
-      //   isAuthenticated: true,
-      //   user: {
-      //     token: action.payload.token,
-      //     email: action.payload.email
-      //   },
-      //   errorMessage: null
-      // };
     }
     case AuthActionTypes.SIGNUP_FAILURE: {
       return {

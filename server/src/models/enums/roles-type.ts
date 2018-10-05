@@ -1,11 +1,8 @@
 export enum Roles {
     Super = 1,
-    Admin = 2,
-    Writer = 3,
-    Reviewer = 4,
-    Content = 5,
-    Support = 6,
-    User = 7,
-    Anonymous = 8,
-    Guest = 9
+    technician = 2,
+    Admin = 3,
+    Teacher = 4,
+    Student = 5,
+    Guest = 6
 }

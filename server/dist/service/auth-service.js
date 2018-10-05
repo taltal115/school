@@ -14,10 +14,14 @@ const user_model_1 = require("../models/documents/user-model");
 const deferred = require('deferred');
 //const auth = require("../utils/auth").default;
 class AuthService {
-    register(userObject) {
+    register(userObject, session) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!userObject.orgId) {
+                userObject.orgId = session.org_id;
+                console.log('userObject123_org_id: ', userObject);
+            }
             const userToSave = new documents_1.User(userObject);
-            console.log('userObject: ', userObject);
+            console.log('userObject123: ', userObject);
             // save user to database
             return userToSave.save();
         });

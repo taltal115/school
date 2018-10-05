@@ -37,8 +37,10 @@ export const UserSchema = new Schema({
     },
     userRole: {
         type: String,
+        // enum: Roles
         enum: [
             'super',
+            'technician',
             'admin',
             'teacher',
             'student'
@@ -48,11 +50,15 @@ export const UserSchema = new Schema({
         type: Boolean,
         default: true
     },
+    orgId: {
+        type: String,
+        required: true
+    },
     loginAttempts: { type: Number, required: true, default: 0 },
     lockUntil: { type: Number }
 }, {
     _id: true,
-    strict: false,
+    strict: true,
     collection: 'users'
 });
 

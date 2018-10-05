@@ -3,6 +3,7 @@ import { validationResult } from 'express-validator/check';
 import { AuthService } from "../service";
 
 import {
+    Authorized,
     // VerifyToken,
     SignToken
 } from "../utils/auth";
@@ -62,19 +63,15 @@ class AuthRoute {
             if (!errors.isEmpty()) {
                 return res.status(422).json(errors.array())
             }
-
             // let token: string = req.body && req.body.reset_token;
             // let password: string = req.body && req.body.password;
-
             // UserService.resetPassword(token, password).then((user) => {
             //     res.status(200).json({ "success": true, user: user });
             // });
         });
 
         router.post("/auth/restore-password", (req: Request, res: Response) => {
-
             // let email: string = req.body && req.body.email;
-
             // UserService.restorePassword(email).then((user) => {
             //     res.status(200).json({ "success": true, user: user });
             // }).catch((error) => {
@@ -82,18 +79,15 @@ class AuthRoute {
             // });
         });
 
-
-
-
-
         router.get('/auth/ping', async (req: Request, res: Response) => {
             res.status(200).json('pong!');
         });
 
-        router.post('/auth/register', async (req: Request, res: Response) => {
+        router.post('/auth/register', Authorized, async (req: Request, res: Response) => {
             // if (req.body.email === 'test@test.com') {
             try {
-                const user = await service.register(req.body);
+                console.log("Authorized111: ",req)
+                const user = await service.register(req.body, req.session);
                 console.log('user._id: ',user._id);
                 const session = SignToken(user);
                 res.status(200).json({ success: true, data: user, session: session });
@@ -138,49 +132,6 @@ class AuthRoute {
                 });
             }
         });
-
-
-
-
-
-
-
-        // router.post("/auth/register", async (req: Request, res: Response, next: NextFunction) => {
-        //     try {
-        //         const user = await service.register(req.body);
-        //         res.status(200).json({ success: true, data: user });
-        //     } catch (e) {
-        //         res.status(403).json({ success: false, error: e });
-        //     }
-        // });
-        //
-        // router.post("/auth/login", async (req: Request, res: Response, next: NextFunction) => {
-        //     // authRules['login'],
-        //     // const errors = validationResult(req.body);
-        //     // if (!errors.isEmpty()) {
-        //     //     return res.status(422).json(errors.array())
-        //     // }
-        //
-        //     var body = req.body;
-        //     console.log("LOGIN: ",body);
-        //     try {
-        //         const user = await service.login(body.email, body.password);
-        //         console.log("LOGIN111: ",user);
-        //         // if(user) {
-        //             var session = SignToken(user, body.orgnization, 0);
-        //             res.status(200).json({ success: true, data: user, session: session });
-        //         // }
-        //         // else {
-        //         //     res.status(402).json({ success: false, error: user, session: null });
-        //         // }
-        //     } catch (e) {
-        //         res.status(403).json({ success: false, error: e, session: null});
-        //     }
-        //
-        //
-
-
-
 
 
 

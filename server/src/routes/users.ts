@@ -12,18 +12,21 @@ class UsersRoute {
         // const service = new UserService();
 
         router.get("/users", Authorized, async (req: Request, res: Response) => {
-            // service.session = req.session;
-            // service.retrieve().then((users: Array<IUserInstance>) => {
-            //     return res.status(200).json(users);
-            // }).catch((error: Error) => {
-            //     return res.status(500).send(error);
+            let query: {} = {};
             if(
                 (req.session && req.session.role === 'teacher') || (req.session && req.session.role === 'student')) {
                 return res.status(401).json('Unauthorized request!');
             }
+            if (req.session && req.session.role === 'admin') {
+                query = {orgId: req.session.org_id}
+            }
+            if (req.session && req.session.role === 'super') {
+                query = { }
+            }
             // });
             try {
-                const users = await User.find({});
+                const users = await User.find(query);
+                console.log("query: ",query);
                 console.log("users: ",users);
                 console.log("Authorized: ",req.session);
                 return res.status(200).json(users);
@@ -65,14 +68,18 @@ class UsersRoute {
         //     });
         // });
         //
-        // router.delete("/user/:id", Authorized, (req: Request, res: Response) => {
-        //     service.session = req.session;
-        //     service.delete(req.params.id).then(() => {
-        //         return res.status(200).json({ success: true });
-        //     }).catch((error: Error) => {
-        //         return res.status(500).json(error);
-        //     });
-        // });
+        router.delete("/users", Authorized, async (req: Request, res: Response) => {
+            try {
+                // const tickets = await Ticket.find({});
+                const deleteAction = await User.findByIdAndRemove(req.body._id);
+
+                console.log("deleteAction: ",req.body);
+                console.log("deleteActiondeleteAction: ",deleteAction);
+                res.status(201).json('users');
+            } catch (e) {
+                res.status(500).send({error: e});
+            }
+        });
     }
 }
 export = UsersRoute;

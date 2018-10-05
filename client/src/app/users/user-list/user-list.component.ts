@@ -3,8 +3,10 @@ import {UsersService} from "../users.service";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import * as fromTicket from "../../tickets/store/ticket.reducers";
-import * as TicketActions from "../../tickets/store/ticket.actions";
+import * as UsersActions from "./../store/users.actions";
 import {PagerService} from "../../shared/pager.service";
+import {CurrentUserService} from "../../shared/current-user.service";
+import * as TicketActions from "../../tickets/store/ticket.actions";
 
 @Component({
   selector: 'app-user-list',
@@ -17,14 +19,14 @@ export class UserListComponent implements OnInit, OnDestroy {
   subscription: any;
   editMode: boolean = false;
   editStatus: boolean = false;
-  // pager object
   pager: any = {};
-
-  // paged items
   pagedItems: any[];
+  searchString: string;
+  usersCount: number;
 
   constructor(
     private usersService: UsersService,
+    private currentUserService: CurrentUserService,
     private router: Router,
     private store: Store<fromTicket.FeatureState>,
     private pagerService: PagerService
@@ -32,18 +34,20 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.usersService.getUsers().subscribe(
-      (users:any) => {
-        console.log(users);
-        users.map((value: any) => {
-          value.editMode = false;
-        });
-        // set items to json response
-        this.users = users;
+    this.store.dispatch(new UsersActions.FetchUsers())
+    this.subscription = this.store.select('users').subscribe((result) => {
+      console.log("users : ",result.users)
+      this.usersCount = result.users.length;
+      // result.users.map((value: any) => {
+      //   value.editMode = false;
+      // });
+      // set items to json response
+      this.users = result.users;
 
-        // initialize to page 1
-        this.setPage(1);
-      });
+      // initialize to page 1
+      this.setPage(1);
+    });
+
   }
 
   setPage(page: number) {
@@ -56,12 +60,15 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   onNewUser() {
     this.router.navigate(['signup']);
-
   }
 
-  onDeleteRow(index, ticket) {
-    console.log(ticket);
-    this.store.dispatch(new TicketActions.DeleteRow({index: index, ticket: ticket}));
+  onDeleteRow(index, user) {
+    console.log(user);
+    if(this.currentUserService.currentUser.id !== user._id) {
+      this.store.dispatch(new UsersActions.DeleteUser({index: index, user: user}));
+    } else {
+      console.error('Cannot delete current user');
+    }
   }
 
   onEditRow(ticket, i) {

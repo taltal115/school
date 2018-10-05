@@ -1,7 +1,6 @@
 // import {CustomStatus} from '../shared/enums/CustomStatus';
 
 export class Ticket {
-  public _id: string;
   public date?: Date;
   public teacherName: string;
   public teacherId: string;
@@ -15,7 +14,6 @@ export class Ticket {
   public status: string;
 
   constructor(
-    _id: string,
     date: Date,
     teacherName: string,
     damagedDevice: string,
@@ -28,7 +26,6 @@ export class Ticket {
     status: string,
     teacherId?: string,
   ) {
-    this._id = _id;
     this.date = new Date();
     this.teacherName = teacherName;
     this.teacherId = teacherId;

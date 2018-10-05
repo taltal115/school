@@ -5,7 +5,17 @@
 </div>
 <br>
 <div class="row">
-  <table class="table table-bordered table-hover">
+
+  <form>
+    <div class="form-group">
+      <div class="input-group table-search">
+        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+        <input type="text" class="form-control" name="searchString" placeholder="חפש..." [(ngModel)]="searchString">
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-hover">
     <thead>
     <tr>
       <th scope="col">תאריך</th>
@@ -18,12 +28,11 @@
       <th scope="col">ציוד שחסר</th>
       <th scope="col">טלפון מורה מדווח/ת</th>
       <th scope="col">סטטוס</th>
-      <th scope="col">עריכה</th>
-      <th scope="col">מחיקה</th>
+      <th scope="col">פעולות</th>
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ticket of tickets; let i = index">
+      <tr *ngFor="let ticket of tickets | tableFilter :  { teacherName: searchString, structure: searchString, problemsNature: searchString } : false;   let i = index">
         <td>{{ ticket.date | date:'shortTime' }}</td>
         <td>{{ ticket.teacherName }}</td>
         <td>{{ ticket.damagedDevice }}</td>
@@ -33,27 +42,11 @@
         <td>{{ ticket.problemsNature }}</td>
         <td>{{ ticket.missingEquipments }}</td>
         <td>{{ ticket.teachersContactPhone }}</td>
-        <td *ngIf="!ticket.editMode">{{ ticket.status }}</td>
-        <td *ngIf="ticket.editMode">
-          <!--<input-->
-            <!--type="text"-->
-            <!--id="status"-->
-            <!--class="form-control"-->
-            <!--#fv>-->
-          <!--<input-->
-             <!--type="text"-->
-             <!--class="form-control"-->
-             <!--name="edit-row"-->
-             <!--[(ngModel)]="textValue">-->
-            <select [(ngModel)]="textValue" class="form-control">
-              <label>Status</label>
-              <option  [value]="status" *ngFor="let status of statuses">{{status}}</option>
-            </select>
+        <td>{{ ticket.status }}</td>
+        <td>
+          <button class="btn btn-default" (click)="onEditItem(ticket, i)">צפייה</button>
+          <button class="btn btn-danger" (click)="onDeleteRow(i, ticket)">מחיקה</button>
         </td>
-        <td><span class="glyphicon glyphicon-edit" (click)="onEditItem(ticket, i)"></span></td>
-        <!--<td *ngIf="!ticket.editMode"><span class="glyphicon glyphicon-edit" (click)="onEditRow(ticket, i)"></span></td>-->
-        <!--<td *ngIf="ticket.editMode"><button class="btn btn-success" (click)="onEditSaveRow(textValue, ticket)">שמור</button></td>-->
-        <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(i, ticket)"></span></td>
       </tr>
     </tbody>
   </table>

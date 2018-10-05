@@ -8,6 +8,7 @@ import * as fromTicket from '../../store/ticket.reducers';
 import * as TicketActions from '../../store/ticket.actions';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
+import {CurrentUserService} from "../../../shared/current-user.service";
 
 @Component({
   selector: 'app-reactive-forms',
@@ -24,9 +25,10 @@ export class ReactiveFormsComponent implements OnInit {
     private store: Store<fromTicket.FeatureState>,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private currentUserService: CurrentUserService
   ) {
-    this.user = JSON.parse(localStorage.getItem('user'))
+    this.user = this.currentUserService.currentUser;
   }
 
   ngOnInit() {
@@ -43,14 +45,12 @@ export class ReactiveFormsComponent implements OnInit {
 
     this.newTicketForm = new FormGroup({
       'ticketData' : new FormGroup({
-        'teacherName' : new FormControl(null, [Validators.required]),//,this.allowedEmailsAsync),
         'damagedDevice' : new FormControl(null, []),
         'serialNumber' : new FormControl(null, []),
         'structure' : new FormControl(null, []),
         'deviceLocation' : new FormControl(null, []),
         'problemsNature' : new FormControl(null, [Validators.required]),
         'missingEquipments' : new FormControl(null, []),
-        'teachersContactPhone' : new FormControl(null, [Validators.required])
       }),
       // 'status': new FormControl('Stable')
     })
@@ -60,15 +60,15 @@ export class ReactiveFormsComponent implements OnInit {
     const ticketData = this.newTicketForm.value.ticketData;
     this.store.dispatch(new TicketActions.SetTicket(new Ticket(
       new Date(),
-      ticketData.teacherName,
+      this.user.fullName,
       ticketData.damagedDevice,
       ticketData.serialNumber,
       ticketData.structure,
       ticketData.deviceLocation,
       ticketData.problemsNature,
       ticketData.missingEquipments,
-      ticketData.teachersContactPhone,
-      'pending',
+      this.user.phoneNumber,
+      'waiting_for_approval',
       this.user.id
     )));
     this.router.navigate(['../'], {relativeTo: this.route});

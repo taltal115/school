@@ -47,10 +47,9 @@
               </div>
               <div class="col-md-6">
                 <label for="type">סוג הארגון</label>
-                <select class="form-control" id="type">
-                  <label>Status</label>
-                  <option [value]="types" *ngFor="let type of types">{{type}}</option>
-                </select>
+                  <select type="text" formControlName="type" class="form-control" id="type">
+                    <option [value]="type" *ngFor="let type of types">{{type}}</option>
+                  </select>
               </div>
             </div>
           </fieldset>

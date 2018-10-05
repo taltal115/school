@@ -1,3 +1,18 @@
-<p>
-  ticket-edit works!
-</p>
+<h2>דף קריאה</h2>
+
+<ul class="list-group">
+  <li class="list-group-item">{{id}}</li>
+  <li class="list-group-item">{{ teacherName}}</li>
+  <li class="list-group-item">{{ teacherId }}</li>
+  <li class="list-group-item">{{ teachersContactPhone }}</li>
+  <li class="list-group-item">{{ problemsNature }}</li>
+  <li class="list-group-item">{{ missingEquipments }}</li>
+  <li class="list-group-item">{{ deviceLocation }}</li>
+  <li class="list-group-item">{{ damagedDevice }}</li>
+  <li class="list-group-item">{{ serialNumber }}</li>
+  <li class="list-group-item">{{ structure }}</li>
+  <li class="list-group-item">{{ status }}</li>
+</ul>
+
+<button class="btn btn-primary" (click)="back()">חזור אחורה</button>
+<button class="btn btn-primary" (click)="edit()">עריכה</button>

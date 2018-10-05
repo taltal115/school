@@ -3,12 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Roles;
 (function (Roles) {
     Roles[Roles["Super"] = 1] = "Super";
-    Roles[Roles["Admin"] = 2] = "Admin";
-    Roles[Roles["Writer"] = 3] = "Writer";
-    Roles[Roles["Reviewer"] = 4] = "Reviewer";
-    Roles[Roles["Content"] = 5] = "Content";
-    Roles[Roles["Support"] = 6] = "Support";
-    Roles[Roles["User"] = 7] = "User";
-    Roles[Roles["Anonymous"] = 8] = "Anonymous";
-    Roles[Roles["Guest"] = 9] = "Guest";
+    Roles[Roles["technician"] = 2] = "technician";
+    Roles[Roles["Admin"] = 3] = "Admin";
+    Roles[Roles["Teacher"] = 4] = "Teacher";
+    Roles[Roles["Student"] = 5] = "Student";
+    Roles[Roles["Guest"] = 6] = "Guest";
 })(Roles = exports.Roles || (exports.Roles = {}));

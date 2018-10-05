@@ -30,6 +30,8 @@ import {OrganisationsService} from "./organisations/organisations.service";
 import {OrganisationEffects} from "./organisations/store/organisation.effects";
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {PagerService} from "./shared/pager.service";
+import {CurrentUserService} from "./shared/current-user.service";
+import {HomeService} from "./core/home/home.service";
 
 @NgModule({
   declarations: [
@@ -56,11 +58,13 @@ import {PagerService} from "./shared/pager.service";
   ],
   providers: [
     AuthGuard,
+    CurrentUserService,
     UsersService,
     FormsModule,
     TicketsService,
     OrganisationsService,
-    PagerService
+    PagerService,
+    HomeService
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]

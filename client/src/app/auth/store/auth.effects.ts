@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import {Observable, of} from 'rxjs';
@@ -14,13 +13,12 @@ import {
   SignUp,
   SignUpSuccess,
   SignUpFailure,
-  LogOut,
   GetStatus
 } from './auth.actions';
 import {ToastrService} from "ngx-toastr";
-import * as AuthActions from "./auth.actions";
-import * as TicketActions from "../../tickets/store/ticket.actions";
 import * as AuthActionTypes from './auth.actions';
+import * as UsersActions from './../../users/store/users.actions';
+import * as TicketActions from "../../tickets/store/ticket.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -51,6 +49,7 @@ export class AuthEffects {
               fullName: data.session.user.fullName,
               phoneNumber: data.session.user.phoneNumber,
               userRole: data.session.user.userRole,
+              orgId: data.session.user.orgId
             });
           }),
           catchError(() => {
@@ -89,6 +88,7 @@ export class AuthEffects {
               fullName: user.data.fullName,
               phoneNumber: user.data.phoneNumber,
               userRole: user.data.userRole,
+              orgId: user.data.orgId
             });
           }),
           catchError((error) => {
@@ -98,12 +98,15 @@ export class AuthEffects {
         );
     }));
 
-  @Effect({ dispatch: false })
+  @Effect()
   SignUpSuccess: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.SIGNUP_SUCCESS),
     tap((user) => {
-      localStorage.setItem('user', JSON.stringify(user.payload));
-      this.router.navigateByUrl('/');
+      // localStorage.setItem('user', JSON.stringify(user.payload));
+      this.router.navigateByUrl('/users');
+      // return {
+      //   type: UsersActions.FETCH_USERS
+      // };
     })
   );
 

@@ -22,6 +22,7 @@ export class OrganisationNewComponent implements OnInit {
   newOrganisationForm: FormGroup;
   excludeProjectName = ['test'];
   user: any;
+  textValue: string;
 
   constructor(
     private store: Store<fromOrganisation.FeatureState>,
@@ -59,6 +60,7 @@ export class OrganisationNewComponent implements OnInit {
 
   onSubmit() {
     const orgData = this.newOrganisationForm.value.orgData;
+    console.log(orgData)
     this.store.dispatch(new OrganisationActions.SetOrganisation(new Organisation(
       orgData.name,
       orgData.address,

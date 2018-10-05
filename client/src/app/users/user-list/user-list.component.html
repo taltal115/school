@@ -5,6 +5,16 @@
 </div>
 <br>
 <div class="row">
+
+  <form>
+    <div class="form-group">
+      <div class="input-group table-search">
+        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+        <input type="text" class="form-control" name="searchString" placeholder="חפש..." [(ngModel)]="searchString">
+      </div>
+    </div>
+  </form>
+
   <table class="table table-bordered table-hover">
     <thead>
     <tr>
@@ -19,7 +29,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of pagedItems; let i = index">
+    <tr *ngFor="let user of pagedItems | tableFilter :  { fullName: searchString, email: searchString, userRole: searchString } : false; let i = index">
       <td>{{ user.date | date:'shortTime' }}</td>
       <td>{{ user.fullName }}</td>
       <td>{{ user.phoneNumber }}</td>
@@ -40,9 +50,9 @@
     </tbody>
   </table>
 </div>
-<!--<div class="row">-->
-<!--<span> מספר קריאות שירות : {{ serviceCallCount }} </span>-->
-<!--</div>-->
+<div class="row">
+<span> מספר משתמשים : {{ usersCount }} </span>
+</div>
 
 <div class="row">
   <!-- pager -->
