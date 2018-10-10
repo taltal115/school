@@ -43,31 +43,18 @@ export function organisationReducer(state = initialState, action: OrganisationAc
         ...state,
         organisations: [...action.payload]
       };
-    // case (RecipeActions.ADD_RECIPE):
-    //   return {
-    //     ...state,
-    //     recipes: [...state.recipes, action.payload]
-    //   };
-    // case (RecipeActions.UPDATE_RECIPE):
-    //   const recipe = state.recipes[action.payload.index];
-    //   const updatedRecipe = {
-    //     ...recipe,
-    //     ...action.payload.updatedRecipe
-    //   };
-    //   const recipes = [...state.recipes];
-    //   recipes[action.payload.index] = updatedRecipe;
-    //   return {
-    //     ...state,
-    //     recipes: recipes
-    //   };
-    // case (TicketActions.DELETE_TICKET):
-    //   const oldTickets = [...state.tickets];
-    //   oldTickets.splice(action.payload.index,1);
-    //   console.log('deleted with redux!');
-    //   return {
-    //     ...state,
-    //     tickets: oldTickets
-    //   };
+    case (OrganisationActions.UPDATE_ORGANISATION):
+      const organisation = state.organisations[action.payload.index];
+      const updatedOrganisation = {
+        ...organisation,
+        ...action.payload.organisation
+      };
+      const organisations = [...state.organisations];
+      organisations[action.payload.index] = updatedOrganisation;
+      return {
+        ...state,
+        organisations: organisations
+      };
     default:
       return state;
   }

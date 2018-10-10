@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-// import {Ticket} from '../../ticket.model';
 import {Store} from '@ngrx/store';
-// import {Observable} from "rxjs/Rx";
-
 import * as fromOrganisation from '../store/organisation.reducers';
 import * as OrganisationActions from '../store/organisation.actions';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 import {Organisation} from "../organisation.model";
+import { AppConstants } from '../../app.constants';
 
 @Component({
   selector: 'app-organisation-new',
@@ -16,9 +14,7 @@ import {Organisation} from "../organisation.model";
   styleUrls: ['./organisation-new.component.css']
 })
 export class OrganisationNewComponent implements OnInit {
-  types = ['regular-school',
-    'yeshiva',
-    'ulpana'];
+  types = AppConstants.ORGANISATIONS.TYPES;
   newOrganisationForm: FormGroup;
   excludeProjectName = ['test'];
   user: any;
@@ -62,6 +58,8 @@ export class OrganisationNewComponent implements OnInit {
     const orgData = this.newOrganisationForm.value.orgData;
     console.log(orgData)
     this.store.dispatch(new OrganisationActions.SetOrganisation(new Organisation(
+      orgData._id,
+      orgData.id,
       orgData.name,
       orgData.address,
       orgData.city,

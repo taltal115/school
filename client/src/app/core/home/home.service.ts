@@ -1,15 +1,16 @@
 import {HttpClient, HttpRequest} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {AppConstants} from "../../app.constants";
 
 @Injectable()
 export class HomeService {
-  private BASE_URL = 'http://localhost:3000/dashboard';
+  private BASE_URL = AppConstants.CONFIG.BASE_URL;
 
   constructor(private http: HttpClient) {}
 
   getOrganisationCount(): Observable<any> {
-    const url = `${this.BASE_URL}/organisations`;
+    const url = `${this.BASE_URL}/dashboard/organisations`;
     return this.http.get<number>(url, {
       observe: 'body',
       responseType: 'json'
@@ -17,7 +18,7 @@ export class HomeService {
   }
 
   getUsersCount() {
-    const url = `${this.BASE_URL}/users`;
+    const url = `${this.BASE_URL}/dashboard/users`;
     return this.http.get<number>(url, {
       observe: 'body',
       responseType: 'json'
@@ -25,7 +26,7 @@ export class HomeService {
   }
 
   getTicketsCount() {
-    const url = `${this.BASE_URL}/tickets`;
+    const url = `${this.BASE_URL}/dashboard/tickets`;
     return this.http.get<number>(url, {
       observe: 'body',
       responseType: 'json'

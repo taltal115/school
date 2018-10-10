@@ -35,18 +35,18 @@ export function ticketReducer(state = initialState, action: TicketActions.Ticket
     //     ...state,
     //     recipes: [...state.recipes, action.payload]
     //   };
-    // case (RecipeActions.UPDATE_RECIPE):
-    //   const recipe = state.recipes[action.payload.index];
-    //   const updatedRecipe = {
-    //     ...recipe,
-    //     ...action.payload.updatedRecipe
-    //   };
-    //   const recipes = [...state.recipes];
-    //   recipes[action.payload.index] = updatedRecipe;
-    //   return {
-    //     ...state,
-    //     recipes: recipes
-    //   };
+    case (TicketActions.UPDATE_TICKET):
+      const recipe = state.tickets[action.payload.index];
+      const updatedTickets = {
+        ...recipe,
+        ...action.payload.ticket
+      };
+      const tickets = [...state.tickets];
+      tickets[action.payload.index] = updatedTickets;
+      return {
+        ...state,
+        tickets: tickets
+      };
     case (TicketActions.DELETE_TICKET):
       const oldTickets = [...state.tickets];
       oldTickets.splice(action.payload.index,1);

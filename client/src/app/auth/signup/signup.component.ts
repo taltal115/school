@@ -2,17 +2,14 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 
-import * as fromApp from './../../store/app.reducers'
 import * as AuthActions from './../../auth/store/auth.actions'
-import {All, SignUp} from "../store/auth.actions";
+import {All} from "../store/auth.actions";
 import {Observable} from "rxjs/index";
-import {User} from "../../models/user";
 import * as OrganisationsActions from "../../organisations/store/organisation.actions";
 import {CurrentUserService} from "../../shared/current-user.service";
-import * as UsersActions from "../../users/store/users.actions";
-import {Ticket} from "../../tickets/ticket.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import { AppConstants } from '../../app.constants';
 
 @Component({
   selector: 'app-signup',
@@ -45,13 +42,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if(this.currentUserService.currentUser.userRole === 'super') {
-      this.roles = [
-        'super',
-        'technician',
-        'admin',
-        'teacher',
-        'student'
-      ];
+      this.roles = AppConstants.USER_ROLES.SUPER_ROLES;
       this.newUserForm = new FormGroup({
         'userData' : new FormGroup({
           'email' : new FormControl(null, [Validators.required, Validators.email]),
@@ -65,10 +56,8 @@ export class SignupComponent implements OnInit, OnDestroy {
         // 'status': new FormControl('Stable')
       })
     } else if(this.currentUserService.currentUser.userRole === 'admin') {
-      this.roles = [
-        'teacher',
-        'student'
-      ];
+      this.roles = AppConstants.USER_ROLES.ADMIN_ROLES;
+
       this.newUserForm = new FormGroup({
         'userData' : new FormGroup({
           'email' : new FormControl(null, [Validators.required, Validators.email]),
@@ -87,7 +76,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.store.dispatch(new OrganisationsActions.FetchOrganisations())
 
     this.orgSubscription = this.store.select('organisations').subscribe((result) => {
-      console.log("organisations : ",result)
       this.organisations = result.organisations.length;
       result.organisations.map((value: any) => {
         value.editMode = false;
@@ -100,7 +88,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     const userData = this.newUserForm.value.userData;
     this.store.dispatch(new AuthActions.SignUp({userObject: userData}))
     // this.router.navigate(['../'], {relativeTo: this.route});
-    console.log(this.newUserForm)
     // this.toastr.success('הכרטיס נרשם בהצלחה','כרטיס חדש')
   }
 

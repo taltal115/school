@@ -17,8 +17,6 @@ import {
 } from './auth.actions';
 import {ToastrService} from "ngx-toastr";
 import * as AuthActionTypes from './auth.actions';
-import * as UsersActions from './../../users/store/users.actions';
-import * as TicketActions from "../../tickets/store/ticket.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -98,12 +96,12 @@ export class AuthEffects {
         );
     }));
 
-  @Effect()
+  @Effect({ dispatch: false })
   SignUpSuccess: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.SIGNUP_SUCCESS),
     tap((user) => {
       // localStorage.setItem('user', JSON.stringify(user.payload));
-      this.router.navigateByUrl('/users');
+      this.router.navigate(['/users']);
       // return {
       //   type: UsersActions.FETCH_USERS
       // };

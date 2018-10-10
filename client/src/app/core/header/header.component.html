@@ -15,10 +15,6 @@
           <li><a routerLink="/signin">התחבר</a></li>
         </ng-template>
 
-        <li><a
-          style="cursor: pointer;"
-          (click)="onLogout()"
-          *ngIf="(isAuthenticated)">התנתק</a></li>
         <li *ngIf="(isAuthenticated)"><a routerLink="#">שלום {{user.fullName}}</a></li>
 
         <li class="dropdown" appDropdown *ngIf="(isAuthenticated)">
@@ -30,6 +26,10 @@
             <li><a style="cursor: pointer;" (click)="onFetchUsers()">משתמשים</a></li>
           </ul>
         </li>
+        <li><a
+          style="cursor: pointer;"
+          (click)="onLogout()"
+          *ngIf="(isAuthenticated)">התנתק</a></li>
       </ul>
     </div>
   </div>

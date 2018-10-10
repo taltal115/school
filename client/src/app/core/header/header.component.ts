@@ -3,10 +3,10 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as fromApp from '../../store/app.reducers'
-// import * as fromAuth from '../../auth/store/auth.reducers'
 import * as AuthActions from '../../auth/store/auth.actions'
 import * as TicketActions from "../../tickets/store/ticket.actions";
 import {ActivatedRoute, Router} from "@angular/router";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-header',
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   isAuthenticated = false;
   getState: Observable<any>;
   getUser: Observable<any>;
-  user: string;
+  user: User;
   private getStateSubscription: any;
 
   // authState: Observable<fromAuth.State>;

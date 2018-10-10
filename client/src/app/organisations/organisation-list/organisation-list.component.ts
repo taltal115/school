@@ -6,11 +6,33 @@ import * as OrganisationsActions from '../store/organisation.actions'
 import {Organisation} from "../organisation.model";
 import * as TicketActions from "../../tickets/store/ticket.actions";
 import {PagerService} from "../../shared/pager.service";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-organisation-list',
   templateUrl: './organisation-list.component.html',
-  styleUrls: ['./organisation-list.component.css']
+  styleUrls: ['./organisation-list.component.css'],
+  animations: [
+    trigger('list1', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0)'
+      })),
+      // transition('void => *', [
+      //   style({
+      //     opacity: 0,
+      //     transform: 'translateX(-100px)'
+      //   }),
+      //   animate(300)
+      // ]),
+      transition('* => void', [
+        animate(300, style({
+          transform: 'translateX(-100px)',
+          opacity: 0
+        }))
+      ]),
+    ])
+  ]
 })
 export class OrganisationListComponent implements OnInit, OnDestroy {
   organisations: Organisation[];
@@ -47,7 +69,6 @@ email: ${(accessToken).email}`,'background: green;font-size: 16px;'
       });
       this.organisations = result.organisations;
       this.setPage(1);
-
     });
   }
 
@@ -66,15 +87,14 @@ email: ${(accessToken).email}`,'background: green;font-size: 16px;'
 
   onDeleteRow(index, organisation) {
     console.log(organisation);
-    this.store.dispatch(new OrganisationsActions.DeleteRow({index: index, organisation: organisation}));
+    if(confirm('האם אתה בטוח שתרצה למחוק את הארגון?')) {
+      this.store.dispatch(new OrganisationsActions.DeleteRow({index: index, organisation: organisation}));
+    }
   }
 
   onEditRow(organisation, i) {
-    this.editMode = true;
-    organisation.editMode = true;
-    console.log(organisation)
-    console.log(this.organisations[i])
-    console.log("index: ",i)
+    this.router.navigate(['organisations/edit/'+organisation._id]);
+
   }
 
   onEditSaveRow(value, organisation) {

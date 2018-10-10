@@ -96,6 +96,27 @@ export class TicketEffects {
         );
     }));
 
+  @Effect()
+  updateTicketStore = this.actions$
+    .ofType(TicketActions.UPDATE_TICKET)
+    .pipe(switchMap((action: TicketActions.UpdateTicket) => {
+      return this.ticketsService.updateTicket(action.payload.ticket)
+        .pipe(
+          map((tickets) => {
+            console.log("ticketstickets: ", tickets);
+            return {
+              type: TicketActions.FETCH_TICKETS
+            };
+          }),
+          catchError((error) => {
+            console.log(error);
+            this.router.navigate(['/login'])
+            localStorage.removeItem('user')
+            return error;
+          })
+        );
+    }));
+
   @Effect({dispatch: false})
   ticketDelete = this.actions$
     .ofType(TicketActions.DELETE_TICKET)

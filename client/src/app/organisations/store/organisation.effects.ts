@@ -1,7 +1,6 @@
 import {Actions, Effect} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
 import {switchMap, map, catchError} from 'rxjs/operators';
-
 import * as fromOrganisation from './organisation.reducers';
 import * as AuthActions from './../../auth/store/auth.actions'
 import {Store} from '@ngrx/store';
@@ -9,7 +8,6 @@ import * as OrganisationActions from './organisation.actions';
 import {OrganisationsService} from "../organisations.service";
 import {take} from "rxjs/internal/operators";
 import {Router} from "@angular/router";
-import {onerror} from "q";
 import {of} from "rxjs/index";
 
 @Injectable()
@@ -82,6 +80,27 @@ export class OrganisationEffects {
             this.router.navigate(['/login']);
             localStorage.removeItem('user');
             return (error);
+          })
+        );
+    }));
+
+  @Effect()
+  updateOrganisationStore = this.actions$
+    .ofType(OrganisationActions.UPDATE_ORGANISATION)
+    .pipe(switchMap((action: OrganisationActions.UpdateOrganisation) => {
+      return this.organisationsService.updateOrganisation(action.payload.organisation)
+        .pipe(
+          map((organisations) => {
+            console.log("OrganisationOrganisation: ", organisations);
+            return {
+              type: OrganisationActions.FETCH_ORGANISATIONS
+            };
+          }),
+          catchError((error) => {
+            console.log(error);
+            this.router.navigate(['/login'])
+            localStorage.removeItem('user')
+            return error;
           })
         );
     }));
