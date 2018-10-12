@@ -32,6 +32,7 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {PagerService} from "./shared/pager.service";
 import {CurrentUserService} from "./shared/current-user.service";
 import {HomeService} from "./core/home/home.service";
+import {HelperService} from "./shared/helper.service";
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {HomeService} from "./core/home/home.service";
     TicketsService,
     OrganisationsService,
     PagerService,
-    HomeService
+    HomeService,
+    HelperService
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]

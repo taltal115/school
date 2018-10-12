@@ -39,7 +39,7 @@ export class FetchTicket implements Action {
 export class UpdateTicket implements Action {
   readonly type = UPDATE_TICKET;
 
-  constructor(public payload: {index: number, ticket: Ticket}) {}
+  constructor(public payload: {indexId: string, ticket: Ticket}) {}
 }
 
 

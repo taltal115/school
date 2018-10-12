@@ -84,7 +84,6 @@ class Server {
     this.app.use(express.static(client));
 
     if (config.cors && config.cors.enabled) {
-        console.log("config.cors: ",config.cors);
       this.app.use(cors(config.cors));
     }
 

@@ -7,14 +7,39 @@ import * as UsersActions from "./../store/users.actions";
 import {PagerService} from "../../shared/pager.service";
 import {CurrentUserService} from "../../shared/current-user.service";
 import * as TicketActions from "../../tickets/store/ticket.actions";
+import {Observable} from "rxjs";
+import {User} from "../../models/user";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
+  animations: [
+    trigger('list1', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0)'
+      })),
+      // transition('void => *', [
+      //   style({
+      //     opacity: 0,
+      //     transform: 'translateX(-100px)'
+      //   }),
+      //   animate(300)
+      // ]),
+      transition('* => void', [
+        animate(300, style({
+          transform: 'translateX(-100px)',
+          opacity: 0
+        }))
+      ]),
+    ])
+  ]
 })
 export class UserListComponent implements OnInit, OnDestroy {
-
+  // recipeState: Observable<fromRecipe.State>;
+  recipeState: Observable<any>;
   users: any;
   subscription: any;
   editMode: boolean = false;
@@ -34,6 +59,10 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    // this.users = this.store.select('users');
+
+
     this.store.dispatch(new UsersActions.FetchUsers())
     this.subscription = this.store.select('users').subscribe((result) => {
       console.log("users : ",result.users)
@@ -64,19 +93,26 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   onDeleteRow(index, user) {
     console.log(user);
-    if(this.currentUserService.currentUser.id !== user._id) {
+    // if(confirm('האם אתה בטוח שתרצה למחוק את המשתמש?')) {
+    //   this.store.dispatch(new UsersActions.DeleteUser({index: index, user: user}));
+    // }
+    if(confirm('האם אתה בטוח שתרצה למחוק את המשתמש?') && this.currentUserService.currentUser.id !== user._id) {
       this.store.dispatch(new UsersActions.DeleteUser({index: index, user: user}));
     } else {
-      console.error('Cannot delete current user');
+      alert('אזהרה: לא תוכל למחוק את המשתמש שלך שכרגע מחובר!')
     }
   }
 
-  onEditRow(ticket, i) {
-    this.editMode = true;
-    ticket.editMode = true;
-    console.log(ticket)
-    console.log(this.users[i])
-    console.log("index: ",i)
+  onEditRow(user: User, i) {
+    // this.editMode = true;
+    // ticket.editMode = true;
+    // console.log(ticket)
+    // console.log(this.users[i])
+    // console.log("user: ",user)
+    // this.store.dispatch(new UsersActions.FetchUser(user._id))
+    this.router.navigate(['users/edit/'+user._id]);
+
+
   }
 
   onEditSaveRow(value, ticket) {

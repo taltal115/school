@@ -50,6 +50,9 @@ export const TicketsSchema: Schema = new Schema({
   },
   technicianResolution: {
     type: String
+  },
+  orgId: {
+    type: String
   }
 },
   {

@@ -10,12 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const ticket_model_1 = require("../models/documents/ticket-model");
 const auth_1 = require("../utils/auth");
 const service_1 = require("../service");
+const export_service_1 = require("../service/export-service");
 class TicketsRoute {
     static init(router) {
+        const exportService = new export_service_1.ExportService();
         router.post("/tickets", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const ticket = new ticket_model_1.Ticket(req.body);
+            ticket.orgId = req.session ? req.session.org_id : null;
             delete ticket.__v;
-            // console.log("ticket: ", ticket);
             ticket.save((err) => {
                 if (err)
                     res.status(500).send({ error: err });
@@ -54,11 +56,15 @@ class TicketsRoute {
         }));
         router.get("/tickets", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const u_id_query = req.session ? { teacherId: req.session.u_id } : null;
-                console.log("u_id_query: ", u_id_query);
-                const tickets = yield ticket_model_1.Ticket.find(u_id_query);
-                // const tickets = await Ticket.find({});
-                console.log("ticketstickets: ", tickets.length);
+                let query = null;
+                if ((req.session && req.session.role === 'super') ||
+                    (req.session && req.session.role === 'technician')) {
+                    query = {};
+                }
+                else if (req.session) {
+                    query = { orgId: req.session.org_id };
+                }
+                const tickets = yield ticket_model_1.Ticket.find(query);
                 res.status(201).json(tickets);
             }
             catch (e) {
@@ -67,24 +73,37 @@ class TicketsRoute {
         }));
         router.get("/tickets/:id", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log("req.params.idreq.params.id: ", req.params);
                 // const u_id_query = req.session ? {teacherId: req.session.u_id} : null;
                 const ticket = yield ticket_model_1.Ticket.findById(req.params.id);
-                // const tickets = await Ticket.find({});
-                console.log("ticketsticket1111111: ", ticket);
                 res.status(201).json(ticket);
             }
             catch (e) {
                 res.status(500).send({ error: e });
             }
         }));
-        router.delete("/tickets", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        router.delete("/tickets", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 // const tickets = await Ticket.find({});
                 const deleteAction = yield ticket_model_1.Ticket.findByIdAndRemove(req.body._id);
-                console.log("deleteAction: ", req.body);
-                console.log("deleteActiondeleteAction: ", deleteAction);
-                res.status(201).json('tickets');
+                res.status(201).json(deleteAction);
+            }
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
+        }));
+        router.post("/tickets/export/csv", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const csv = yield exportService.ConvertJsonToCsv(req.body);
+                res.status(201).json(csv);
+            }
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
+        }));
+        router.patch("/tickets", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const updateTicket = yield ticket_model_1.Ticket.findByIdAndUpdate(req.body._id, req.body);
+                res.status(201).json(updateTicket);
             }
             catch (e) {
                 res.status(500).send({ error: e });

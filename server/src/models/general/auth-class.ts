@@ -23,7 +23,6 @@ export class Auth {
 	}
 
 	set session(session: any) {
-		console.log("sessionsessionsessionsession:session: ",session)
 		this._auth = {
 			user_id: session.u_id,
 			org_id: session.org_id,

@@ -62,8 +62,7 @@ exports.UserSchema.virtual('isLocked').get(function () {
     return !!(this.lockUntil && this.lockUntil > Date.now());
 });
 exports.UserSchema.pre('save', function (next) {
-    var user = this;
-    console.log("preuser: ", user);
+    let user = this;
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password'))
         return next();
@@ -120,7 +119,6 @@ exports.UserSchema.statics.getAuthenticated = function (email, password, cb) {
     return exports.User.findOne({ email: email }, function (err, user) {
         if (err)
             return cb(err);
-        console.log('11111111111111111111111111');
         // make sure the user exists
         if (!user) {
             return cb(null, null, reasons.NOT_FOUND);
@@ -138,7 +136,6 @@ exports.UserSchema.statics.getAuthenticated = function (email, password, cb) {
         return user.comparePassword(password, function (err, isMatch) {
             if (err)
                 return cb(err);
-            console.log('1111111111111111111111111111111111111111111111111111111122222');
             // check if the password was a match
             if (isMatch) {
                 // if there's no lock or failed attempts, just return the user

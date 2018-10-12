@@ -83,9 +83,7 @@ class AuthRoute {
         router.post('/auth/register', auth_1.Authorized, (req, res) => __awaiter(this, void 0, void 0, function* () {
             // if (req.body.email === 'test@test.com') {
             try {
-                console.log("Authorized111: ", req);
                 const user = yield service.register(req.body, req.session);
-                console.log('user._id: ', user._id);
                 const session = auth_1.SignToken(user);
                 res.status(200).json({ success: true, data: user, session: session });
             }
@@ -98,7 +96,6 @@ class AuthRoute {
             try {
                 const user = yield service.login(body.email, body.password);
                 if (user && user.email) {
-                    console.log('user: ', user);
                     const session = auth_1.SignToken(user);
                     res.status(200).json({ success: true, data: user, session: session });
                 }

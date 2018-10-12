@@ -1,6 +1,7 @@
 import {User} from '../../models/user';
 import * as UsersActions from './users.actions';
 import * as fromApp from '../../store/app.reducers';
+import * as TicketActions from "../../tickets/store/ticket.actions";
 
 export interface FeatureState extends fromApp.AppState{
   users: State
@@ -30,36 +31,18 @@ export function userReducer(state = initialState, action: UsersActions.UsersActi
         ...state,
         users: oldUsers
       };
-    // case (TicketActions.SET_TICKETS):
-    //   return {
-    //     ...state,
-    //     tickets: [...action.payload]
-    //   };
-    // // case (RecipeActions.ADD_RECIPE):
-    // //   return {
-    // //     ...state,
-    // //     recipes: [...state.recipes, action.payload]
-    // //   };
-    // // case (RecipeActions.UPDATE_RECIPE):
-    // //   const recipe = state.recipes[action.payload.index];
-    // //   const updatedRecipe = {
-    // //     ...recipe,
-    // //     ...action.payload.updatedRecipe
-    // //   };
-    // //   const recipes = [...state.recipes];
-    // //   recipes[action.payload.index] = updatedRecipe;
-    // //   return {
-    // //     ...state,
-    // //     recipes: recipes
-    // //   };
-    // case (TicketActions.DELETE_TICKET):
-    //   const oldTickets = [...state.tickets];
-    //   oldTickets.splice(action.payload.index,1);
-    //   console.log('deleted with redux!');
-    //   return {
-    //     ...state,
-    //     tickets: oldTickets
-    //   };
+    case (UsersActions.UPDATE_USER):
+      const user = state.users[action.payload.index];
+      const updatedUsers = {
+        ...user,
+        ...action
+      };
+      const users = [...state.users];
+      users[action.payload.index] = updatedUsers;
+      return {
+        ...state,
+        users: users
+      };
     default:
       return state;
   }

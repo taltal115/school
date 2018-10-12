@@ -4,14 +4,17 @@ import {Authorized} from "../utils/auth";
 
 import {IMailOptions} from "../models/general";
 import {EmailService} from "../service";
+import {ExportService} from "../service/export-service";
 
 class TicketsRoute {
     public static init(router: Router) {
+        const exportService = new ExportService();
 
         router.post("/tickets", Authorized, async (req: Request, res: Response, next: NextFunction) => {
             const ticket = new Ticket(req.body);
+            ticket.orgId = req.session ? req.session.org_id : null;
+
             delete ticket.__v;
-            // console.log("ticket: ", ticket);
             ticket.save((err: any) => {
                 if (err) res.status(500).send({error: err});
                 else {
@@ -51,11 +54,16 @@ class TicketsRoute {
 
         router.get("/tickets", Authorized, async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const u_id_query = req.session ? {teacherId: req.session.u_id} : null;
-                console.log("u_id_query: ",u_id_query);
-                const tickets = await Ticket.find(u_id_query);
-                // const tickets = await Ticket.find({});
-                console.log("ticketstickets: ",tickets.length);
+                let query: any = null;
+                if(
+                    (req.session && req.session.role === 'super') ||
+                    (req.session && req.session.role === 'technician')
+                ) {
+                    query = {};
+                } else if(req.session) {
+                    query = {orgId: req.session.org_id};
+                }
+                const tickets = await Ticket.find(query);
                 res.status(201).json(tickets);
             } catch (e) {
                 res.status(500).send({error: e});
@@ -64,26 +72,37 @@ class TicketsRoute {
 
         router.get("/tickets/:id", Authorized, async (req: Request, res: Response, next: NextFunction) => {
             try {
-                console.log("req.params.idreq.params.id: ",req.params);
-
                 // const u_id_query = req.session ? {teacherId: req.session.u_id} : null;
                 const ticket = await Ticket.findById(req.params.id);
-                // const tickets = await Ticket.find({});
-                console.log("ticketsticket1111111: ",ticket);
                 res.status(201).json(ticket);
             } catch (e) {
                 res.status(500).send({error: e});
             }
         });
 
-        router.delete("/tickets", async (req: Request, res: Response, next: NextFunction) => {
+        router.delete("/tickets", Authorized, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 // const tickets = await Ticket.find({});
                 const deleteAction = await Ticket.findByIdAndRemove(req.body._id);
+                res.status(201).json(deleteAction);
+            } catch (e) {
+                res.status(500).send({error: e});
+            }
+        });
 
-                console.log("deleteAction: ",req.body);
-                console.log("deleteActiondeleteAction: ",deleteAction);
-                res.status(201).json('tickets');
+        router.post("/tickets/export/csv", Authorized, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const csv = await exportService.ConvertJsonToCsv(req.body);
+                res.status(201).json(csv);
+            } catch (e) {
+                res.status(500).send({error: e});
+            }
+        });
+
+        router.patch("/tickets" , Authorized, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const updateTicket = await Ticket.findByIdAndUpdate(req.body._id, req.body);
+                res.status(201).json(updateTicket);
             } catch (e) {
                 res.status(500).send({error: e});
             }

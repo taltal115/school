@@ -36,9 +36,10 @@ export function ticketReducer(state = initialState, action: TicketActions.Ticket
     //     recipes: [...state.recipes, action.payload]
     //   };
     case (TicketActions.UPDATE_TICKET):
-      const recipe = state.tickets[action.payload.index];
+      // const ticket = state.tickets[action.payload.index];
+      const ticket = state.tickets.filter((ticket) => ticket._id === action.payload.indexId)
       const updatedTickets = {
-        ...recipe,
+        ...ticket,
         ...action.payload.ticket
       };
       const tickets = [...state.tickets];

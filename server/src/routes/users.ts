@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import {NextFunction, Request, Response, Router} from "express";
 //import { validationResult } from 'express-validator/check';
 // import { UserService } from "../service";
 // import { IUserInstance } from "../models";
@@ -26,9 +26,6 @@ class UsersRoute {
             // });
             try {
                 const users = await User.find(query);
-                console.log("query: ",query);
-                console.log("users: ",users);
-                console.log("Authorized: ",req.session);
                 return res.status(200).json(users);
             } catch (e) {
                 return res.status(500).json(e);
@@ -68,14 +65,31 @@ class UsersRoute {
         //     });
         // });
         //
+
+        router.get("/users/:id", Authorized, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                // const u_id_query = req.session ? {teacherId: req.session.u_id} : null;
+                const user = await User.findById(req.params.id);
+                res.status(201).json(user);
+            } catch (e) {
+                res.status(500).send({error: e});
+            }
+        });
+
         router.delete("/users", Authorized, async (req: Request, res: Response) => {
             try {
                 // const tickets = await Ticket.find({});
                 const deleteAction = await User.findByIdAndRemove(req.body._id);
+                res.status(201).json(deleteAction);
+            } catch (e) {
+                res.status(500).send({error: e});
+            }
+        });
 
-                console.log("deleteAction: ",req.body);
-                console.log("deleteActiondeleteAction: ",deleteAction);
-                res.status(201).json('users');
+        router.patch("/users" , Authorized, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const updateUser = await User.findByIdAndUpdate(req.body._id, req.body);
+                res.status(201).json(updateUser);
             } catch (e) {
                 res.status(500).send({error: e});
             }

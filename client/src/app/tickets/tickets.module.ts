@@ -9,7 +9,7 @@ import {ticketReducer} from './store/ticket.reducers';
 import {TicketsComponent} from './tickets.component';
 import {TicketNewComponent} from './ticket-new/ticket-new.component';
 import {TicketsRoutingModule} from './tickets-routing.module';
-import { TicketStartComponent } from './ticket-start/ticket-start.component';
+import { TicketListComponent } from './ticket-list/ticket-list.component';
 import {ReactiveFormsComponent} from './ticket-new/reactive-forms/reactive-forms.component';
 import {EffectsModule} from "@ngrx/effects";
 import {TicketEffects} from "./store/ticket.effects";
@@ -20,7 +20,7 @@ import { TicketEditComponent } from './ticket-edit/ticket-edit.component';
   declarations: [
     TicketsComponent,
     TicketNewComponent,
-    TicketStartComponent,
+    TicketListComponent,
     ReactiveFormsComponent,
     TicketEditComponent
   ],

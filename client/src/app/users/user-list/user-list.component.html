@@ -15,7 +15,7 @@
     </div>
   </form>
 
-  <table class="table table-bordered table-hover">
+  <table class="table table-hover">
     <thead>
     <tr>
       <th scope="col">תאריך</th>
@@ -24,28 +24,29 @@
       <th scope="col">תפקיד</th>
       <th scope="col">דוא"ל</th>
       <th scope="col">סטטוס</th>
-      <th scope="col">עריכה</th>
-      <th scope="col">מחיקה</th>
+      <th scope="col">פעולות</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of pagedItems | tableFilter :  { fullName: searchString, email: searchString, userRole: searchString } : false; let i = index">
+    <tr [@list1] *ngFor="let user of pagedItems | tableFilter :  { fullName: searchString, email: searchString, userRole: searchString } : false; let i = index">
       <td>{{ user.date | date:'shortTime' }}</td>
       <td>{{ user.fullName }}</td>
       <td>{{ user.phoneNumber }}</td>
       <td>{{ user.userRole }}</td>
       <td>{{ user.email }}</td>
-      <td *ngIf="!user.editMode">{{ user.status }}</td>
-      <td *ngIf="user.editMode">
-        <input
-          type="text"
-          class="form-control"
-          name="edit-row"
-          [(ngModel)]="editStatus">
+      <td>{{ user.status ? 'פעיל' : 'לא פעיל' }}</td>
+      <!--<td *ngIf="!user.editMode">{{ user.status ? 'פעיל' : 'לא פעיל' }}</td>-->
+      <!--<td *ngIf="user.editMode">-->
+        <!--<input-->
+          <!--type="text"-->
+          <!--class="form-control"-->
+          <!--name="edit-row"-->
+          <!--[(ngModel)]="editStatus">-->
+      <!--</td>-->
+      <td>
+        <button class="btn btn-default" (click)="onEditRow(user, i)">צפייה</button>
+        <button class="btn btn-danger" (click)="onDeleteRow(i, user)">מחיקה</button>
       </td>
-      <td *ngIf="!user.editMode"><span class="glyphicon glyphicon-edit" (click)="onEditRow(user, i)"></span></td>
-      <td *ngIf="user.editMode"><button class="btn btn-success" (click)="onEditSaveRow(editStatus, user)">שמור</button></td>
-      <td><span class="glyphicon glyphicon-trash" (click)="onDeleteRow(i, user)"></span></td>
     </tr>
     </tbody>
   </table>

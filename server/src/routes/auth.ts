@@ -86,9 +86,7 @@ class AuthRoute {
         router.post('/auth/register', Authorized, async (req: Request, res: Response) => {
             // if (req.body.email === 'test@test.com') {
             try {
-                console.log("Authorized111: ",req)
                 const user = await service.register(req.body, req.session);
-                console.log('user._id: ',user._id);
                 const session = SignToken(user);
                 res.status(200).json({ success: true, data: user, session: session });
             } catch (e) {
@@ -101,8 +99,6 @@ class AuthRoute {
             try {
                 const user = await service.login(body.email, body.password);
                 if(user && user.email) {
-                    console.log('user: ',user);
-
                     const session = SignToken(user);
                     res.status(200).json({ success: true, data: user, session: session });
                 } else {

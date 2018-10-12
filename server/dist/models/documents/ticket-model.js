@@ -51,6 +51,9 @@ exports.TicketsSchema = new mongoose_1.Schema({
     },
     technicianResolution: {
         type: String
+    },
+    orgId: {
+        type: String
     }
 }, {
     timestamps: true,

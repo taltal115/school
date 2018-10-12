@@ -31,9 +31,6 @@ class UsersRoute {
             // });
             try {
                 const users = yield documents_1.User.find(query);
-                console.log("query: ", query);
-                console.log("users: ", users);
-                console.log("Authorized: ", req.session);
                 return res.status(200).json(users);
             }
             catch (e) {
@@ -73,13 +70,30 @@ class UsersRoute {
         //     });
         // });
         //
+        router.get("/users/:id", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                // const u_id_query = req.session ? {teacherId: req.session.u_id} : null;
+                const user = yield documents_1.User.findById(req.params.id);
+                res.status(201).json(user);
+            }
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
+        }));
         router.delete("/users", auth_1.Authorized, (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 // const tickets = await Ticket.find({});
                 const deleteAction = yield documents_1.User.findByIdAndRemove(req.body._id);
-                console.log("deleteAction: ", req.body);
-                console.log("deleteActiondeleteAction: ", deleteAction);
-                res.status(201).json('users');
+                res.status(201).json(deleteAction);
+            }
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
+        }));
+        router.patch("/users", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const updateUser = yield documents_1.User.findByIdAndUpdate(req.body._id, req.body);
+                res.status(201).json(updateUser);
             }
             catch (e) {
                 res.status(500).send({ error: e });

@@ -5,13 +5,13 @@ import {Ticket} from "./ticket.model";
 import {Store} from "@ngrx/store";
 import {All} from "../auth/store/auth.actions";
 // import {User} from "../models/user";
-
+import {AppConstants} from "../app.constants";
 // import { User } from '../models/user';
 
 
 @Injectable()
 export class TicketsService{
-  private BASE_URL = 'http://localhost:3000';
+  private BASE_URL = AppConstants.CONFIG.BASE_URL;
 
   constructor(
     private http: HttpClient
@@ -38,7 +38,7 @@ export class TicketsService{
   deleteTicket(ticket: Ticket) {
     const req = new HttpRequest(
       'DELETE',
-      'http://localhost:3000/tickets',
+      this.BASE_URL+'/tickets',
       ticket,
       {reportProgress: true}
     );
@@ -48,8 +48,28 @@ export class TicketsService{
   createTicket(ticket: Ticket) {
     const req = new HttpRequest(
       'POST',
-      'http://localhost:3000/tickets',
+      this.BASE_URL+'/tickets',
       ticket,
+      {reportProgress: true}
+    );
+    return this.http.request(req);
+  }
+
+  updateTicket(ticket: Ticket) {
+    const req = new HttpRequest(
+      'PATCH',
+      this.BASE_URL+'/tickets',
+      ticket,
+      {reportProgress: true}
+    );
+    return this.http.request(req);
+  }
+
+  exportToCsv(tickets: Ticket[]) {
+    const req = new HttpRequest(
+      'POST',
+      this.BASE_URL+'/tickets/export/csv',
+      JSON.stringify(tickets),
       {reportProgress: true}
     );
     return this.http.request(req);

@@ -5,6 +5,8 @@ import {User} from "../../models/user";
 export const FETCH_USERS = 'FETCH_USERS';
 export const SET_USERS = 'SET_USERS';
 export const DELETE_USER = 'DELETE_USER';
+export const FETCH_USER = 'FETCH_USER';
+export const UPDATE_USER = 'UPDATE_USER';
 
 export class FetchUsers implements Action {
   readonly type = FETCH_USERS;
@@ -20,4 +22,19 @@ export class DeleteUser implements Action {
   constructor(public payload: {index: number, user: User}) {}
 }
 
-export type UsersActions = FetchUsers | SetUsers | DeleteUser;
+export class FetchUser implements Action {
+  readonly type = FETCH_USER;
+  constructor(public payload: string) {}
+}
+
+export class UpdateUser implements Action {
+  readonly type = UPDATE_USER;
+  constructor(public payload: {index: number, user: User}) {}
+}
+
+export type UsersActions =
+  FetchUsers |
+  SetUsers |
+  DeleteUser |
+  FetchUser |
+  UpdateUser;

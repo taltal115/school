@@ -21,7 +21,6 @@ class OrganisationsRoute {
         // const service = new UserService();
         router.post("/organisations", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const organisation = new documents_1.Organization(req.body);
-            console.log("req.organisation: ", req.body);
             delete organisation.__v;
             // console.log("ticket: ", ticket);
             organisation.save((err) => {
@@ -61,6 +60,16 @@ class OrganisationsRoute {
                 }
             });
         }));
+        router.get("/organisations/:id", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                // const u_id_query = req.session ? {teacherId: req.session.u_id} : null;
+                const organization = yield documents_1.Organization.findById(req.params.id);
+                res.status(201).json(organization);
+            }
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
+        }));
         router.get("/organisations", auth_1.Authorized, (req, res) => __awaiter(this, void 0, void 0, function* () {
             // service.session = req.session;
             // service.retrieve().then((users: Array<IUserInstance>) => {
@@ -73,8 +82,6 @@ class OrganisationsRoute {
             // });
             try {
                 const org = yield documents_1.Organization.find({});
-                console.log("org: ", org);
-                console.log("Authorized: ", req.session);
                 return res.status(200).json(org);
             }
             catch (e) {
@@ -118,9 +125,16 @@ class OrganisationsRoute {
             try {
                 // const tickets = await Ticket.find({});
                 const deleteAction = yield documents_1.Organization.findByIdAndRemove(req.body._id);
-                console.log("deleteAction: ", req.body);
-                console.log("deleteActiondeleteAction: ", deleteAction);
-                res.status(201).json('organisations');
+                res.status(201).json(deleteAction);
+            }
+            catch (e) {
+                res.status(500).send({ error: e });
+            }
+        }));
+        router.patch("/organisations", auth_1.Authorized, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const updateOrganization = yield documents_1.Organization.findByIdAndUpdate(req.body._id, req.body);
+                res.status(201).json(updateOrganization);
             }
             catch (e) {
                 res.status(500).send({ error: e });

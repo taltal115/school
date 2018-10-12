@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TicketStartComponent } from './ticket-start.component';
+import { TicketListComponent } from './ticket-list.component';
 import {TicketsService} from "../tickets.service";
 import {Observable, of} from "rxjs";
 import {Store} from "@ngrx/store";
 
 describe('OrganisationListComponent', () => {
-  let component: TicketStartComponent;
-  let fixture: ComponentFixture<TicketStartComponent>;
+  let component: TicketListComponent;
+  let fixture: ComponentFixture<TicketListComponent>;
 
   let ticketService: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TicketStartComponent ],
+      declarations: [ TicketListComponent ],
       providers: [ {
         provide: TicketsService,
         useValue: jasmine.createSpyObj('ticketService', ['getTickets'])
@@ -23,7 +23,7 @@ describe('OrganisationListComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TicketStartComponent);
+    fixture = TestBed.createComponent(TicketListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

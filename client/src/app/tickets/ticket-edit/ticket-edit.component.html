@@ -1,18 +1,199 @@
-<h2>דף קריאה</h2>
+<div *ngIf="!editMode;then editTemplate else viewTemplate"></div>
+<ng-template #editTemplate>
+  <h2>דף קריאה</h2>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1">
+      <div class="panel-body">
+        <div class="row">
+          <div class=" col-md-9 col-lg-9 ">
+            <table class="table table-user-information">
+              <tbody>
+              <tr>
+                <td>שם</td>
+                <td>{{teacherName }}</td>
+              </tr>
+              <tr>
+                <td>טלפון המורה המדווח</td>
+                <td>{{teachersContactPhone }}</td>
+              </tr>
+              <tr>
+              <tr>
+                <td>אופי התקלה</td>
+                <td>{{problemsNature }}</td>
+              </tr>
+              <tr>
+                <td>ציוד חסר</td>
+                <td>{{missingEquipments }}</td>
+              </tr>
+              <tr>
+                <td>מיקום המכשיר</td>
+                <td>{{deviceLocation }}</td>
+              </tr>
+              <tr>
+                <td>מכשיר תקול</td>
+                <td>{{damagedDevice }}</td>
+              </tr>
+              <tr>
+                <td>מספר סידורי</td>
+                <td>{{serialNumber }}</td>
+              </tr>
+              <tr>
+                <td>מבנה</td>
+                <td>{{structure }}</td>
+              </tr>
+              <tr>
+                <td>סטאטוס</td>
+                <td>{{status }}</td>
+              </tr>
+              <tr>
+                <td>קריאות שירות</td>
+                <td>{{ticketCharge }}</td>
+              </tr>
+              <tr>
+                <td>סיכום טכנאי</td>
+                <td>{{technicianResolution }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <span class="pull-right">
+          <button type="button" class="btn btn-success" (click)="edit()">עדכן</button>
+          <button type="button" class="btn btn-default" (click)="back()">אחורה</button>
+        </span>
+    </div>
+  </div>
+</ng-template>
 
-<ul class="list-group">
-  <li class="list-group-item">{{id}}</li>
-  <li class="list-group-item">{{ teacherName}}</li>
-  <li class="list-group-item">{{ teacherId }}</li>
-  <li class="list-group-item">{{ teachersContactPhone }}</li>
-  <li class="list-group-item">{{ problemsNature }}</li>
-  <li class="list-group-item">{{ missingEquipments }}</li>
-  <li class="list-group-item">{{ deviceLocation }}</li>
-  <li class="list-group-item">{{ damagedDevice }}</li>
-  <li class="list-group-item">{{ serialNumber }}</li>
-  <li class="list-group-item">{{ structure }}</li>
-  <li class="list-group-item">{{ status }}</li>
-</ul>
+<ng-template #viewTemplate>
 
-<button class="btn btn-primary" (click)="back()">חזור אחורה</button>
-<button class="btn btn-primary" (click)="edit()">עריכה</button>
+  <h2>דף קריאה</h2>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1">
+      <div class="panel-body">
+        <div class="row">
+          <form [formGroup]="editTicketForm" (ngSubmit)="onSubmit()">
+            <div formGroupName="ticketData">
+              <fieldset>
+                <div class="form-group">
+
+                  <div class=" col-md-9 col-lg-9 ">
+                    <table class="table table-user-information">
+                      <tbody>
+                      <tr>
+                        <td>שם</td>
+                        <td>
+                          <input
+                            type="text"
+                            id="teacherName"
+                            formControlName="teacherName"
+                            class="form-control">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>טלפון המורה המדווח</td>
+                        <td><input
+                          type="text"
+                          id="teachersContactPhone"
+                          formControlName="teachersContactPhone"
+                          class="form-control"></td>
+                      </tr>
+                      <tr>
+                      <tr>
+                        <td>אופי התקלה</td>
+                        <td> <textarea
+                          type="text"
+                          id="problemsNature"
+                          formControlName="problemsNature"
+                          class="form-control">
+                </textarea></td>
+                      </tr>
+                      <tr>
+                        <td>ציוד חסר</td>
+                        <td><input
+                          type="text"
+                          id="missingEquipments"
+                          formControlName="missingEquipments"
+                          class="form-control"></td>
+                      </tr>
+                      <tr>
+                      <td>מיקום המכשיר</td>
+                        <td>
+                          <input
+                            type="text"
+                            id="deviceLocation"
+                            formControlName="deviceLocation"
+                            class="form-control">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>מכשיר תקול</td>
+                        <td><input
+                          type="text"
+                          id="damagedDevice"
+                          formControlName="damagedDevice"
+                          class="form-control"></td>
+                      </tr>
+                      <tr>
+                        <td>מספר סידורי</td>
+                        <td><input
+                          type="text"
+                          id="serialNumber"
+                          formControlName="serialNumber"
+                          class="form-control"></td>
+                      </tr>
+                      <tr>
+                      <tr>
+                        <td>מבנה</td>
+                        <td><input
+                          type="text"
+                          id="structure"
+                          formControlName="structure"
+                          class="form-control"></td>
+                      </tr>
+                      <tr>
+                        <td>סטאטוס</td>
+                        <td>
+                          <select class="form-control" id="status" formControlName="status" [(ngModel)]="statusEdit">
+                            <label>Status</label>
+                            <option  [value]="status" *ngFor="let status of statuses">{{status}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>קריאות שירות</td>
+                        <td>
+                          <input
+                            type="number"
+                            id="ticketCharge"
+                            formControlName="ticketCharge"
+                            class="form-control">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>סיכום טכנאי</td>
+                        <td>
+                          <textarea
+                            type="text"
+                            id="technicianResolution"
+                            formControlName="technicianResolution"
+                            class="form-control"></textarea>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </form>
+        </div>
+      </div>
+      <span class="pull-right">
+          <button type="button" class="btn btn-success" (click)="onSubmit()">שלח</button>
+          <button type="button" class="btn btn-default" (click)="back()">אחורה</button>
+        </span>
+    </div>
+  </div>
+</ng-template>

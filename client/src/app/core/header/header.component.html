@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav pull-right">
         <li routerLinkActive="active" *ngIf="(isAuthenticated)"><a routerLink="/tickets">כרטיסי שירות</a></li>
-        <li routerLinkActive="active" *ngIf="(isAuthenticated && user.userRole != 'teacher')"><a routerLink="/users">משתמשים</a></li>
+        <li routerLinkActive="active" *ngIf="(isAuthenticated && user.userRole != 'teacher' && user.userRole != 'technician')"><a routerLink="/users">משתמשים</a></li>
         <li routerLinkActive="active" *ngIf="(isAuthenticated && user.userRole === 'super')"><a routerLink="/organisations">ארגונים</a></li>
         <!--<li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>-->
       </ul>

@@ -4,7 +4,7 @@ import {NextFunction, Request, Response, Router} from "express";
 // import { IUserInstance } from "../models";
 //import { userRules } from './rules/user.rules';
 // import { Authorized } from "../utils/auth";
-import { Organization } from "../models/documents";
+import {Organization} from "../models/documents";
 import {Authorized} from "../utils/auth";
 // import {IMailOptions} from "../models/general";
 // import {EmailService} from "../service";
@@ -15,7 +15,6 @@ class OrganisationsRoute {
 
         router.post("/organisations", Authorized, async (req: Request, res: Response, next: NextFunction) => {
             const organisation = new Organization(req.body);
-            console.log("req.organisation: ",req.body)
             delete organisation.__v;
             // console.log("ticket: ", ticket);
             organisation.save((err: any) => {
@@ -54,7 +53,15 @@ class OrganisationsRoute {
                 }
             });
         });
-
+        router.get("/organisations/:id", Authorized, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                // const u_id_query = req.session ? {teacherId: req.session.u_id} : null;
+                const organization = await Organization.findById(req.params.id);
+                res.status(201).json(organization);
+            } catch (e) {
+                res.status(500).send({error: e});
+            }
+        });
         router.get("/organisations", Authorized, async (req: Request, res: Response) => {
             // service.session = req.session;
             // service.retrieve().then((users: Array<IUserInstance>) => {
@@ -68,8 +75,6 @@ class OrganisationsRoute {
             // });
             try {
                 const org = await Organization.find({});
-                console.log("org: ",org);
-                console.log("Authorized: ",req.session);
                 return res.status(200).json(org);
             } catch (e) {
                 return res.status(500).json(e);
@@ -113,10 +118,16 @@ class OrganisationsRoute {
             try {
                 // const tickets = await Ticket.find({});
                 const deleteAction = await Organization.findByIdAndRemove(req.body._id);
+                res.status(201).json(deleteAction);
+            } catch (e) {
+                res.status(500).send({error: e});
+            }
+        });
 
-                console.log("deleteAction: ",req.body);
-                console.log("deleteActiondeleteAction: ",deleteAction);
-                res.status(201).json('organisations');
+        router.patch("/organisations" , Authorized, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const updateOrganization = await Organization.findByIdAndUpdate(req.body._id, req.body);
+                res.status(201).json(updateOrganization);
             } catch (e) {
                 res.status(500).send({error: e});
             }

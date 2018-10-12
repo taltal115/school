@@ -104,6 +104,7 @@ export class TicketEffects {
         .pipe(
           map((tickets) => {
             console.log("ticketstickets: ", tickets);
+            this.router.navigate(['/tickets'])
             return {
               type: TicketActions.FETCH_TICKETS
             };

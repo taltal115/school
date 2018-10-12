@@ -10,10 +10,8 @@ export class AuthService {
     async register(userObject: IUser, session: any) {
         if(!userObject.orgId) {
             userObject.orgId = session.org_id;
-            console.log('userObject123_org_id: ',userObject);
         }
         const userToSave = new User(userObject);
-        console.log('userObject123: ',userObject);
         // save user to database
         return userToSave.save()
     }
@@ -22,7 +20,6 @@ export class AuthService {
         try {
             return new Promise(async (res, rej) => {
                 const user = await User.findOne({ email: email })
-                console.log("user ",user);
                 if (user) {
                     // attempt to authenticate user
                     UserSchema.methods.comparePassword(password, user.password, function(err, isMached) {

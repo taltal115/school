@@ -32,7 +32,6 @@ export function Authorized(request: Request, res: Response, next: NextFunction) 
     verify(request).then((token => {
         console.log('Authorized: ',token);
         request.session = token;
-        //console.log('Authorized: ', token, request)
         next();
     })).catch((err) => {
         res.status(401).json({ message: "Invalid credentials", view: 'auth', errors: errors.fromJwtError(err) });
@@ -41,7 +40,6 @@ export function Authorized(request: Request, res: Response, next: NextFunction) 
 
 // export function SignToken(user: any, orgId: string, role: number): ISession {
 export function SignToken(user: any): ISession {
-    console.log("signToken: ", user);
     const duration = config.session.duration;
     const expires = new Date(Date.now() + duration * 1000);
     const token = jwt.sign({

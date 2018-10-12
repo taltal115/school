@@ -80,7 +80,6 @@ class Server {
         //client = client + '/build/production/MAM';
         this.app.use(express.static(client));
         if (config.cors && config.cors.enabled) {
-            console.log("config.cors: ", config.cors);
             this.app.use(cors(config.cors));
         }
         // catch 404 and forward to error handler

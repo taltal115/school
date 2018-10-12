@@ -18,10 +18,8 @@ class AuthService {
         return __awaiter(this, void 0, void 0, function* () {
             if (!userObject.orgId) {
                 userObject.orgId = session.org_id;
-                console.log('userObject123_org_id: ', userObject);
             }
             const userToSave = new documents_1.User(userObject);
-            console.log('userObject123: ', userObject);
             // save user to database
             return userToSave.save();
         });
@@ -31,7 +29,6 @@ class AuthService {
             try {
                 return new Promise((res, rej) => __awaiter(this, void 0, void 0, function* () {
                     const user = yield documents_1.User.findOne({ email: email });
-                    console.log("user ", user);
                     if (user) {
                         // attempt to authenticate user
                         user_model_1.UserSchema.methods.comparePassword(password, user.password, function (err, isMached) {

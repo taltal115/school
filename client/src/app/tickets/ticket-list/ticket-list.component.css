@@ -15,9 +15,7 @@ td>span {
   left: 0;
   cursor: pointer;
 }
-.pagination {
-  /*margin: 20px -40px;*/
-}
-.pagination>li {
-  float: right;
+
+.page-actions>button{
+  margin: 0 0 0 10px;
 }

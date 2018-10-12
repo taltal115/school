@@ -1,6 +1,7 @@
 <div class="row">
-  <div class="col md-12">
+  <div class="col md-12 page-actions">
     <button class="btn-primary btn" (click)="onNewTicket()">כרטיס חדש</button>
+    <button class="btn-primary btn" (click)="exportToCsv()">יצוא לדוח</button>
   </div>
 </div>
 <br>
@@ -21,28 +22,28 @@
       <th scope="col">תאריך</th>
       <th scope="col">שם המורה</th>
       <th scope="col">מכשיר תקול</th>
-      <th scope="col">מספר סידורי (מחשב)</th>
-      <th scope="col">מבנה</th>
       <th scope="col">כיתה/מיקום המכשיר</th>
       <th scope="col">מהות התקלה</th>
-      <th scope="col">ציוד שחסר</th>
-      <th scope="col">טלפון מורה מדווח/ת</th>
       <th scope="col">סטטוס</th>
       <th scope="col">פעולות</th>
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ticket of tickets | tableFilter :  { teacherName: searchString, structure: searchString, problemsNature: searchString } : false;   let i = index">
+      <tr [@list1]
+        *ngFor="let ticket of (ticketsState|async).tickets | tableFilter :  { teacherName: searchString, structure: searchString, problemsNature: searchString } : false;let i = index">
         <td>{{ ticket.date | date:'shortTime' }}</td>
         <td>{{ ticket.teacherName }}</td>
         <td>{{ ticket.damagedDevice }}</td>
-        <td>{{ ticket.serialNumber }}</td>
-        <td>{{ ticket.structure }}</td>
         <td>{{ ticket.deviceLocation }}</td>
         <td>{{ ticket.problemsNature }}</td>
-        <td>{{ ticket.missingEquipments }}</td>
-        <td>{{ ticket.teachersContactPhone }}</td>
-        <td>{{ ticket.status }}</td>
+        <td>{{ticket.status}}</td>
+        <!--<td *ngIf="user.userRole !== 'admin'">{{ticket.status}}</td>-->
+        <!--<td *ngIf="user.userRole === 'admin'">-->
+          <!--<select class="form-control" id="type" [(ngModel)]="inlineStatusEdit">-->
+            <!--<label>Status</label>-->
+            <!--<option [value]="status" *ngFor="let status of statuses">{{status}}</option>-->
+          <!--</select>-->
+        <!--</td>-->
         <td>
           <button class="btn btn-default" (click)="onEditItem(ticket, i)">צפייה</button>
           <button class="btn btn-danger" (click)="onDeleteRow(i, ticket)">מחיקה</button>
@@ -57,24 +58,23 @@
 <div class="row">
   <!-- pager -->
   <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-      <a (click)="setPage(pager.totalPages)">אחרון</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-      <a (click)="setPage(pager.currentPage + 1)">הבא</a>
-    </li>
-    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-      <a (click)="setPage(page)">{{page}}</a>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(1)">ראשון</a>
     </li>
     <li [ngClass]="{disabled:pager.currentPage === 1}">
       <a (click)="setPage(pager.currentPage - 1)">הקודם</a>
     </li>
-    <li [ngClass]="{disabled:pager.currentPage === 1}">
-      <a (click)="setPage(1)">ראשון</a>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+      <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.currentPage + 1)">הבא</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.totalPages)">אחרון</a>
     </li>
   </ul>
 </div>
 
-<ng-template #pixklw>
+<!--<ng-template #readOnlyStatus>{{ticket.status}}</ng-template>-->
 
-</ng-template>
