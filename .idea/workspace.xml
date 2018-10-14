@@ -1,67 +1,276 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="77492f79-37bb-46a5-b752-82c331dc9031" name="Default" comment="work">
-      <change afterPath="$PROJECT_DIR$/client/src/app/app.constants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/service/export-service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authExample_RXJS/angular-reactive-authentication" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/authExample_RXJS/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/core/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/core/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/core/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/store/ticket.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/store/ticket.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/store/ticket.effects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/store/ticket.effects.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/store/ticket.reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/store/ticket.reducers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-start/ticket-start.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-start/ticket-start.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-start/ticket-start.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-start/ticket-start.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/ticket.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/tickets-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/tickets-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/tickets.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/tickets.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/tickets.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/tickets/tickets.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/users/store/users.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/users/store/users.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/users/store/users.effects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/users/store/users.effects.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/users/store/users.reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/users/store/users.reducers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/users/users-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/users/users-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/users/users.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/users/users.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/ticket-model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/models/documents/ticket-model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/user-model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/models/documents/user-model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/models/general/auth-class.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/models/general/auth-class.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/routes/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/routes/organisations.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/routes/organisations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/routes/tickets.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/routes/tickets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/routes/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/service/auth-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/service/auth-service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/utils/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/utils/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/documents/ticket-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/documents/ticket-model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/documents/user-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/documents/user-model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/general/auth-class.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/general/auth-class.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/dashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/dashboard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/organisations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/organisations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/tickets.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/tickets.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/service/auth-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/service/auth-service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/utils/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utils/auth.ts" afterDir="false" />
+    <list default="true" id="77492f79-37bb-46a5-b752-82c331dc9031" name="Default" comment="a lot of work">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/markdown-navigator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/school.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist/my-first-app/3rdpartylicenses.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist/my-first-app/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist/my-first-app/glyphicons-halflings-regular.448c34a56d699c29117a.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist/my-first-app/glyphicons-halflings-regular.89889688147bd7575d63.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist/my-first-app/glyphicons-halflings-regular.e18bbf611f2a2e43afc0.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist/my-first-app/glyphicons-halflings-regular.f4769f9bdb7466be6508.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist/my-first-app/glyphicons-halflings-regular.fa2772327f55d8198301.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist/my-first-app/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dist/my-first-app/runtime.a66f828dca56eeb90e02.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/src/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/src/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/tsconfig.e2e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/how-to-use.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.constants.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/auth-guard.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/auth-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/auth.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/auth.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/signin/signin.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/signin/signin.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/signin/signin.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/signup/signup.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/signup/signup.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/signup/signup.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/store/auth.actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/store/auth.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/store/auth.effects.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/auth/store/auth.reducers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/core.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/header/header.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/header/header.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/home/home.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/home/home.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/home/home.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/home/home.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/models/user.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation-list/organisation-list.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation-list/organisation-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation-list/organisation-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation-new/organisation-new.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation-new/organisation-new.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation-new/organisation-new.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisation.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisations-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisations.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisations.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisations.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisations.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisations.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/organisations.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/store/organisation.actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/store/organisation.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/store/organisation.effects.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/organisations/store/organisation.reducers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/auth.interceptor.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/current-user.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/dropdown.directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/enums/CustomStatus" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/enums/CustomStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/helper.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/ingredient.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/login.interceptor.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/pager.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/pipes/filter.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/pipes/table-filter.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/shared.modules.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/store/app.reducers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/store/ticket.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/store/ticket.effects.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/store/ticket.reducers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-new/reactive-forms/reactive-forms.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-new/reactive-forms/reactive-forms.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-new/reactive-forms/reactive-forms.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-new/ticket-new.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-new/ticket-new.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket-new/ticket-new.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/ticket.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/tickets-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/tickets.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/tickets.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/tickets.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/tickets.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/tickets/tickets.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/new-user/new-user.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/new-user/new-user.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/new-user/new-user.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/store/users.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/store/users.effects.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/store/users.reducers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/users-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/users.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/users.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/users.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/users.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/users/users.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/browserslist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.npmrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bin/www" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/asset-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/interfaces/action.result-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/interfaces/asset-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/interfaces/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/interfaces/organization-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/interfaces/organization.preference-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/interfaces/pager-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/interfaces/tree.item-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/interfaces/user-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/organization-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/organizationpreferences-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/ticket-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/treeitem-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/documents/user-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/interfaces/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/interfaces/organization-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/interfaces/role-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/interfaces/user-interface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/organization-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/role-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/ticket-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/user-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/entities/user_organization-association.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/enums/connection-type.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/enums/flag-number.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/enums/folder-type.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/enums/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/enums/mail-subjects.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/enums/roles-type.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/general/auth-class.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/general/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/general/mail.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/general/session.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/models/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/_auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/_user.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/organisations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/rules/auth.rules.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/rules/user.rules.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/tickets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/routes/users.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/service/_auth-service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/service/auth-service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/service/email-service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/service/home-service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/service/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/service/user-service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/utils/auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/utils/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/utils/errors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/utils/helper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/utils/http-codes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/utils/logger.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/utils/passport.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/utils/session.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/asset-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/interfaces/action.result-interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/interfaces/asset-interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/interfaces/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/interfaces/organization-interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/interfaces/pager-interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/interfaces/tree.item-interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/interfaces/user-interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/organization-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/ticket-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/treeitem-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/documents/user-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/enums/connection-type.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/enums/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/enums/mail-subjects.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/enums/roles-type.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/general/auth-class.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/general/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/general/mail.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/general/session.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/_auth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/_user.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/auth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/dashboard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/home.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/organisations.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/tickets.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/users.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/service/_auth-service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/service/auth-service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/service/email-service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/service/export-service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/service/home-service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/service/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/service/user-service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/auth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/errors.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/helper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/http-codes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/logger.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/passport.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/session.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views/_shared/mail-layout.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views/mails/mail-activate.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views/mails/new-ticket.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views/mails/restore-password.hbs" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -76,7 +285,7 @@
     <session id="-1578803573">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="23" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.12" value="1" />
@@ -85,166 +294,64 @@
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.8" value="3" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.open.time.8" value="5" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="Angular2LanguageService" value="18" />
+          <entry key="Angular2LanguageService" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="38" />
-          <entry key="hbs" value="3" />
-          <entry key="html" value="147" />
+          <entry key="css" value="41" />
+          <entry key="hbs" value="6" />
+          <entry key="html" value="161" />
           <entry key="js" value="9" />
-          <entry key="json" value="11" />
-          <entry key="ts" value="708" />
+          <entry key="json" value="12" />
+          <entry key="ts" value="761" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="38" />
-          <entry key="HTML" value="147" />
-          <entry key="Handlebars/Mustache" value="3" />
-          <entry key="JSON" value="11" />
+          <entry key="CSS" value="41" />
+          <entry key="HTML" value="161" />
+          <entry key="Handlebars/Mustache" value="6" />
+          <entry key="JSON" value="12" />
           <entry key="JavaScript" value="9" />
-          <entry key="TypeScript" value="708" />
+          <entry key="TypeScript" value="761" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="120" />
+          <entry key="css" value="124" />
           <entry key="hbs" value="275" />
-          <entry key="html" value="3267" />
+          <entry key="html" value="3649" />
           <entry key="js" value="1" />
           <entry key="json" value="31" />
-          <entry key="ts" value="10732" />
-          <entry key="txt" value="137" />
+          <entry key="ts" value="11816" />
+          <entry key="txt" value="150" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="120" />
-          <entry key="HTML" value="3267" />
+          <entry key="CSS" value="124" />
+          <entry key="HTML" value="3649" />
           <entry key="Handlebars/Mustache" value="275" />
           <entry key="JSON" value="31" />
           <entry key="JavaScript" value="1" />
-          <entry key="PLAIN_TEXT" value="137" />
-          <entry key="TypeScript" value="10732" />
+          <entry key="PLAIN_TEXT" value="150" />
+          <entry key="TypeScript" value="11816" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="32" column="58" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/core/home/home.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="127" column="94" selection-start-line="127" selection-start-column="84" selection-end-line="127" selection-end-column="94" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="116" column="56" lean-forward="true" selection-start-line="116" selection-start-column="56" selection-end-line="116" selection-end-column="56" />
-              <folding>
-                <element signature="e#0#60#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/core/header/header.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="123" selection-start-line="8" selection-start-column="123" selection-end-line="8" selection-end-column="123" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/tickets/store/ticket.actions.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="41" column="2" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/tickets/store/ticket.effects.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1410">
-              <caret line="106" selection-start-line="106" selection-end-line="107" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/tickets/store/ticket.reducers.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="39" column="90" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="90" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="93" selection-start-line="93" selection-end-line="93" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/core/home/home.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#61#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -256,21 +363,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>editUserForm</find>
-      <find>bcrypt</find>
-      <find>&lt;select</find>
-      <find>POSTER_IMG_DIMENSION</find>
-      <find>user</find>
-      <find>UsersService</find>
-      <find>ulpa</find>
-      <find>ulpana</find>
-      <find>UpdateUser</find>
-      <find>req.params.idreq.params.id:</find>
-      <find>Authorized111</find>
-      <find>userObject123</find>
-      <find>org</find>
-      <find>orgData</find>
-      <find>ticketData</find>
       <find>list</find>
       <find>:3000</find>
       <find>console.log(</find>
@@ -286,6 +378,21 @@
       <find>Delete</find>
       <find>recipe</find>
       <find>UpdateTicket</find>
+      <find>shortTime</find>
+      <find>ticketCharge</find>
+      <find>technicianResolution</find>
+      <find>statusEdit</find>
+      <find>passw</find>
+      <find>reset</find>
+      <find>models</find>
+      <find>crypto</find>
+      <find>route</find>
+      <find>authM</find>
+      <find>toastr</find>
+      <find>this.toastr</find>
+      <find>restorePassword</find>
+      <find>ngm</find>
+      <find>auth/restore</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/server/src/models/documents</dir>
@@ -311,38 +418,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/src/routes/tickets.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/auth/store/auth.effects.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-start/ticket-start.component.css" />
-        <option value="$PROJECT_DIR$/client/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/shared/auth.interceptor.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/models/user.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/users/users-routing.module.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.css" />
-        <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-start/ticket-start.component.html" />
-        <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-start/ticket-start.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/styles.css" />
-        <option value="$PROJECT_DIR$/client/src/app/core/header/header.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/users/store/users.actions.ts" />
-        <option value="$PROJECT_DIR$/server/src/routes/users.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/auth/signup/signup.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/organisations/organisations.module.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/organisations/organisations-routing.module.ts" />
         <option value="$PROJECT_DIR$/server/src/routes/organisations.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/organisations/store/organisation.actions.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/organisations/store/organisation.reducers.ts" />
         <option value="$PROJECT_DIR$/client/src/app/organisations/store/organisation.effects.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.html" />
-        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation.model.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/organisations/organisation-new/organisation-new.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-start/ticket-list.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation-list/organisation-list.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/users/store/users.reducers.ts" />
         <option value="$PROJECT_DIR$/client/src/app/users/store/users.effects.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation-list/organisation-list.component.html" />
-        <option value="$PROJECT_DIR$/client/src/app/auth/auth.service.ts" />
         <option value="$PROJECT_DIR$/client/src/app/organisations/organisations.service.ts" />
         <option value="$PROJECT_DIR$/client/src/app/tickets/tickets.service.ts" />
         <option value="$PROJECT_DIR$/client/src/app/users/users.service.ts" />
@@ -350,18 +431,44 @@
         <option value="$PROJECT_DIR$/client/src/app/app.constants.ts" />
         <option value="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.html" />
-        <option value="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.html" />
-        <option value="$PROJECT_DIR$/client/src/app/core/home/home.component.html" />
         <option value="$PROJECT_DIR$/server/src/routes/dashboard.ts" />
         <option value="$PROJECT_DIR$/client/src/app/core/header/header.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/core/home/home.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/tickets/store/ticket.actions.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/tickets/store/ticket.reducers.ts" />
         <option value="$PROJECT_DIR$/client/src/app/tickets/store/ticket.effects.ts" />
+        <option value="$PROJECT_DIR$/server/src/models/documents/organization-model.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation-list/organisation-list.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation-list/organisation-list.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/tickets/store/ticket.reducers.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation.model.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/organisations/store/organisation.reducers.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/organisations/store/organisation.actions.ts" />
+        <option value="$PROJECT_DIR$/server/src/app.ts" />
+        <option value="$PROJECT_DIR$/server/src/models/documents/user-model.ts" />
+        <option value="$PROJECT_DIR$/server/src/service/user-service.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/auth-routing.module.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/auth.module.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/signin/signin.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/auth.service.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/store/auth.actions.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/store/auth.effects.ts" />
+        <option value="$PROJECT_DIR$/server/src/routes/auth.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-new/reactive-forms/reactive-forms.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/signin/signin.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/reset-password/reset-password.component.css" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/reset-password/reset-password.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/auth/reset-password/reset-password.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/core/home/home.component.html" />
+        <option value="$PROJECT_DIR$/server/src/models/documents/ticket-model.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/tickets/ticket.model.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.html" />
       </list>
     </option>
   </component>
@@ -371,18 +478,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/client/node_modules" />
-    <handled-path value="$PROJECT_DIR$/server/node_modules" />
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/client/package.json" />
-      <path value="$PROJECT_DIR$/server/package.json" />
-    </packageJsonPaths>
-  </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="11" />
+    <option name="y" value="24" />
     <option name="width" value="1680" />
     <option name="height" value="954" />
   </component>
@@ -432,34 +530,7 @@
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="header" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="school" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="school" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="tickets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="school" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="tickets" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="school" type="b2602c69:ProjectViewProjectNode" />
@@ -482,32 +553,6 @@
             <path>
               <item name="school" type="b2602c69:ProjectViewProjectNode" />
               <item name="school" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="school" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-              <item name="user-edit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="school" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-              <item name="user-list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="school" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -515,6 +560,21 @@
               <item name="school" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="school" type="b2602c69:ProjectViewProjectNode" />
+              <item name="school" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="school" type="b2602c69:ProjectViewProjectNode" />
+              <item name="school" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="documents" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="school" type="b2602c69:ProjectViewProjectNode" />
@@ -534,8 +594,21 @@
               <item name="school" type="b2602c69:ProjectViewProjectNode" />
               <item name="school" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="school" type="b2602c69:ProjectViewProjectNode" />
+              <item name="school" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="_shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="school" type="b2602c69:ProjectViewProjectNode" />
+              <item name="school" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="mails" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -670,7 +743,11 @@
       <workItem from="1539171139129" duration="11835000" />
       <workItem from="1539238738244" duration="599000" />
       <workItem from="1539245811130" duration="4595000" />
-      <workItem from="1539275192329" duration="4238000" />
+      <workItem from="1539275192329" duration="7830000" />
+      <workItem from="1539452283767" duration="1127000" />
+      <workItem from="1539458430794" duration="1635000" />
+      <workItem from="1539460243715" duration="1009000" />
+      <workItem from="1539495566594" duration="4249000" />
     </task>
     <task id="LOCAL-00001" summary="server save and fetch data">
       <created>1533744097262</created>
@@ -721,7 +798,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539201743906</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="a lot of work">
+      <created>1539332037249</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1539332037249</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -730,18 +814,17 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="279742000" />
+    <option name="totallyTimeSpent" value="291354000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="954" extended-state="0" />
-    <editor active="true" />
+    <frame x="11" y="24" width="1680" height="954" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2079566" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20614828" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32714617" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4350348" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4350348" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -755,26 +838,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2079566" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32714617" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4350348" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3387471" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32941177" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -782,8 +845,6 @@
       <list>
         <option value="$PROJECT_DIR$/../udemy-typescript/Compiler/Exercise/map.js" />
         <option value="$PROJECT_DIR$/../udemy-typescript/Compiler/app.js" />
-        <option value="$PROJECT_DIR$/client/src/app/auth/store/auth.actions.js" />
-        <option value="$PROJECT_DIR$/client/node_modules/karma/config.tpl.js" />
         <option value="$PROJECT_DIR$/../udemy-typescript/Compiler/Exercise/_ex2.js" />
       </list>
     </option>
@@ -799,319 +860,35 @@
     <MESSAGE value="starting ticket page" />
     <MESSAGE value="work" />
     <MESSAGE value="commit a lot of work part 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit a lot of work part 1" />
+    <MESSAGE value="a lot of work" />
+    <option name="LAST_COMMIT_MESSAGE" value="a lot of work" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/src/routes/users.ts">
+    <entry file="file://$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="82" column="11" selection-start-line="71" selection-start-column="7" selection-end-line="82" selection-end-column="11" />
+        <state relative-caret-position="181">
+          <caret line="30" column="47" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/dist/my-first-app/main.b68630a589a47347e260.js">
+    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret column="761326" selection-start-column="761326" selection-end-column="761326" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/auth/signup/signup.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation-new/organisation-new.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-526" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/store/organisation.reducers.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="53" column="63" selection-start-line="53" selection-start-column="63" selection-end-line="53" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/store/organisation.actions.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="30" column="2" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/store/organisation.effects.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="98" column="39" selection-start-line="98" selection-start-column="39" selection-end-line="98" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/routes/organisations.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="58" column="56" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/models/user.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation.model.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation-new/organisation-new.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="63" column="15" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="60" column="41" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="91" column="17" selection-start-line="91" selection-start-column="10" selection-end-line="91" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="99" column="46" lean-forward="true" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/users/store/users.reducers.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="32" column="8" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/users/store/users.actions.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/users/store/users.effects.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="67" column="47" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation-list/organisation-list.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-110">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation-list/organisation-list.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/auth/auth.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisations.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/tickets.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/users/users.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/models/documents/ticket-model.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-new/ticket-new.component.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-new/ticket-new.component.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-new/reactive-forms/reactive-forms.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="22" selection-start-line="22" selection-end-line="26" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-new/reactive-forms/reactive-forms.component.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/app.constants.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+        <state relative-caret-position="2085">
+          <caret line="152" column="3" selection-start-line="152" selection-start-column="3" selection-end-line="152" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="971">
+        <state relative-caret-position="1785">
           <caret line="119" column="69" selection-start-line="119" selection-start-column="69" selection-end-line="119" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/users/user-list/user-list.component.html">
+    <entry file="file://$PROJECT_DIR$/client/src/app/users/user-edit/user-edit.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/service/auth-service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/utils/auth.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/routes/auth.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="89" column="47" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/core/home/home.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/routes/dashboard.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/core/home/home.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/core/header/header.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="123" selection-start-line="8" selection-start-column="123" selection-end-line="8" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/store/ticket.actions.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="41" column="2" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/store/ticket.reducers.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="39" column="90" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="90" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="127" column="94" selection-start-line="127" selection-start-column="84" selection-end-line="127" selection-end-column="94" />
+        <state relative-caret-position="255">
+          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1122,30 +899,334 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/core/home/home.component.ts">
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation.model.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+        <state relative-caret-position="15">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation-new/organisation-new.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="60" column="18" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="105" column="117" selection-start-line="105" selection-start-column="107" selection-end-line="105" selection-end-column="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisation-edit/organisation-edit.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="92" column="58" selection-start-line="92" selection-start-column="58" selection-end-line="92" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/store/organisation.effects.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/store/organisation.actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="30" column="46" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/store/organisation.reducers.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisations.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisations.module.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/views/mails/new-ticket.hbs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/models/documents/user-model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2655">
+          <caret line="178" column="13" selection-start-line="178" selection-start-column="13" selection-end-line="178" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/routes/tickets.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/app.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisations-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/store/ticket.reducers.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="55" column="8" selection-start-line="38" selection-start-column="6" selection-end-line="55" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/core/header/header.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="123" selection-start-line="8" selection-start-column="123" selection-end-line="8" selection-end-column="123" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="45" column="9" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/signup/signup.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/auth-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/auth.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/signin/signin.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="19" column="30" selection-start-line="17" selection-start-column="2" selection-end-line="19" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/signin/signin.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/store/auth.actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/auth.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="38" column="2" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/store/auth.effects.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/ngx-toastr/toastr/toastr.service.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-new/reactive-forms/reactive-forms.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="75" selection-start-line="75" selection-end-line="76" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/signin/signin.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="36" column="6" lean-forward="true" selection-start-line="5" selection-end-line="36" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/reset-password/reset-password.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/reset-password/reset-password.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="46" column="12" lean-forward="true" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/service/auth-service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-218">
+          <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/service/user-service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-142">
+          <caret line="212" column="39" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/views/mails/restore-password.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="53" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/routes/_auth.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="71" column="43" lean-forward="true" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/routes/auth.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="132" column="34" selection-start-line="132" selection-start-column="22" selection-end-line="132" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/routes/users.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/reset-password/reset-password.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/auth/reset-password/reset-password.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/core/home/home.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/models/documents/ticket-model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="56" column="11" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket.model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-370">
+          <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="130" column="36" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.html">
+    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-edit/ticket-edit.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="32" column="58" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/tickets/ticket-list/ticket-list.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="116" column="56" lean-forward="true" selection-start-line="116" selection-start-column="56" selection-end-line="116" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="66">
+          <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
         </state>
       </provider>
     </entry>
